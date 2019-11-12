@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2019 a las 16:39:36
+-- Tiempo de generación: 12-11-2019 a las 01:47:51
 -- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.10
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -155,16 +155,19 @@ CREATE TABLE `reserva` (
   `calendario_fecha` date NOT NULL,
   `calendario_pista` int(2) NOT NULL,
   `calendario_hora` varchar(5) NOT NULL,
-  `partidoId` int(10) NOT NULL
+  `partidoId` int(10) NOT NULL,
+  `fecha` date NOT NULL,
+  `fechaHoraInicio` datetime NOT NULL DEFAULT current_timestamp(),
+  `fechaHoraFin` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `usuario`, `calendario_fecha`, `calendario_pista`, `calendario_hora`, `partidoId`) VALUES
-(2, 2, '2019-10-01', 1, '20:00', 1),
-(3, 1, '2019-10-01', 1, '14:00', 2);
+INSERT INTO `reserva` (`id`, `usuario`, `calendario_fecha`, `calendario_pista`, `calendario_hora`, `partidoId`, `fecha`, `fechaHoraInicio`, `fechaHoraFin`) VALUES
+(2, 2, '2019-10-01', 1, '20:00', 1, '0000-00-00', '2019-11-11 21:17:56', NULL),
+(3, 1, '2019-10-01', 1, '14:00', 2, '0000-00-00', '2019-11-11 21:17:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -179,20 +182,45 @@ CREATE TABLE `usuario` (
   `apellidos` varchar(50) NOT NULL,
   `dni` varchar(9) NOT NULL,
   `fechaNacimiento` date NOT NULL,
-  `administrador` tinyint(1) NOT NULL,
-  `fecha_nacimiento` datetime DEFAULT NULL
+  `administrador` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `fechaNacimiento`, `administrador`, `fecha_nacimiento`) VALUES
-(1, 'admin', 'adm', '45158726C', '2019-10-08', 1, NULL),
-(2, 'Alex', 'Curras Rodri', '12345678D', '2019-10-29', 0, NULL),
-(3, 'Dani', 'Duque Puga', '11122233T', '2019-10-22', 0, NULL),
-(4, 'Fernando', 'x f', '11122244R', '2019-10-22', 0, NULL),
-(5, 'David', 'v f', '33344455U', '2019-10-30', 0, NULL);
+INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `fechaNacimiento`, `administrador`) VALUES
+(1, 'admin', 'adm', '45158726C', '2019-10-08', 1),
+(2, 'Alex', 'Curras Rodri', '12345678D', '2019-10-29', 0),
+(3, 'Dani', 'Duque Puga', '11122233T', '2019-10-22', 0),
+(4, 'Fernando', 'x f', '11122244R', '2019-10-22', 0),
+(5, 'David', 'v f', '33344455U', '2019-10-30', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario2`
+--
+
+DROP TABLE IF EXISTS `usuario2`;
+CREATE TABLE `usuario2` (
+  `id` bigint(20) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `apellidos` varchar(50) NOT NULL,
+  `dni` varchar(9) DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `administrador` tinyint(1) DEFAULT NULL,
+  `fechaNacimiento` date DEFAULT NULL,
+  `fecha_nacimiento` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario2`
+--
+
+INSERT INTO `usuario2` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `administrador`, `fechaNacimiento`, `fecha_nacimiento`) VALUES
+(1, 'Alex', 'Curras', '45158726C', 697217053, 1, '2019-11-04', NULL),
+(4, '12', '312', '132', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -272,6 +300,12 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuario2`
+--
+ALTER TABLE `usuario2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuario_partido_campeonato`
 --
 ALTER TABLE `usuario_partido_campeonato`
@@ -305,13 +339,19 @@ ALTER TABLE `notificacion`
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario2`
+--
+ALTER TABLE `usuario2`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

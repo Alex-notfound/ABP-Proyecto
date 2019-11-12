@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
+<body>
+	<div th:replace="barranav :: header"></div>
+	<div class="jumbotron">
+		<h4>Campeonatos</h4>
+	</div>
+	<div class="container">
+		<table class="table">
+			<tr>
+				<th>Nombre</th>
+				<th>Categoria</th>
+				<th>Nivel</th>
+				<th>Inscripción hasta</th>
+				<th>Precio de inscripción</th>
+				<th>Participantes apuntados</th>
+			</tr>
+			<tr>
+				<td>Campeonato prueba</td>
+				<td>Veteranos</td>
+				<td>Medio</td>
+				<th>23/11/2019</th>
+				<td>10</td>
+				<td>6</td>
+				<td><a class="btn btn-info" href="#">Inscribirme</a></td>
+			</tr>
+			<tr>
+				<td>Campeonato prueba</td>
+				<td>Veteranos</td>
+				<td>Medio</td>
+				<th>23/11/2019</th>
+				<td>10</td>
+				<td>6</td>
+				<td><a class="btn btn-info" href="#">Inscribirme</a></td>
+			</tr>
+		</table>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

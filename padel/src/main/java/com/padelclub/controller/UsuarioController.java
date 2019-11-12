@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.padelclub.dao.api.UsuarioRepository;
 import com.padelclub.model.Usuario2;
 import com.padelclub.service.api.UsuarioServiceAPI;
 
@@ -16,13 +15,11 @@ import com.padelclub.service.api.UsuarioServiceAPI;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepo;
-	@Autowired
 	private UsuarioServiceAPI usuarioServiceAPI;
 
 	@RequestMapping("/")
 	public String index(Model model) {
-		model.addAttribute("list", usuarioRepo.findAll());
+		model.addAttribute("list", usuarioServiceAPI.getAll());
 		return "UsuariosView/UsuariosShowAll";
 	}
 
@@ -47,4 +44,5 @@ public class UsuarioController {
 		usuarioServiceAPI.delete(id);
 		return "redirect:/";
 	}
+
 }
