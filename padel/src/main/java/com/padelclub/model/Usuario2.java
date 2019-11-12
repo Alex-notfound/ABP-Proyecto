@@ -1,7 +1,6 @@
 package com.padelclub.model;
 
-import java.util.Date;
-
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +19,8 @@ public class Usuario2 {
 	private String apellidos;
 	@Column
 	private String dni;
+	@Column
+	private String password;
 	@Column
 	private int telefono;
 	@Column
@@ -57,6 +58,14 @@ public class Usuario2 {
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getTelefono() {

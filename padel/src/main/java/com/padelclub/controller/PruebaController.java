@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PruebaController {
 	@RequestMapping("/prueba")
 	public String prueba(Model model) {
-		return "UsuariosView/UsuarioRegistroForm";
+		return "UsuariosView/formulariousuario";
 	}
 
 	@RequestMapping("/prueba2")
