@@ -20,10 +20,9 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Pista</th>
 						<th>Fecha</th>
 						<th>Hora</th>
-						<th>Tipo</th>
 						<th>
 							<div>
 								<a th:href="@{/reservas/save/0}" class="btn btn-primary">Registrar
@@ -34,10 +33,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.id}"></td>
+						<td th:text="${reserva.pista}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
-						<td th:text="${reserva.tipo}"></td>
 						<td><a class="btn btn-info" href="#">Inscribirme</a></td>
 					</tr>
 				</tbody>

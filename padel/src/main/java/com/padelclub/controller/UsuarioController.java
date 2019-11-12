@@ -49,7 +49,7 @@ public class UsuarioController {
 	@GetMapping("/profile/{id}")
 	public String profile(@PathVariable Long id, Model model) {
 		model.addAttribute("usuario", usuarioServiceAPI.get(id));
-		return "UsuariosView/UsuarioProfile";
+		return "UsuariosView/UsuariosProfile";
 	}
 
 }
