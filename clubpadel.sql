@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 19:57:55
+-- Tiempo de generación: 12-11-2019 a las 21:22:00
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -197,7 +197,6 @@ INSERT INTO `reserva` (`id`, `usuario`, `calendario_fecha`, `calendario_pista`, 
 
 CREATE TABLE `reserva2` (
   `id` bigint(20) NOT NULL,
-  `usuario` bigint(20) DEFAULT NULL,
   `pista` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` enum('10','11','12','13','14','15','16','17','18','19','20','21') NOT NULL,
@@ -209,20 +208,21 @@ CREATE TABLE `reserva2` (
 -- Volcado de datos para la tabla `reserva2`
 --
 
-INSERT INTO `reserva2` (`id`, `usuario`, `pista`, `fecha`, `hora`, `disponible`, `usuario_id`) VALUES
-(1, 1, 0, '2019-11-24', '10', 1, NULL),
-(3, NULL, 5, '2019-11-24', '10', 1, NULL),
-(4, NULL, 0, '2019-11-24', '11', 1, NULL),
-(5, NULL, 0, '2019-11-24', '12', 1, NULL),
-(6, NULL, 0, '2019-11-24', '13', 1, NULL),
-(7, NULL, 0, '2019-11-24', '14', 1, NULL),
-(8, NULL, 3, '2019-11-24', '15', 1, NULL),
-(9, NULL, 0, '2019-11-24', '16', 1, NULL),
-(10, NULL, 0, '2019-11-24', '17', 1, NULL),
-(11, NULL, 0, '2019-11-24', '18', 1, NULL),
-(12, NULL, 0, '2019-11-24', '19', 1, NULL),
-(13, NULL, 0, '2019-11-24', '20', 1, NULL),
-(14, NULL, 0, '2019-11-24', '21', 1, NULL);
+INSERT INTO `reserva2` (`id`, `pista`, `fecha`, `hora`, `disponible`, `usuario_id`) VALUES
+(1, 0, '2019-11-24', '19', 0, 1),
+(3, 5, '2019-11-24', '10', 1, 1),
+(4, 0, '2019-11-24', '11', 1, NULL),
+(5, 0, '2019-11-24', '21', 0, 1),
+(6, 0, '2019-11-24', '13', 1, NULL),
+(7, 0, '2019-11-24', '14', 1, NULL),
+(8, 3, '2019-11-24', '15', 1, NULL),
+(9, 0, '2019-11-24', '16', 1, NULL),
+(10, 0, '2019-11-24', '17', 1, NULL),
+(11, 0, '2019-11-24', '18', 1, NULL),
+(12, 0, '2019-11-24', '19', 1, NULL),
+(13, 0, '2019-11-24', '20', 1, NULL),
+(14, 0, '2019-11-24', '21', 1, NULL),
+(15, 1, '2019-11-05', '14', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -261,6 +261,7 @@ CREATE TABLE `usuario2` (
   `nombre` varchar(30) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `dni` varchar(9) DEFAULT NULL,
+  `password` varchar(10) NOT NULL,
   `telefono` int(11) DEFAULT NULL,
   `administrador` tinyint(1) DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL
@@ -270,12 +271,13 @@ CREATE TABLE `usuario2` (
 -- Volcado de datos para la tabla `usuario2`
 --
 
-INSERT INTO `usuario2` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `administrador`, `fecha_nacimiento`) VALUES
-(1, 'Alex', 'Curras', '45158726E', 123456789, 0, '2019-11-03'),
-(4, '12', '312', '132', 78998987, 0, '2019-11-07'),
-(6, 'a', 'a', 'a', 0, 0, NULL),
-(7, 'b', 'b', 'b', 0, 0, NULL),
-(8, 'c', 'c', 'c', 0, 0, NULL);
+INSERT INTO `usuario2` (`id`, `nombre`, `apellidos`, `dni`, `password`, `telefono`, `administrador`, `fecha_nacimiento`) VALUES
+(1, 'Alex', 'Curras', '45158726E', '', 123456789, 0, '2019-11-03'),
+(4, '12', '312', '132', '', 78998987, 0, '2019-11-07'),
+(6, 'a', 'a', 'a', '', 0, 0, NULL),
+(7, 'b', 'b', 'b', '', 0, 0, NULL),
+(8, 'c', 'c', 'c', '', 0, 0, NULL),
+(11, 'rueb', 'rueb', '45158726D', '', 697217053, 0, '2019-11-01');
 
 -- --------------------------------------------------------
 
@@ -373,7 +375,6 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `reserva2`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_reserva_usuario2` (`usuario`),
   ADD KEY `FK5j88q93ifvm1n1ygat4cor7ov` (`usuario_id`);
 
 --
@@ -444,7 +445,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `reserva2`
 --
 ALTER TABLE `reserva2`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -456,7 +457,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario2`
 --
 ALTER TABLE `usuario2`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -489,8 +490,7 @@ ALTER TABLE `reserva`
 -- Filtros para la tabla `reserva2`
 --
 ALTER TABLE `reserva2`
-  ADD CONSTRAINT `FK5j88q93ifvm1n1ygat4cor7ov` FOREIGN KEY (`usuario_id`) REFERENCES `usuario2` (`id`),
-  ADD CONSTRAINT `fk_reserva_usuario2` FOREIGN KEY (`usuario`) REFERENCES `usuario2` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK5j88q93ifvm1n1ygat4cor7ov` FOREIGN KEY (`usuario_id`) REFERENCES `usuario2` (`id`);
 
 --
 -- Filtros para la tabla `usuario_partido_campeonato`
