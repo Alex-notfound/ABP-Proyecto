@@ -9,9 +9,11 @@
 </head>
 <body>
 	<div class="container">
+		<br>
+		<h2>Agregar usuario</h2>
 		<form action="#" th:action="@{/save}" class="form-group"
-			th:object=${usuario} method="post">
-
+			th:object="${usuario}" method="post">
+			<input type="hidden" th:field="*{id}" />
 			<div class="form-group">
 				<label for="nombre">Nombre</label> <input type="text"
 					class="form-control" id="nombre" th:field="*{nombre}" name="nombre">
@@ -28,7 +30,7 @@
 					id="dni" th:field="*{dni}" name="dni">
 			</div>
 
-			<button class="submit" class="btn btn-success">Guardar</button>
+			<button type="submit" class="btn btn-success">Guardar</button>
 
 		</form>
 	</div>

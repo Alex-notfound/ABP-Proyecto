@@ -8,33 +8,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.padelclub.dao.api.UsuarioRepo;
-import com.padelclub.model.Usuario;
+import com.padelclub.dao.api.UsuarioRepository;
+import com.padelclub.model.Usuario2;
 import com.padelclub.service.api.UsuarioServiceAPI;
 
 @Controller
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepo usuarioRepo;
+	private UsuarioRepository usuarioRepo;
+	@Autowired
 	private UsuarioServiceAPI usuarioServiceAPI;
 
 	@RequestMapping("/")
 	public String index(Model model) {
 		model.addAttribute("list", usuarioRepo.findAll());
-		return "index";
+		return "UsuariosView/UsuariosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
 		if (id != null && id != 0) {
 			model.addAttribute("usuario", usuarioServiceAPI.get(id));
+		} else {
+			model.addAttribute("usuario", new Usuario2());
 		}
-		return "save";
+		return "UsuariosView/UsuariosForm";
 	}
 
 	@PostMapping("/save")
-	public String save(Usuario usuario, Model model) {
+	public String save(Usuario2 usuario, Model model) {
 		usuarioServiceAPI.save(usuario);
 		return "redirect:/";
 	}
