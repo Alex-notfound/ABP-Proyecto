@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 01:47:51
+-- Tiempo de generación: 12-11-2019 a las 16:20:52
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -30,7 +30,6 @@ USE `clubpadel`;
 -- Estructura de tabla para la tabla `calendario`
 --
 
-DROP TABLE IF EXISTS `calendario`;
 CREATE TABLE `calendario` (
   `fecha` date NOT NULL,
   `pista` int(2) NOT NULL,
@@ -55,13 +54,12 @@ INSERT INTO `calendario` (`fecha`, `pista`, `disponibilidad`, `hora`) VALUES
 -- Estructura de tabla para la tabla `campeonato`
 --
 
-DROP TABLE IF EXISTS `campeonato`;
 CREATE TABLE `campeonato` (
   `id` int(10) NOT NULL,
   `categoria` varchar(30) NOT NULL,
   `nivel` varchar(10) NOT NULL,
   `numParticipantes` int(5) NOT NULL,
-  `precioInscripcion` int(3) NOT NULL
+  `precioInscripcion` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -77,10 +75,33 @@ INSERT INTO `campeonato` (`id`, `categoria`, `nivel`, `numParticipantes`, `preci
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `campeonato2`
+--
+
+CREATE TABLE `campeonato2` (
+  `id` bigint(20) NOT NULL,
+  `categoria` enum('Absoluto','Benjamin','Alevin','Juvenil','Veteranos','Leyendas') NOT NULL,
+  `nivel` enum('Open','Basico','Medio','Alto','Profesional') NOT NULL,
+  `limite_inscripcion` date DEFAULT NULL,
+  `num_participantes` int(11) DEFAULT NULL,
+  `precio_inscripcion` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `campeonato2`
+--
+
+INSERT INTO `campeonato2` (`id`, `categoria`, `nivel`, `limite_inscripcion`, `num_participantes`, `precio_inscripcion`) VALUES
+(1, 'Benjamin', 'Basico', '2019-11-23', 5, 3.25),
+(2, 'Veteranos', 'Open', '2019-11-30', 10, 10.55),
+(3, 'Absoluto', 'Open', '2019-11-25', 0, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `enfrentamiento`
 --
 
-DROP TABLE IF EXISTS `enfrentamiento`;
 CREATE TABLE `enfrentamiento` (
   `id` int(10) NOT NULL,
   `resultado` varchar(20) NOT NULL,
@@ -102,7 +123,6 @@ INSERT INTO `enfrentamiento` (`id`, `resultado`, `campeonatoId`, `reservaId`) VA
 -- Estructura de tabla para la tabla `notificacion`
 --
 
-DROP TABLE IF EXISTS `notificacion`;
 CREATE TABLE `notificacion` (
   `id` int(10) NOT NULL,
   `campeonatoId` int(10) NOT NULL,
@@ -126,7 +146,6 @@ INSERT INTO `notificacion` (`id`, `campeonatoId`, `partidoId`, `mensaje`, `usuar
 -- Estructura de tabla para la tabla `partido`
 --
 
-DROP TABLE IF EXISTS `partido`;
 CREATE TABLE `partido` (
   `id` int(10) NOT NULL,
   `tipo` int(1) NOT NULL
@@ -148,7 +167,6 @@ INSERT INTO `partido` (`id`, `tipo`) VALUES
 -- Estructura de tabla para la tabla `reserva`
 --
 
-DROP TABLE IF EXISTS `reserva`;
 CREATE TABLE `reserva` (
   `id` int(10) NOT NULL,
   `usuario` int(10) NOT NULL,
@@ -172,10 +190,44 @@ INSERT INTO `reserva` (`id`, `usuario`, `calendario_fecha`, `calendario_pista`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reserva2`
+--
+
+CREATE TABLE `reserva2` (
+  `id` bigint(20) NOT NULL,
+  `usuario` bigint(20) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` enum('10','11','12','13','14','15','16','17','18','19','20','21') NOT NULL,
+  `tipo` enum('normal','promocionado','ofertado','campeonato') DEFAULT NULL,
+  `usuario_id` bigint(20) DEFAULT NULL,
+  `disponible` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `reserva2`
+--
+
+INSERT INTO `reserva2` (`id`, `usuario`, `fecha`, `hora`, `tipo`, `usuario_id`, `disponible`) VALUES
+(1, 1, '2019-11-24', '10', '', NULL, 1),
+(3, NULL, '2019-11-24', '10', NULL, NULL, 1),
+(4, NULL, '2019-11-24', '11', NULL, NULL, 1),
+(5, NULL, '2019-11-24', '12', NULL, NULL, 1),
+(6, NULL, '2019-11-24', '13', NULL, NULL, 1),
+(7, NULL, '2019-11-24', '14', NULL, NULL, 1),
+(8, NULL, '2019-11-24', '15', NULL, NULL, 1),
+(9, NULL, '2019-11-24', '16', NULL, NULL, 1),
+(10, NULL, '2019-11-24', '17', NULL, NULL, 1),
+(11, NULL, '2019-11-24', '18', NULL, NULL, 1),
+(12, NULL, '2019-11-24', '19', NULL, NULL, 1),
+(13, NULL, '2019-11-24', '20', NULL, NULL, 1),
+(14, NULL, '2019-11-24', '21', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(10) NOT NULL,
   `nombre` varchar(50) NOT NULL,
@@ -202,7 +254,6 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `fechaNacimiento`, `a
 -- Estructura de tabla para la tabla `usuario2`
 --
 
-DROP TABLE IF EXISTS `usuario2`;
 CREATE TABLE `usuario2` (
   `id` bigint(20) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -219,7 +270,7 @@ CREATE TABLE `usuario2` (
 --
 
 INSERT INTO `usuario2` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `administrador`, `fechaNacimiento`, `fecha_nacimiento`) VALUES
-(1, 'Alex', 'Curras', '45158726C', 697217053, 1, '2019-11-04', NULL),
+(1, 'Alex', 'Curras', '45158726E', 0, 0, '2019-11-04', NULL),
 (4, '12', '312', '132', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -228,7 +279,6 @@ INSERT INTO `usuario2` (`id`, `nombre`, `apellidos`, `dni`, `telefono`, `adminis
 -- Estructura de tabla para la tabla `usuario_partido_campeonato`
 --
 
-DROP TABLE IF EXISTS `usuario_partido_campeonato`;
 CREATE TABLE `usuario_partido_campeonato` (
   `usuarioId` int(10) NOT NULL,
   `enfrentamientoId` int(10) NOT NULL,
@@ -259,6 +309,12 @@ ALTER TABLE `calendario`
 -- Indices de la tabla `campeonato`
 --
 ALTER TABLE `campeonato`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `campeonato2`
+--
+ALTER TABLE `campeonato2`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -294,6 +350,14 @@ ALTER TABLE `reserva`
   ADD KEY `fk_reserva_partidoId` (`partidoId`);
 
 --
+-- Indices de la tabla `reserva2`
+--
+ALTER TABLE `reserva2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_usuario` (`usuario`),
+  ADD KEY `FK5j88q93ifvm1n1ygat4cor7ov` (`usuario_id`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -324,6 +388,12 @@ ALTER TABLE `campeonato`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `campeonato2`
+--
+ALTER TABLE `campeonato2`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `enfrentamiento`
 --
 ALTER TABLE `enfrentamiento`
@@ -342,6 +412,12 @@ ALTER TABLE `reserva`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `reserva2`
+--
+ALTER TABLE `reserva2`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -351,7 +427,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario2`
 --
 ALTER TABLE `usuario2`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -379,6 +455,13 @@ ALTER TABLE `reserva`
   ADD CONSTRAINT `fk_reserva_calendario` FOREIGN KEY (`calendario_fecha`,`calendario_pista`,`calendario_hora`) REFERENCES `calendario` (`fecha`, `pista`, `hora`),
   ADD CONSTRAINT `fk_reserva_partidoId` FOREIGN KEY (`partidoId`) REFERENCES `partido` (`id`),
   ADD CONSTRAINT `fk_reserva_usuarioId` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
+
+--
+-- Filtros para la tabla `reserva2`
+--
+ALTER TABLE `reserva2`
+  ADD CONSTRAINT `FK5j88q93ifvm1n1ygat4cor7ov` FOREIGN KEY (`usuario_id`) REFERENCES `usuario2` (`id`),
+  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuario2` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario_partido_campeonato`
