@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
+<body>
+	<div class="jumbotron">
+		<h4>Campeonatos</h4>
+	</div>
+	<div class="container">
+</div>
+	<h2 th:if="${list.isEmpty()}">No hay campeonatos en este momento</h2>
+		<div th:if="${!list.isEmpty()}">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Categoria</th>
+						<th>Nivel</th>
+						<th>Participantes apuntados</th>
+						<th>Precio de inscripción</th>
+						<th>Inscripción hasta</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="campeonato : ${list}">
+						<td th:text="${campeonato.id}"></td>
+						<td th:text="${campeonato.categoria}"></td>
+						<td th:text="${campeonato.nivel}"></td>
+						<td th:text="${campeonato.numParticipantes}"></td>
+						<td th:text="${campeonato.precioInscripcion}"></td>
+						<td th:text="${campeonato.limiteInscripcion}"></td>
+						<td><div class="btn-group">
+  <a href="#" class="btn btn-info">Consultar</a>
+  <a href="#"  class="btn btn-warning">Modificar</a>
+  <a href="#"  class="btn btn-danger">Eliminar</a>
+</div></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<a class="btn btn-info" th:href="@{campeonatos/save/0}">Registrar campeonato</a>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
+<body>
+	<div th:replace="barranav :: header"></div>
+	<div class="jumbotron">
+		<h4>Partidos promocionados</h4>
+	</div>
+
+	<div class="container">
+		<table class="table">
+			<tr>
+				<th>Día</th>
+				<th>Hora</th>
+				<th>Participantes apuntados</th>
+			</tr>
+			<tr>
+				<td>23/11/2018</td>
+				<td>21:00</td>
+				<td>2</td>
+				<td><button class="btn btn-info">Inscribirme</button></td>
+			</tr>
+			<tr>
+				<td>23/11/2018</td>
+				<td>21:00</td>
+				<td>2</td>
+				<td><button class="btn btn-info">Inscribirme</button></td>
+			</tr>
+			<tr>
+				<td>23/11/2018</td>
+				<td>21:00</td>
+				<td>2</td>
+				<td><button class="btn btn-info">Inscribirme</button></td>
+			</tr>
+		</table>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
