@@ -21,7 +21,7 @@ public class CampeonatoController {
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
 		model.addAttribute("list", campeonatoService.getAll());
-		return "CampeonatosView/campeonato";
+		return "CampeonatosView/CampeonatosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
@@ -31,7 +31,7 @@ public class CampeonatoController {
 		} else {
 			model.addAttribute("campeonato", new Campeonato2());
 		}
-		return "CampeonatosView/formularioCampeonato";
+		return "CampeonatosView/CampeonatosForm";
 	}
 
 	@PostMapping("/save")

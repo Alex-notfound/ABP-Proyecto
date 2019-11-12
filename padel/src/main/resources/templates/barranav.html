@@ -22,10 +22,12 @@
 				<div class="navbar-nav">
 					<a class="nav-item nav-link active" href="index.html">INICIO<span
 						class="sr-only">(current)</span></a> <a class="nav-item nav-link"
-						href="reservas.html">RESERVAS</a> <a class="nav-item nav-link"
-						href="#">CAMPEONATOS</a> <a class="nav-item nav-link" href="#">PROMOCIONES</a>
-						<a class="nav-item nav-link" href="#">PARTIDOS</a>
-					<a class="nav-item nav-link" href="#">MI CUENTA</a>
+						th:href="@{/reservas/}">RESERVAS</a> <a class="nav-item nav-link"
+						th:href="@{/campeonatos/}">CAMPEONATOS</a> <a
+						class="nav-item nav-link" href="#">PROMOCIONES</a> <a
+						class="nav-item nav-link" href="#">PARTIDOS</a> <a
+						class="nav-item nav-link" th:href="@{/usuarios/profile/1}">MI
+						CUENTA</a>
 				</div>
 			</div>
 		</nav>

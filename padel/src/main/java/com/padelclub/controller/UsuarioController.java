@@ -46,4 +46,10 @@ public class UsuarioController {
 		return "redirect:/usuarios/";
 	}
 
+	@GetMapping("/profile/{id}")
+	public String profile(@PathVariable Long id, Model model) {
+		model.addAttribute("usuario", usuarioServiceAPI.get(id));
+		return "UsuariosView/UsuarioProfile";
+	}
+
 }

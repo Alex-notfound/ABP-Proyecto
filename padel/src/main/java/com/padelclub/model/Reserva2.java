@@ -1,7 +1,6 @@
 package com.padelclub.model;
 
-import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,17 +11,18 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Reserva2 {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
 	private Usuario2 usuario;
 	@Column
+	private int pista;
+	@Column
 	private Date fecha;
 	@Column
 	private int hora;
-	@Column
-	private String tipo;
 
 	public Long getId() {
 		return id;
@@ -40,6 +40,14 @@ public class Reserva2 {
 		this.usuario = usuario;
 	}
 
+	public int getPista() {
+		return pista;
+	}
+
+	public void setPista(int pista) {
+		this.pista = pista;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -54,14 +62,6 @@ public class Reserva2 {
 
 	public void setHora(int hora) {
 		this.hora = hora;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 }

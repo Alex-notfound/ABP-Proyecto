@@ -1,5 +1,8 @@
 package com.padelclub.service.impl;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -19,4 +22,10 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> imple
 	public CrudRepository<Reserva2, Long> getDao() {
 		return reservaDao;
 	}
+
+	@Override
+	public List<Reserva2> findByFecha(Date fecha) {
+		return reservaDao.findAllByFecha(fecha);
+	}
+
 }

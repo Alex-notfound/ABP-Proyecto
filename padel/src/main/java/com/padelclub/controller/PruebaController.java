@@ -8,6 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PruebaController {
 	@RequestMapping("/prueba")
 	public String prueba(Model model) {
-		return "campeonato";
+		return "UsuariosView/UsuarioRegistroForm";
+	}
+
+	@RequestMapping("/prueba2")
+	public String prueba2(Model model) {
+		return "promocionados";
+	}
+
+	@RequestMapping("/prueba3")
+	public String prueba3(Model model) {
+		return "UsuariosView/UsuarioProfile";
 	}
 }

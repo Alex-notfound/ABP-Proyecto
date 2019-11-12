@@ -15,34 +15,40 @@ import com.padelclub.service.api.ReservaService;
 @RequestMapping("/reservas")
 public class ReservaController {
 
-		@Autowired
-		private ReservaService reservaService;
+	@Autowired
+	private ReservaService reservaService;
 
-		@RequestMapping(value = { "", "/" })
-		public String index(Model model) {
-			model.addAttribute("list", reservaService.getAll());
-			return "ReservasView/reservas";
-		}
+	@RequestMapping(value = { "", "/" })
+	public String index(Model model) {
+		model.addAttribute("list", reservaService.getAll());
+		return "ReservasView/ReservasShowAll";
+	}
 
-		@GetMapping("/save/{id}")
-		public String showSave(@PathVariable("id") Long id, Model model) {
-			if (id != null && id != 0) {
-				model.addAttribute("reserva", reservaService.get(id));
-			} else {
-				model.addAttribute("reserva", new Reserva2());
-			}
-			return "ReservasView/formularioCampeonato";
+	@GetMapping("/save/{id}")
+	public String showSave(@PathVariable("id") Long id, Model model) {
+		if (id != null && id != 0) {
+			model.addAttribute("reserva", reservaService.get(id));
+		} else {
+			model.addAttribute("reserva", new Reserva2());
 		}
+		return "ReservasView/ReservasForm";
+	}
 
-		@PostMapping("/save")
-		public String save(Reserva2 reserva, Model model) {
-			reservaService.save(reserva);
-			return "redirect:/reservas/";
-		}
+	@PostMapping("/save")
+	public String save(Reserva2 reserva, Model model) {
+		reservaService.save(reserva);
+		return "redirect:/reservas/";
+	}
 
-		@GetMapping("/delete/{id}")
-		public String delete(@PathVariable Long id, Model model) {
-			reservaService.delete(id);
-			return "redirect:/reservas/";
-		}
+	@PostMapping("/buscar")
+	public String buscar(Reserva2 reserva, Model model) {
+		model.addAttribute("list", reservaService.findByFecha(reserva.getFecha()));
+		return "ReservasView/ReservasShowByFecha";
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable Long id, Model model) {
+		reservaService.delete(id);
+		return "redirect:/reservas/";
+	}
 }
