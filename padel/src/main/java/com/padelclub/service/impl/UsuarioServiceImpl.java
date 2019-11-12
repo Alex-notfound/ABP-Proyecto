@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.UsuarioRepository;
 import com.padelclub.model.Usuario2;
-import com.padelclub.service.api.UsuarioServiceAPI;
+import com.padelclub.service.api.UsuarioService;
 
 @Service
-public class UsuarioServiceImpl extends GenericServiceImpl<Usuario2, Long> implements UsuarioServiceAPI {
+public class UsuarioServiceImpl extends GenericServiceImpl<Usuario2, Long> implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioDaoAPI;

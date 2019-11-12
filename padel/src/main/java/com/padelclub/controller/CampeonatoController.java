@@ -8,42 +8,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.padelclub.model.Usuario2;
-import com.padelclub.service.api.UsuarioService;
+import com.padelclub.model.Campeonato2;
+import com.padelclub.service.api.CampeonatoService;
 
 @Controller
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/campeonatos")
+public class CampeonatoController {
 
 	@Autowired
-	private UsuarioService usuarioServiceAPI;
+	private CampeonatoService campeonatoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
-		model.addAttribute("list", usuarioServiceAPI.getAll());
-		return "UsuariosView/UsuariosShowAll";
+		model.addAttribute("list", campeonatoService.getAll());
+		return "CampeonatosView/campeonato";
 	}
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
 		if (id != null && id != 0) {
-			model.addAttribute("usuario", usuarioServiceAPI.get(id));
+			model.addAttribute("campeonato", campeonatoService.get(id));
 		} else {
-			model.addAttribute("usuario", new Usuario2());
+			model.addAttribute("campeonato", new Campeonato2());
 		}
-		return "UsuariosView/UsuariosForm";
+		return "CampeonatosView/formularioCampeonato";
 	}
 
 	@PostMapping("/save")
-	public String save(Usuario2 usuario, Model model) {
-		usuarioServiceAPI.save(usuario);
-		return "redirect:/usuarios/";
+	public String save(Campeonato2 campeonato, Model model) {
+		campeonatoService.save(campeonato);
+		return "redirect:/campeonatos/";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
-		usuarioServiceAPI.delete(id);
-		return "redirect:/usuarios/";
+		campeonatoService.delete(id);
+		return "redirect:/campeonatos/";
 	}
-
 }

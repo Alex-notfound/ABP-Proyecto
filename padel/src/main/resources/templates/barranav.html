@@ -20,11 +20,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="index.html">INICIO<span
-						class="sr-only">(current)</span></a> <a class="nav-item nav-link"
-						href="reservas.html">RESERVAS</a> <a class="nav-item nav-link"
-						href="#">CAMPEONATOS</a> <a class="nav-item nav-link" href="#">PROMOCIONES</a>
-					<a class="nav-item nav-link" href="#">MI CUENTA</a>
+					<a class="nav-item nav-link active" th:href="@{/}">INICIO</a> <a
+						class="nav-item nav-link" th:href="@{/reservas/}">RESERVAS</a> <a
+						class="nav-item nav-link" th:href="@{/campeonatos/}">CAMPEONATOS</a>
+					<a class="nav-item nav-link" href="#">PROMOCIONES</a> <a
+						class="nav-item nav-link" href="#">MI CUENTA</a>
+						<a
+						class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a>
 				</div>
 			</div>
 		</nav>

@@ -11,7 +11,7 @@
 	<div class="container">
 		<br>
 		<div>
-			<a href="/save/0" class="btn btn-primary">Agregar</a>
+			<a th:href="@{/usuarios/save/0}" class="btn btn-primary">Agregar</a>
 		</div>
 		<h2 th:if="${list.isEmpty()}">No hay usuarios</h2>
 		<div th:if="${!list.isEmpty()}">
@@ -31,8 +31,8 @@
 						<td th:text="${usuario.nombre}">
 						<td th:text="${usuario.apellidos}">
 						<td th:text="${usuario.dni}">
-						<td><a th:href="@{/save/{id}(id=${usuario.id})}">Editar</a></td>
-						<td><a th:href="@{/delete/{id}(id=${usuario.id})}">Eliminar</a></td>
+						<td><a th:href="@{/usuarios/save/{id}(id=${usuario.id})}">Editar</a></td>
+						<td><a th:href="@{/usuarios/delete/{id}(id=${usuario.id})}">Eliminar</a></td>
 				</tbody>
 			</table>
 		</div>
