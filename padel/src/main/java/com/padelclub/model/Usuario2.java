@@ -9,12 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class Usuario2 {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@Column
 	private String nombre;
 	@Column
@@ -22,9 +21,11 @@ public class Usuario {
 	@Column
 	private String dni;
 	@Column
-	private Date fechaNacimiento;
+	private int telefono;
 	@Column
 	private boolean administrador;
+	@Column
+	private Date fechaNacimiento;
 
 	public Long getId() {
 		return id;
@@ -42,22 +43,6 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -66,12 +51,36 @@ public class Usuario {
 		this.apellidos = apellidos;
 	}
 
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public int getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
 	public boolean isAdministrador() {
 		return administrador;
 	}
 
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 }
