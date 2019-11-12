@@ -38,17 +38,16 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Pista</th>
 						<th>Día</th>
 						<th>Hora</th>
-						<th>Participantes apuntados</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>23/11/2018</td>
-						<td>21:00</td>
-						<td>2</td>
-						<td><button class="btn btn-info">Inscribirme</button></td>
+					<tr th:each="reserva : ${list}">
+						<td th:text="${reserva.pista}"></td>
+						<td th:text="${reserva.fecha}"></td>
+						<td th:text="${reserva.hora}"></td>
 					</tr>
 				</tbody>
 			</table>

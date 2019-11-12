@@ -18,11 +18,11 @@
 		<h2 th:if="${list.isEmpty()}">No hay reservas disponibles en este
 			momento</h2>
 		<div th:if="${!list.isEmpty()}">
+			<h3 th:text="'Reservas para la fecha ' + ${fecha}"></h3>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>Pista</th>
-						<th>Fecha</th>
 						<th>Hora</th>
 						<th>
 							<div>
@@ -35,9 +35,10 @@
 				<tbody>
 					<tr th:each="reserva : ${list}">
 						<td th:text="${reserva.pista}"></td>
-						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
-						<td><a class="btn btn-info" href="#">Inscribirme</a></td>
+						<td><a class="btn btn-info"
+							th:href="@{/reservas/inscribir/{idReserva}/1(idReserva=${reserva.id})}">Inscribirme</a></td>
+						<!-- 							th:href="@{/reservas/inscribir/{idReserva}/{idUsuario}(idReserva=${reserva.id},idUsuario=${usuario})}" -->
 					</tr>
 				</tbody>
 			</table>

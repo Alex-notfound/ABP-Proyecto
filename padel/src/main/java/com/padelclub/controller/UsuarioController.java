@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario2;
+import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
 
 @Controller
@@ -16,18 +17,20 @@ import com.padelclub.service.api.UsuarioService;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioService usuarioServiceAPI;
+	private UsuarioService usuarioService;
+	@Autowired
+	private ReservaService reservaService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
-		model.addAttribute("list", usuarioServiceAPI.getAll());
+		model.addAttribute("list", usuarioService.getAll());
 		return "UsuariosView/UsuariosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
 		if (id != null && id != 0) {
-			model.addAttribute("usuario", usuarioServiceAPI.get(id));
+			model.addAttribute("usuario", usuarioService.get(id));
 		} else {
 			model.addAttribute("usuario", new Usuario2());
 		}
@@ -36,19 +39,21 @@ public class UsuarioController {
 
 	@PostMapping("/save")
 	public String save(Usuario2 usuario, Model model) {
-		usuarioServiceAPI.save(usuario);
+		usuarioService.save(usuario);
 		return "redirect:/usuarios/";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
-		usuarioServiceAPI.delete(id);
+		usuarioService.delete(id);
 		return "redirect:/usuarios/";
 	}
 
 	@GetMapping("/profile/{id}")
 	public String profile(@PathVariable Long id, Model model) {
-		model.addAttribute("usuario", usuarioServiceAPI.get(id));
+		Usuario2 usuario = usuarioService.get(id);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("list", reservaService.findAllByUsuario(usuario));
 		return "UsuariosView/UsuariosProfile";
 	}
 

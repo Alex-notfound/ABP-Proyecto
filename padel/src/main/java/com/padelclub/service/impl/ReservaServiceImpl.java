@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.ReservaRepository;
 import com.padelclub.model.Reserva2;
+import com.padelclub.model.Usuario2;
 import com.padelclub.service.api.ReservaService;
 
 @Service
@@ -24,8 +25,13 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> imple
 	}
 
 	@Override
-	public List<Reserva2> findByFecha(Date fecha) {
-		return reservaDao.findAllByFecha(fecha);
+	public List<Reserva2> findAllByFecha(Date fecha) {
+		return reservaDao.findAllByFechaOrderByPistaAscHoraAsc(fecha);
+	}
+
+	@Override
+	public List<Reserva2> findAllByUsuario(Usuario2 usuario) {
+		return reservaDao.findAllByUsuario(usuario);
 	}
 
 }

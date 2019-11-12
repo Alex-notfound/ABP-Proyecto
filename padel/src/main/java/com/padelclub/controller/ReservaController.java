@@ -1,5 +1,7 @@
 package com.padelclub.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Reserva2;
 import com.padelclub.service.api.ReservaService;
+import com.padelclub.service.api.UsuarioService;
 
 @Controller
 @RequestMapping("/reservas")
@@ -17,6 +20,8 @@ public class ReservaController {
 
 	@Autowired
 	private ReservaService reservaService;
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
@@ -42,13 +47,24 @@ public class ReservaController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva2 reserva, Model model) {
-		model.addAttribute("list", reservaService.findByFecha(reserva.getFecha()));
+		model.addAttribute("fecha", reserva.getFecha());
+		model.addAttribute("list", reservaService.findAllByFecha(reserva.getFecha()));
 		return "ReservasView/ReservasShowByFecha";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		reservaService.delete(id);
+		return "redirect:/reservas/";
+	}
+
+	@GetMapping("/inscribir/{idReserva}/{idUsuario}")
+	public String inscribir(@PathVariable("idReserva") Long idReserva, @PathVariable("idUsuario") Long idUsuario,
+			Model model) {
+		Reserva2 reserva = reservaService.get(idReserva);
+		reserva.setUsuario(usuarioService.get(idUsuario));
+		reserva.setDisponible(false);
+		reservaService.save(reserva);
 		return "redirect:/reservas/";
 	}
 }

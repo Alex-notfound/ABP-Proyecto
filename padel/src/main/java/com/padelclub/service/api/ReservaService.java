@@ -5,8 +5,12 @@ import java.util.List;
 
 import com.padelclub.commons.GenericServiceAPI;
 import com.padelclub.model.Reserva2;
+import com.padelclub.model.Usuario2;
 
 public interface ReservaService extends GenericServiceAPI<Reserva2, Long> {
 
-	public List<Reserva2> findByFecha(Date fecha);
+	public List<Reserva2> findAllByFecha(Date fecha);
+
+	public List<Reserva2> findAllByUsuario(Usuario2 usuario);
+
 }

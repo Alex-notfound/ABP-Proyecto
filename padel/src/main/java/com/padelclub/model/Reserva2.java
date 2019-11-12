@@ -23,6 +23,16 @@ public class Reserva2 {
 	private Date fecha;
 	@Column
 	private int hora;
+	@Column
+	private boolean disponible;
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
 
 	public Long getId() {
 		return id;
