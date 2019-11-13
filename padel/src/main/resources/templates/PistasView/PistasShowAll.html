@@ -5,6 +5,36 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div th:replace="barranav :: header"></div>
 
+	<div class="container">
+		<br>
+		<h2 th:if="${list.isEmpty()}">No hay pistas</h2>
+		<div th:if="${!list.isEmpty()}">
+			<h2>Pistas</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Número</th>
+						<th>Descripción</th>
+						<th></th>
+						<th>
+							<div>
+								<a th:href="@{/pistas/save/0}" class="btn btn-primary">Agregar
+									pista</a>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pista : ${list}">
+						<td th:text="${pista.id}">
+						<td th:text="${pista.descripcion}">
+						<td><a th:href="@{/pistas/save/{id}(id=${pista.id})}">Editar</a></td>
+						<td><a th:href="@{/pistas/delete/{id}(id=${pista.id})}">Eliminar</a></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
