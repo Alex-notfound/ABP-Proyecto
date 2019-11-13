@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
+</head>
+<body>
+	<div th:replace="barranav :: header"></div>
+
+	<div class="jumbotron">
+		<h4>Editar pista</h4>
+	</div>
+	<div class="container">
+		<form action="#" th:action="@{/pistas/save}" class="form-group"
+			th:object="${pista}" method="post">
+			<button type="submit" class="btn btn-info">Guardar</button>
+		</form>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
