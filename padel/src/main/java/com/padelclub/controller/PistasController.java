@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Pista;
+import com.padelclub.model.Usuario2;
 import com.padelclub.service.api.PistaService;
 
 @Controller
@@ -20,13 +21,28 @@ public class PistasController {
 
 	@RequestMapping({ "", "/" })
 	public String index(Model model) {
-		model.addAttribute(new Pista());
+		model.addAttribute("list", pistaService.getAll());
 		return "PistasView/PistasShowAll";
+	}
+
+	@GetMapping("/save/{id}")
+	public String showSave(@PathVariable("id") Long id, Model model) {
+		if (id != null && id != 0) {
+			model.addAttribute("pista", pistaService.get(id));
+		} else {
+			model.addAttribute("pista", new Pista());
+		}
+		return "PistasView/PistasForm";
 	}
 
 	@PostMapping("/save")
 	public String add(Pista pista, Model model) {
-		pistaService.save(pista);
+		System.out.println(pistaService.get(pista.getId()));
+//		if (pistaService.get(pista.getId()) != null) {
+//
+//		} else {
+//			pistaService.save(pista);
+//		}
 		return "redirect:/pistas/";
 	}
 

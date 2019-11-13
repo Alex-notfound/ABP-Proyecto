@@ -72,4 +72,13 @@ public class ReservaController {
 		reservaService.save(reserva);
 		return "redirect:/reservas/";
 	}
+
+	@GetMapping("/liberar/{id}")
+	public String liberar(@PathVariable Long id, Model model) {
+		Reserva2 reserva = reservaService.get(id);
+		reserva.setUsuario(null);
+		reserva.setDisponible(true);
+		reservaService.save(reserva);
+		return "redirect:/reservas/";
+	}
 }

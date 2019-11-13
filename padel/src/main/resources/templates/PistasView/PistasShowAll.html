@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Usuarios</title>
+
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
 </head>
 <body>
 	<div th:replace="barranav :: header"></div>
@@ -15,8 +18,8 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Número</th>
-						<th>Descripción</th>
+						<th>NÃºmero</th>
+						<th>DescripciÃ³n</th>
 						<th></th>
 						<th>
 							<div>

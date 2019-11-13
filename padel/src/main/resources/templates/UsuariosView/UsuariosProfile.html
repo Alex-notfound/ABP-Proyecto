@@ -41,6 +41,7 @@
 						<th>Pista</th>
 						<th>Día</th>
 						<th>Hora</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,6 +49,8 @@
 						<td th:text="${reserva.pista}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
+						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
+								reserva</a></td>
 					</tr>
 				</tbody>
 			</table>
