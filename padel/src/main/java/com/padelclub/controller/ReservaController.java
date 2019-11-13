@@ -47,8 +47,13 @@ public class ReservaController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva2 reserva, Model model) {
+		List<Reserva2> list = reservaService.findAllByFecha(reserva.getFecha());
+		if (list.isEmpty()) {
+			reservaService.crearReservasParaDia(reserva.getFecha());
+			list = reservaService.findAllByFecha(reserva.getFecha());
+		}
 		model.addAttribute("fecha", reserva.getFecha());
-		model.addAttribute("list", reservaService.findAllByFecha(reserva.getFecha()));
+		model.addAttribute("list", list);
 		return "ReservasView/ReservasShowByFecha";
 	}
 

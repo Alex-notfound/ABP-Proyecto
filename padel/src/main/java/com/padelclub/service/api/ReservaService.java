@@ -13,4 +13,8 @@ public interface ReservaService extends GenericServiceAPI<Reserva2, Long> {
 
 	public List<Reserva2> findAllByUsuario(Usuario2 usuario);
 
+	public ReservaDao getReservaDao(Reserva2 reserva);
+
+	public void crearReservasParaDia(Date fecha);
+
 }

@@ -1,30 +1,24 @@
-package com.padelclub.model;
+package com.padelclub.service.api;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.padelclub.model.Usuario2;
 
-@Entity
-public class Reserva2 {
+public class ReservaDao {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
 	private Usuario2 usuario;
-	@Column
 	private int pista;
-	@Column
 	private Date fecha;
-	@Column
 	private String hora;
-	@Column
 	private boolean disponible;
+
+	public ReservaDao(int pista, Date fecha, String hora, boolean disponible) {
+		this.pista = pista;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.disponible = disponible;
+	}
 
 	public boolean isDisponible() {
 		return disponible;
