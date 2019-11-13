@@ -26,6 +26,7 @@
 						<th>DNI</th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,6 +34,7 @@
 						<td th:text="${usuario.nombre}">
 						<td th:text="${usuario.apellidos}">
 						<td th:text="${usuario.dni}">
+						<td><a th:href="@{/usuarios/profile/{id}(id=${usuario.id})}">Consultar</a></td>
 						<td><a th:href="@{/usuarios/save/{id}(id=${usuario.id})}">Editar</a></td>
 						<td><a th:href="@{/usuarios/delete/{id}(id=${usuario.id})}">Eliminar</a></td>
 				</tbody>

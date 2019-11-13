@@ -27,6 +27,14 @@
 						<th>Precio de inscripción</th>
 						<th>Inscripción hasta</th>
 						<th></th>
+						<th></th>
+						<th></th>
+						<th>
+							<div>
+								<a th:href="@{/campeonatos/save/0}" class="btn btn-primary">Registrar
+									campeonato</a>
+							</div>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,14 +45,18 @@
 						<td th:text="${campeonato.numParticipantes}"></td>
 						<td th:text="${campeonato.precioInscripcion}"></td>
 						<td th:text="${campeonato.limiteInscripcion}"></td>
-						<td><a class="btn btn-info" href="#">Inscribirme</a></td>
+						<td><a
+							th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}">Consultar</a></td>
+						<td><a
+							th:href="@{/campeonatos/save/{id}(id=${campeonato.id})}">Editar</a></td>
+						<td><a
+							th:href="@{/campeonatos/delete/{id}(id=${campeonato.id})}">Eliminar</a></td>
+						<td><a class="btn btn-info"
+							th:href="@{/campeonatos/inscribir/{id}(id=${campeonato.id})}">Inscribirme</a></td>
 					</tr>
 				</tbody>
 			</table>
-			<div>
-				<a th:href="@{/campeonatos/save/0}" class="btn btn-primary">Registrar
-					campeonato</a>
-			</div>
+			<br>
 		</div>
 	</div>
 	<script src="js/jquery.js"></script>
