@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PruebaController {
+
+	@RequestMapping({ "", "/" })
+	public String index(Model model) {
+		return "index";
+	}
+
 	@RequestMapping("/prueba")
 	public String prueba(Model model) {
 		return "campeonato";
@@ -20,7 +26,7 @@ public class PruebaController {
 	public String prueba3(Model model) {
 		return "ofertados";
 	}
-	
+
 	@RequestMapping("/prueba4")
 	public String prueba4(Model model) {
 		return "promocionados";
