@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Usuarios</title>
-
-<link href="../static/css/bootstrap.css" rel="stylesheet"
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
 </head>
 <body>
 	<div th:replace="barranav :: header"></div>
-
+	<div class="jumbotron">
+		<h4>Registro de usuarios</h4>
+	</div>
 	<div class="container">
 		<br>
 		<div>
@@ -41,5 +45,7 @@
 			</table>
 		</div>
 	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

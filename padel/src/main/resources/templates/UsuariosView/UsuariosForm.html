@@ -5,7 +5,7 @@
 <title>padelGest</title>
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<link href="../static/css/bootstrap.css" rel="stylesheet"
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
 <link rel="stylesheet" href="header.css">
 <body>
@@ -20,23 +20,23 @@
 					th:object="${usuario}" method="post">
 					<input type="hidden" th:field="*{id}" />
 					<div class="form-group row">
-						<label for="nombre" class="col-2 col-form-label">Nombre</label> <input
-							class="form-control col-10" id="nombre" type="text"
+						<label for="nombre" class="col-4 col-form-label">Nombre</label> 
+						<input class="form-control col-7" id="nombre" type="text"
 							th:field="*{nombre}" required>
 					</div>
 					<div class="form-group row">
-						<label for="apellidos" class="col-2 col-form-label">Apellidos</label>
-						<input class="form-control col-10" id="apellidos" type="text"
+						<label for="apellidos" class="col-4 col-form-label">Apellidos</label>
+						<input class="form-control col-7" id="apellidos" type="text"
 							th:field="*{apellidos}" required>
 					</div>
 					<div class="form-group row">
-						<label for="dni" class="col-2 col-form-label">DNI</label> <input
-							class="form-control col-10" id="dni" type="text" required
+						<label for="dni" class="col-4 col-form-label">DNI</label> <input
+							class="col-7 form-control" id="dni" type="text" required
 							th:field="*{dni}" pattern="[0-9]{8}[A-Z]">
 					</div>
 					<div class="form-group row">
-						<label for="pwd" class="col -3 col-form-label">Contraseña</label>
-						<input type="password" class="col-8 form-control" id="pwd"
+						<label for="pwd" class="col-4 col-form-label">Contraseña</label>
+						<input type="password" class="col-7 form-control" id="pwd"
 							th:field="*{password}">
 					</div>
 					<div class="form-group row">
@@ -46,8 +46,8 @@
 							th:field="*{fechaNacimiento}" required>
 					</div>
 					<div class="form-group row">
-						<label for="telefono" class="col-3 col-form-label">Teléfono</label>
-						<input class="col-8 form-control" id="telefono" type="text"
+						<label for="telefono" class="col-4 col-form-label">Teléfono</label>
+						<input class="col-7 form-control" id="telefono" type="text"
 							th:field="*{telefono}" required pattern="[0-9]{9}">
 					</div>
 					<div class="form-check">
