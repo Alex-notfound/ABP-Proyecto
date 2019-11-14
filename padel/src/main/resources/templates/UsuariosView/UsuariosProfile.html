@@ -15,6 +15,22 @@
 		<h4>Mi cuenta</h4>
 	</div>
 
+	<div class="container">
+			<h4>Mis notificaciones</h4>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>Partido contra Pepe-Pepe</td>
+						<td><button class="btn btn-info" type="submit">Responder notifiación</button></td>
+					</tr>
+					<tr>
+						<td>Partido contra Jose-Jose</td>
+						<td><button class="btn btn-info" type="submit">Responder notifiación</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 	<section class="container">
 		<div class="container">
 			<h4>Mis datos</h4>
@@ -26,6 +42,34 @@
 				<h6 th:text="'Fecha de nacimiento: ' + *{fechaNacimiento}"></h6>
 				<h6 th:text="'Telefono: ' + *{telefono}"></h6>
 			</div>
+		</div>
+	</section>
+
+	<section class="container">
+		<div class="container">
+			<br>
+			<h4>Mis partidos</h4>
+		</div>
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Pista</th>
+						<th>Día</th>
+						<th>Hora</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="reserva : ${list}">
+						<td th:text="${reserva.pista}"></td>
+						<td th:text="${reserva.fecha}"></td>
+						<td th:text="${reserva.hora}"></td>
+						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
+								reserva</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</section>
 
