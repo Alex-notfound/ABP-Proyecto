@@ -1,0 +1,66 @@
+#TAREAS DANI:
+-Añadir desplegable al menu en boton Partidos (barranav.html)
+-Arreglar vistas Usuarios (carpeta UsuariosView)
+-Pantalla inicio (index.html)
+-Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
+-Añadir notificacion enfrentamiento
+-Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
+-Formulario partido ofertado (crear fichero en carpeta PartidosView si procede)
+-Formulario partido promocionado (crear fichero en carpeta PartidosView si procede)
+-En el listado de partidos ofertados/promocionados podriamos mostrar jugadores inscritos (En carpeta PartidosView -> OfertadosShowAll.html y PromocionadosShowAll)
+-Añadir en perfil los partidos ofertados/promocionados a los que estamos inscritos (UsuarioView/UsuariosProfile.html)
+-Comprobar que todas las vistas tienen el mismo formato
+--------------------------------
+###############################
+CASOS USO
+###############################
+GESTIONAR PARTIDOS PROMOCIONADOS
+Añadir partido promocionado (desde admin en el propio listado)
+Editar partido promocionado (desde admin en el propio listado)
+Eliminar partido promocionado (desde admin en el propio listado)
+Inscribirse en partido promocionado
+Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listado?)
+
+GESTIONAR PLAYOFF
+Gestionar playoff
+
+OFERTAR PARTIDOS
+Añadir partido ofertado (en el propio listado)
+Eliminar partido ofertado (en perfil ¿e incluso en el listado?)
+
+ACEPTAR PARTIDO CAMPEONATO
+Aceptar partido campeonato (¿desde el perfil?)
+
+##GESTIONAR PISTAS
+\Añadir pista
+\Editar pista
+\Consulta pista
+\Eliminar pista
+
+##INSCRIPCION CAMPEONATO
+Inscribirse en campeonato
+
+##RESERVAR PISTA
+-Reservar pista
+-Eliminar reserva pista
+
+GESTIONAR CAMPEONATOS
+-Añadir campeonato
+-Editar campeonato
+Consultar campeonato
+-Eliminar campeonato
+
+-Autenticación
+--------------------------------
+###############################
+TERMINADO
+###############################
+
+GESTIONAR USUARIOS
+-Añadir usuario
+-Consulta usuario
+-Editar usuario
+-Eliminar usuario
+
+
+
