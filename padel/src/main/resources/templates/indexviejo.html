@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="header.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<body>
+  <div th:replace="barranav :: header"></div>
+  <div class="jumbotron">
+    <h4>Bienvenido a PadelGest</h4>
+  </div>
+	<div id="demo" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../static/padel3.jpg" class="d-block w-100" alt="Los Angeles" width="1100" height="500">
+      <div class="carousel-caption">
+        <h3>Partidos promocionados</h3>
+        <p>Juega gratis y conoce nuevos jugadores</p>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <img src="../static/padel4.jpg" class="d-block w-100"alt="Chicago" width="1100" height="500">
+      <div class="carousel-caption">
+        <h3>Reservas</h3>
+        <p>Cuando quieras y con quien tu quieras</p>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <img src="../static/padel2.jpg" class="d-block w-100"alt="New York" width="1100" height="500">
+      <div class="carousel-caption">
+        <h3>Campeonatos internacionales</h3>
+        <p>Compite en nuestros campeonatos oficiales aprobados por la WPT</p>
+      </div>   
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -8,6 +8,10 @@
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<div th:fragment="header">
@@ -24,23 +28,22 @@
 						class="sr-only">(current)</span></a> <a class="nav-item nav-link"
 						th:href="@{/reservas/}">RESERVAS</a> <a class="nav-item nav-link"
 						th:href="@{/campeonatos/}">CAMPEONATOS</a> <a
-						class="nav-item nav-link" href="#">PROMOCIONES</a> <a
-						class="nav-item nav-link" href="#">PARTIDOS</a><a
-						class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a> <a
-						class="nav-item nav-link" th:href="@{/usuarios/profile/1}">MI
-						CUENTA <a class="nav-link dropdown-toggle" type="button" href="#"
-						id="navbardrop" data-toggle="dropdown"> Dropdown link </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Link 1</a> <a
-								class="dropdown-item" href="#">Link 2</a> <a
-								class="dropdown-item" href="#">Link 3</a>
+						class="nav-item nav-link" href="#">PROMOCIONES</a>
+										<div class="nav-item dropdown">
+						  		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">PARTIDOS</a>
+						    <div class="dropdown-menu">
+						      <a class="dropdown-item" href="#">PROMOCIONADOS</a>
+						      <a class="dropdown-item" href="#">OFERTADOS</a>
+						    </div>
 						</div>
-				</div>
+												
+						<a class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a>
+						<a class="nav-item nav-link" th:href="@{/usuarios/profile/1}">MI
+						CUENTA </a>
+		
 			</div>
+		</div>
 		</nav>
 	</div>
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-
 </body>
 </html>
