@@ -1,5 +1,5 @@
 .jumbotron {
-	background: url("padel1.jpg");
+	background: url("../static/padel1.jpg");
 	background-size: cover;
 	overflow: hidden;
 }
