@@ -65,4 +65,7 @@ public class CampeonatoController {
 		usuarioCampeonatoService.save(usuarioCampeonato);
 		return "redirect:/campeonatos/";
 	}
+	
+	
+	
 }

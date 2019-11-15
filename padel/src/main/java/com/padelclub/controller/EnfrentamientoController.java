@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Campeonato2;
+import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Usuario2;
 import com.padelclub.model.UsuarioCampeonato;
 import com.padelclub.model.UsuarioCampeonatoId;
@@ -17,11 +18,11 @@ import com.padelclub.service.api.UsuarioCampeonatoService;
 import com.padelclub.service.api.UsuarioService;
 
 @Controller
-@RequestMapping("/campeonatos")
+@RequestMapping("/enfrentamientos")
 public class EnfrentamientoController {
 
 	@Autowired
-	private CampeonatoService campeonatoService;
+	private Enfrentamiento enfrentamientoService;
 	@Autowired
 	private UsuarioCampeonatoService usuarioCampeonatoService;
 	@Autowired
@@ -29,31 +30,33 @@ public class EnfrentamientoController {
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
-		model.addAttribute("list", campeonatoService.getAll());
+		model.addAttribute("list", enfrentamientoService.getAll());
 		return "CampeonatosView/CampeonatosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model) {
 		if (id != null && id != 0) {
-			model.addAttribute("campeonato", campeonatoService.get(id));
+			model.addAttribute("enfrentamiento", enfrentamientoService.get(id));
 		} else {
-			model.addAttribute("campeonato", new Campeonato2());
+			model.addAttribute("enfrentamiento", new Enfrentamiento());
 		}
-		return "CampeonatosView/CampeonatosForm";
+		return "CampeonatosView/CampeonatoDetail";
 	}
 
 	@PostMapping("/save")
-	public String save(Campeonato2 campeonato, Model model) {
-		campeonatoService.save(campeonato);
-		return "redirect:/campeonatos/";
+	public String save(Enfrentamiento enfrentamiento, Model model) {
+		enfrentamientoService.save(enfrentamiento);
+		return "redirect:/enfrentamientos/";
 	}
 
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
-		campeonatoService.delete(id);
-		return "redirect:/campeonatos/";
+		enfrentamientoService.delete(id);
+		return "redirect:/enfrentamientos/";
 	}
+	
+	@GetMapping("/sortear/{idCampeonato")
 
 	@GetMapping("/inscribir/{idCampeonato}/{idUsuario}")
 	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, @PathVariable("idUsuario") Long idUsuario,
