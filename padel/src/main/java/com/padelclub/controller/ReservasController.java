@@ -20,7 +20,7 @@ import com.padelclub.service.api.UsuarioService;
 
 @Controller
 @RequestMapping("/reservas")
-public class ReservaController {
+public class ReservasController {
 
 	@Autowired
 	private ReservaService reservaService;

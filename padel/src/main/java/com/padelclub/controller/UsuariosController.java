@@ -18,7 +18,7 @@ import com.padelclub.service.api.UsuarioService;
 
 @Controller
 @RequestMapping("/usuarios")
-public class UsuarioController {
+public class UsuariosController {
 
 	@Autowired
 	private UsuarioService usuarioService;
