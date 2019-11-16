@@ -24,8 +24,9 @@
 			<h3 th:text="'Pista ' + ${e.key.id}"></h3>
 			<div class="btn-group btn-group-lg">
 				<div th:each="reservaDao : ${e.value}">
-					<form action="#" th:action="@{/reservas/save}" class="form-group"
-						th:object="${reservaDao}" method="post">
+					<form
+						th:action="${partido} ? @{/partidos/save} : @{/reservas/save}"
+						class="form-group" th:object="${reservaDao}" method="post">
 						<button type="submit"
 							th:class="*{disponible} ? 'btn btn-success' : 'btn btn-danger'"
 							th:text="${reservaDao.hora}"></button>

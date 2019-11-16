@@ -13,20 +13,37 @@
 	<div th:replace="barranav :: header"></div>
 
 	<div class="jumbotron">
-		<h4>Reservas</h4>
+		<h4>Ofertar partido</h4>
 	</div>
 	<div class="container">
-		<form
-			th:action="${partido} ? @{/partidos/buscar} : @{/reservas/buscar}"
-			class="form-group" th:object="${reserva}" method="post">
+		<form action="#" th:action="@{/reservas/buscar}" class="form-group"
+			th:object="${reserva}" method="post">
 			<input type="hidden" th:field="*{id}">
 			<div class="form-group row">
 				<label for="fecha" class="col-4 col-form-label">Selecciona
 					un día </label> <input class="form-control col-3" id="fechareserva"
 					type="date" th:field="*{fecha}">
+				<button type="submit" class="btn btn-info">Buscar</button>
 			</div>
-			<button type="submit" class="btn btn-info">Buscar</button>
+			
 		</form>
+
+	<div class="container">
+		<div class="btn-group btn-group-lg">
+  		<button type="button" class="btn btn-success">10-11</button>
+  		<button type="button" class="btn btn-danger">11-12</button>
+  		<button type="button" class="btn btn-danger">12-13</button>
+  		<button type="button" class="btn btn-success">13-14</button>
+</div>
+</div>
+<div class="container">
+		<div class="btn-group btn-group-lg">
+  		<button type="button" class="btn btn-danger">16-17</button>
+  		<button type="button" class="btn btn-success">17-18</button>
+  		<button type="button" class="btn btn-success">18-19</button>
+  		<button type="button" class="btn btn-success">19-20</button>
+</div>
+	</div>
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

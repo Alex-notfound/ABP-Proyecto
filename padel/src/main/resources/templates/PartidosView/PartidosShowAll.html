@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="../../static/header.css">
+<body>
+	<div th:replace="barranav :: header"></div>
+	<div class="jumbotron">
+		<h4>Partidos</h4>
+	</div>
+
+	<div class="container">
+		<br>
+		<div>
+			<a th:href="@{/partidos/save/0}" class="btn btn-primary">Publicar
+				partido</a>
+		</div>
+		<br>
+		<h2 th:if="${list.isEmpty()}">No hay partidos en este momento</h2>
+		<div th:if="${!list.isEmpty()}">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Día</th>
+						<th>Hora</th>
+						<th>Tipo</th>
+						<th>Jugador 1</th>
+						<th>Jugador 2</th>
+						<th>Jugador 3</th>
+						<th>Jugador 4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="partido : ${list}">
+						<td th:text="${partido.reserva.fecha}">
+						<td th:text="${partido.reserva.hora}">
+						<td th:text="${partido.tipo}">
+						<td th:text="${partido.jugador1}">
+						<td th:text="${partido.jugador2}">
+						<td th:text="${partido.jugador3}">
+						<td th:text="${partido.jugador4}">
+						<td><a th:href="@{/partidos/save/{id}(id=${partido.id})}">Editar</a></td>
+						<td><a th:href="@{/partidos/delete/{id}(id=${partido.id})}">Eliminar</a></td>
+						<td><a class="btn btn-info"
+							th:href="@{/partidos/inscribir/{id}(id=${partido.id})}">Inscribirme</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
