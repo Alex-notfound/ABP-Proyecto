@@ -3,6 +3,8 @@ package com.padelclub.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,8 @@ public class UsuariosController {
 	@Autowired
 	private PartidoService partidoService;
 
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
+
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
 		model.addAttribute("list", usuarioService.getAll());
@@ -47,6 +51,7 @@ public class UsuariosController {
 
 	@PostMapping("/save")
 	public String save(Usuario usuario, Model model) {
+		usuario.setPassword(encoder.encode(usuario.getPassword()));
 		usuarioService.save(usuario);
 		return "redirect:/usuarios/";
 	}
