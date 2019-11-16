@@ -70,7 +70,7 @@ public class CampeonatoController {
 		usuarioCampeonatoService.save(usuarioCampeonato);
 		return "redirect:/campeonatos/";
 	}
-	
+
 	@GetMapping("/consultar/{id}")
 	public String consultar(@PathVariable Long id, Model model) {
 		return "CampeonatosView/CampeonatoDetail";

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.PartidoRepository;
-import com.padelclub.dao.api.UsuarioPartidoRepository;
 import com.padelclub.model.Partido;
 import com.padelclub.model.Usuario;
 import com.padelclub.service.api.PartidoService;
@@ -18,8 +17,6 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 
 	@Autowired
 	private PartidoRepository partidoRepository;
-	@Autowired
-	private UsuarioPartidoRepository usuarioPartidoRepository;
 
 	@Override
 	public CrudRepository<Partido, Long> getDao() {

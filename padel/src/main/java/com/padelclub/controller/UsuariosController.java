@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario;
-import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioCampeonatoService;
 import com.padelclub.service.api.UsuarioPartidoService;
@@ -28,8 +27,6 @@ public class UsuariosController {
 	private ReservaService reservaService;
 	@Autowired
 	private UsuarioCampeonatoService usuarioCampeonatoService;
-	@Autowired
-	private PartidoService partidoService;
 	@Autowired
 	private UsuarioPartidoService usuarioPartidoService;
 

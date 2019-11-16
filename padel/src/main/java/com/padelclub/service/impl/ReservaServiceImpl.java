@@ -1,6 +1,5 @@
 package com.padelclub.service.impl;
 
-import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,7 +11,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
-import com.padelclub.dao.api.PistaRepository;
 import com.padelclub.dao.api.ReservaRepository;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
@@ -25,8 +23,6 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 
 	@Autowired
 	private ReservaRepository reservaRepository;
-	@Autowired
-	private PistaRepository pistaRepository;
 
 	@Override
 	public CrudRepository<Reserva, Long> getDao() {
