@@ -10,10 +10,6 @@
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
 -Añadir notificacion enfrentamiento
 -Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
--Formulario partido ofertado (crear fichero en carpeta PartidosView si procede)
--Formulario partido promocionado (crear fichero en carpeta PartidosView si procede)
--En el listado de partidos ofertados/promocionados podriamos mostrar jugadores inscritos (En carpeta PartidosView -> OfertadosShowAll.html y PromocionadosShowAll)
--Añadir en perfil los partidos ofertados/promocionados a los que estamos inscritos (UsuarioView/UsuariosProfile.html)
 --------------------------------
 #TAREAS ALEX:
 -Accesos a paginas
@@ -27,10 +23,6 @@ CASOS USO
 ###############################
 
 GESTIONAR PARTIDOS PROMOCIONADOS
--Añadir partido promocionado (desde admin en el propio listado)
-?Editar partido promocionado (desde admin en el propio listado) - FALTA FIXEAR RESERVA
--Eliminar partido promocionado (desde admin en el propio listado)
-Inscribirse en partido promocionado
 Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listado?)
 
 GESTIONAR PLAYOFF
@@ -40,15 +32,24 @@ ACEPTAR PARTIDO CAMPEONATO
 Aceptar partido campeonato (¿desde el perfil?)
 
 GESTIONAR CAMPEONATOS
--Añadir campeonato
--Editar campeonato
 Consultar campeonato
--Eliminar campeonato
 
 --------------------------------
 ###############################
 TERMINADO
 ###############################
+
+GESTIONAR PARTIDOS PROMOCIONADOS
+-Añadir partido promocionado (desde admin en el propio listado)
+?Editar partido promocionado (desde admin en el propio listado) - FALTA FIXEAR RESERVA
+-Eliminar partido promocionado (desde admin en el propio listado)
+-Inscribirse en partido promocionado
+
+
+GESTIONAR CAMPEONATOS
+-Añadir campeonato
+-Editar campeonato
+-Eliminar campeonato
 
 GESTIONAR PISTAS
 -Añadir pista
