@@ -57,18 +57,14 @@ public class UsuariosController {
 		return "redirect:/usuarios/";
 	}
 
-	@GetMapping("/profile")
-	public String myprofile(Principal principalUsuario, Model model) {
-		Usuario usuario = usuarioService.getUsuario(principalUsuario);
-		model.addAttribute("usuario", usuario);
-		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
-		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
-		return "UsuariosView/UsuariosProfile";
-	}
-
 	@GetMapping("/profile/{id}")
-	public String profileId(@PathVariable Long id, Model model) {
-		Usuario usuario = usuarioService.get(id);
+	public String myprofile(@PathVariable Long id, Principal principalUsuario, Model model) {
+		Usuario usuario;
+		if (id != null && id != 0) {
+			usuario = usuarioService.get(id);
+		} else {
+			usuario = usuarioService.getUsuario(principalUsuario);
+		}
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
 		model.addAttribute("partidos", partidoService.findAllByUsuario(usuario));
