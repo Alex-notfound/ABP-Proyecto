@@ -1,9 +1,12 @@
-Arreglar validacion precio inscripción
-
 #TAREAS DANI:
+-Arreglar validacion precio inscripción
 -Añadir desplegable al menu en boton Partidos (barranav.html)
--Arreglar vistas Usuarios (carpeta UsuariosView)
--Pantalla inicio (index.html)
+-Arreglar pantalla inicio (index.html)
+-Arreglar formulario login
+-Inicialización de BD por defecto
+-Arreglar para que cargue el css hecho por nosotros
+------------------------------------------
+#CHECKEAR:
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
 -Añadir notificacion enfrentamiento
 -Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
@@ -11,11 +14,20 @@ Arreglar validacion precio inscripción
 -Formulario partido promocionado (crear fichero en carpeta PartidosView si procede)
 -En el listado de partidos ofertados/promocionados podriamos mostrar jugadores inscritos (En carpeta PartidosView -> OfertadosShowAll.html y PromocionadosShowAll)
 -Añadir en perfil los partidos ofertados/promocionados a los que estamos inscritos (UsuarioView/UsuariosProfile.html)
--Comprobar que todas las vistas tienen el mismo formato
 --------------------------------
+#TAREAS ALEX:
+-Desinscripción campeonato?
+-Accesos a paginas
+-Partidos ofertados
+-Partidos promocionados
+-Pistas
+-Logica campeonatos
+-Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
+
 ###############################
 CASOS USO
 ###############################
+
 GESTIONAR PARTIDOS PROMOCIONADOS
 Añadir partido promocionado (desde admin en el propio listado)
 Editar partido promocionado (desde admin en el propio listado)
@@ -39,11 +51,8 @@ Aceptar partido campeonato (¿desde el perfil?)
 \Consulta pista
 \Eliminar pista
 
-##INSCRIPCION CAMPEONATO
-Inscribirse en campeonato
-
-##RESERVAR PISTA
--Reservar pista
+RESERVAR PISTA
+Reservar pista
 -Eliminar reserva pista
 
 GESTIONAR CAMPEONATOS
@@ -52,11 +61,15 @@ GESTIONAR CAMPEONATOS
 Consultar campeonato
 -Eliminar campeonato
 
--Autenticación
 --------------------------------
 ###############################
 TERMINADO
 ###############################
+
+INSCRIPCION CAMPEONATO
+-Inscribirse en campeonato
+
+-Autenticación
 
 GESTIONAR USUARIOS
 -Añadir usuario
