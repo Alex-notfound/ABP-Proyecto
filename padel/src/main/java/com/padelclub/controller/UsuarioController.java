@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioCampeonatoService;
 import com.padelclub.service.api.UsuarioService;
@@ -25,6 +26,8 @@ public class UsuarioController {
 	private ReservaService reservaService;
 	@Autowired
 	private UsuarioCampeonatoService usuarioCampeonatoService;
+	@Autowired
+	private PartidoService partidoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
@@ -68,6 +71,7 @@ public class UsuarioController {
 		Usuario usuario = usuarioService.get(id);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
+		model.addAttribute("partidos", partidoService.findAllByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
 		return "UsuariosView/UsuariosProfile";
 	}

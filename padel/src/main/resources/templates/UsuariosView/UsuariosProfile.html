@@ -59,16 +59,18 @@
 						<th>Pista</th>
 						<th>Día</th>
 						<th>Hora</th>
+						<th>Tipo</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="reserva : ${reservas}">
-						<td th:text="${reserva.pista.id}"></td>
-						<td th:text="${reserva.fecha}"></td>
-						<td th:text="${reserva.hora}"></td>
-						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
-								reserva</a></td>
+					<tr th:each="partido : ${partidos}">
+						<td th:text="${partido.reserva.pista.id}"></td>
+						<td th:text="${partido.reserva.fecha}"></td>
+						<td th:text="${partido.reserva.hora}"></td>
+						<td th:text="${partido.tipo}"></td>
+						<td><a th:href="@{/partidos/liberar/{id}(id=${partido.id})}">Borrar
+								partido</a></td>
 					</tr>
 				</tbody>
 			</table>
