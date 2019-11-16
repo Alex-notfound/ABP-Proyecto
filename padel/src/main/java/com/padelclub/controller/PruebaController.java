@@ -16,7 +16,7 @@ public class PruebaController {
 
 	@RequestMapping("/prueba")
 	public String prueba(Model model) {
-		return "campeonato";
+		return "indexviejo";
 	}
 
 	@RequestMapping("/prueba2")

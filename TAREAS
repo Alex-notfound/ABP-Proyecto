@@ -29,9 +29,9 @@ CASOS USO
 ###############################
 
 GESTIONAR PARTIDOS PROMOCIONADOS
-Añadir partido promocionado (desde admin en el propio listado)
-Editar partido promocionado (desde admin en el propio listado)
-Eliminar partido promocionado (desde admin en el propio listado)
+-Añadir partido promocionado (desde admin en el propio listado)
+?Editar partido promocionado (desde admin en el propio listado)
+-Eliminar partido promocionado (desde admin en el propio listado)
 Inscribirse en partido promocionado
 Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listado?)
 

@@ -42,6 +42,7 @@
 						<th></th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,6 +53,9 @@
 						<td th:text="${campeonato.numParticipantes}"></td>
 						<td th:text="${campeonato.precioInscripcion}"></td>
 						<td th:text="${campeonato.limiteInscripcion}"></td>
+						<td><a
+							th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}">Consultar</a></td>
+						<td>
 						<td><a
 							th:href="@{/campeonatos/save/{id}(id=${campeonato.id})}">Editar</a></td>
 						<td><a
