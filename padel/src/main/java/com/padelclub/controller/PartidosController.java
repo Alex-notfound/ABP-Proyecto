@@ -90,7 +90,7 @@ public class PartidosController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		partidoService.delete(id);
-		return "redirect:/reservas/";
+		return "redirect:/partidos/";
 	}
 
 	@PostMapping("/buscar")
