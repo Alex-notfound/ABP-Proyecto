@@ -20,9 +20,6 @@ public class Sorteo<Enfrentamiento>{
 	@ManyToOne
 	public Enfrentamiento[][] rondas;
 
-	
-	
-	
 	public void sorteoLiga(int numEquipos) {
 		
 		
@@ -46,21 +43,29 @@ public class Sorteo<Enfrentamiento>{
 			} while (esta);
 		}
 		
+	}
+	
+	
+	
+	private List<Integer> siguienteJornada(List<Integer> numSorteo) {
 		
-		int numPartido[][] = new int[partidos][2];
-		int j=0;
-		for(int i=0;i<partidos;i++) {
-			numPartido[i][0]=numSorteo.get(j);
-			j++;
-			numPartido[i][1]=numSorteo.get(j);
-			j++;
-		}
+		int aux = numSorteo.remove(numSorteo.size()-1);
+		numSorteo.add(0, aux);
+		return numSorteo;
+	}
 		
-		
-		
-		
-		
-		
+	
+	
+	private List<Integer> colocarEnfrentamiento(List<Integer> numSorteo, int partidos){
+	int numPartido[][] = new int[partidos][2];
+	int j=0;
+	for(int i=0;i<partidos;i++) {
+		numPartido[i][0]=numSorteo.get(j);
+		j++;
+		numPartido[i][1]=numSorteo.get(j);
+		j++;
+	}
+	return numSorteo;
 	}
 	
 }
