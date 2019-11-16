@@ -1,11 +1,16 @@
 package com.padelclub.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
+import com.padelclub.dao.api.CampeonatoRepository;
 import com.padelclub.dao.api.UsuarioCampeonatoRepository;
+import com.padelclub.model.Campeonato2;
+import com.padelclub.model.Usuario2;
 import com.padelclub.model.UsuarioCampeonato;
 import com.padelclub.model.UsuarioCampeonatoId;
 import com.padelclub.service.api.UsuarioCampeonatoService;
@@ -16,10 +21,16 @@ public class UsuarioCampeonatoServiceImpl extends GenericServiceImpl<UsuarioCamp
 
 	@Autowired
 	private UsuarioCampeonatoRepository usuarioCampeonatoRepository;
+	@Autowired
+	private CampeonatoRepository campeonatoRepository;
 
 	@Override
 	public CrudRepository<UsuarioCampeonato, UsuarioCampeonatoId> getDao() {
 		return usuarioCampeonatoRepository;
 	}
 
+	@Override
+	public List<Campeonato2> findAllCampeonatosByUsuario(Usuario2 user) {
+		return campeonatoRepository.findAllById(usuarioCampeonatoRepository.findAllCampeonatosByUsuario(user.getId()));
+	}
 }

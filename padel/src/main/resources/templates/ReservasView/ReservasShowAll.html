@@ -15,7 +15,12 @@
 		<h4>Reservar pista</h4>
 	</div>
 	<div class="container">
-		<h2 th:if="${list.isEmpty()}">No hay reservas en este momento</h2>
+		<div>
+			<a th:href="@{/reservas/save/0}" class="btn btn-primary">Registrar
+				reserva</a>
+		</div>
+		<br>
+		<h2 th:if="${list.isEmpty()}">No tienes ninguna reserva</h2>
 		<div th:if="${!list.isEmpty()}">
 			<table class="table">
 				<thead>
@@ -28,16 +33,12 @@
 				</thead>
 				<tbody>
 					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.pista}"></td>
+						<td th:text="${reserva.pista.id}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div>
-			<a th:href="@{/reservas/save/0}" class="btn btn-primary">Registrar
-				reserva</a>
 		</div>
 	</div>
 	<script src="js/jquery.js"></script>

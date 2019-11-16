@@ -16,20 +16,22 @@
 	</div>
 
 	<div class="container">
-			<h4>Mis notificaciones</h4>
-			<table class="table">
-				<tbody>
-					<tr>
-						<td>Partido contra Pepe-Pepe</td>
-						<td><button class="btn btn-info" type="submit">Responder notifiación</button></td>
-					</tr>
-					<tr>
-						<td>Partido contra Jose-Jose</td>
-						<td><button class="btn btn-info" type="submit">Responder notifiación</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<h4>Mis notificaciones</h4>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Partido contra Pepe-Pepe</td>
+					<td><button class="btn btn-info" type="submit">Responder
+							notifiación</button></td>
+				</tr>
+				<tr>
+					<td>Partido contra Jose-Jose</td>
+					<td><button class="btn btn-info" type="submit">Responder
+							notifiación</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<section class="container">
 		<div class="container">
@@ -61,8 +63,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.pista}"></td>
+					<tr th:each="reserva : ${reservas}">
+						<td th:text="${reserva.pista.id}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
 						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
@@ -89,8 +91,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.pista}"></td>
+					<tr th:each="reserva : ${reservas}">
+						<td th:text="${reserva.pista.id}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
 						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
@@ -105,8 +107,35 @@
 		<div class="container">
 			<br>
 			<h4>Mis campeonatos</h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Categoria</th>
+						<th>Nivel</th>
+						<th>Participantes apuntados</th>
+						<th>Precio de inscripción</th>
+						<th>Inscripción hasta</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="campeonato : ${campeonatos}">
+						<td th:text="${campeonato.id}"></td>
+						<td th:text="${campeonato.categoria}"></td>
+						<td th:text="${campeonato.nivel}"></td>
+						<td th:text="${campeonato.numParticipantes}"></td>
+						<td th:text="${campeonato.precioInscripcion}"></td>
+						<td th:text="${campeonato.limiteInscripcion}"></td>
+						<td><a class="btn btn-info"
+							th:href="@{/campeonatos/inscribir/{id}(id=${campeonato.id})}">Desinscribirme</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</section>
+	<br>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

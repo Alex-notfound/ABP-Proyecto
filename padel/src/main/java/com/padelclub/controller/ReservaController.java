@@ -1,16 +1,24 @@
 package com.padelclub.controller;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva2;
+import com.padelclub.service.api.PistaService;
+import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -22,10 +30,12 @@ public class ReservaController {
 	private ReservaService reservaService;
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private PistaService pistaService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model) {
-		model.addAttribute("list", reservaService.getAll());
+	public String index(Principal usuario, Model model) {
+		model.addAttribute("list", reservaService.getAllFromUser(usuarioService.getUsuario(usuario)));
 		return "ReservasView/ReservasShowAll";
 	}
 
@@ -40,20 +50,24 @@ public class ReservaController {
 	}
 
 	@PostMapping("/save")
-	public String save(Reserva2 reserva, Model model) {
+	public String save(ReservaDTO reservaDao, Principal usuario, Model model) {
+		Reserva2 reserva = new Reserva2();
+		System.out.println(reservaDao.toString());
+		reserva.setPista(reservaDao.getPista());
+		reserva.setFecha(reservaDao.getFecha());
+		reserva.setHora(reservaDao.getHora());
+		reserva.setDisponible(false);
+		reserva.setUsuario(usuarioService.getUsuario(usuario));
 		reservaService.save(reserva);
 		return "redirect:/reservas/";
 	}
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva2 reserva, Model model) {
-		List<Reserva2> list = reservaService.findAllByFecha(reserva.getFecha());
-		if (list.isEmpty()) {
-			reservaService.crearReservasParaDia(reserva.getFecha());
-			list = reservaService.findAllByFecha(reserva.getFecha());
-		}
+		List<Pista> pistas = pistaService.getAll();
+		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
+		model.addAttribute("pistas", pistas);
 		model.addAttribute("fecha", reserva.getFecha());
-		model.addAttribute("list", list);
 		return "ReservasView/ReservasShowByFecha";
 	}
 

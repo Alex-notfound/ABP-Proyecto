@@ -1,5 +1,6 @@
 package com.padelclub.service.impl;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -13,9 +14,10 @@ import org.springframework.stereotype.Service;
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.PistaRepository;
 import com.padelclub.dao.api.ReservaRepository;
+import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva2;
 import com.padelclub.model.Usuario2;
-import com.padelclub.service.api.ReservaDao;
+import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
 
 @Service
@@ -42,39 +44,26 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> imple
 	}
 
 	@Override
-	public ReservaDao getReservaDao(Reserva2 reserva) {
-//		String[] horas = { "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00",
-//				"20.00" };
-//		Map<Integer, List<ReservaDao>> map = new LinkedHashMap<>();
-//		for (int pista = 1; pista <= pistaRepository.count(); pista++) {
-//			map.put((Integer) pista, new ArrayList<ReservaDao>());
-//			for (int j = 0; j < horas.length; j++) {
-//				map.get(pista).add(new ReservaDao(pista, reserva.getFecha(), horas[j], true));
-//			}
-//		}
-//		List<Reserva2> list = findAllByFecha(reserva.getFecha());
-//		if(list!=null && !list.isEmpty()) {
-//			for (Reserva2 reserva2 : list) {
-//				map.get(reserva.getPista()).add
-//			}
-//		}
-		return null;
+	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva2 reserva, List<Pista> pistas) {
+		String[] horas = { "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00",
+				"20.00" };
+		Map<Pista, List<ReservaDTO>> map = new LinkedHashMap<>();
+		for (Pista pista : pistas) {
+			map.put(pista, new ArrayList<>());
+			for (int j = 0; j < horas.length; j++) {
+				if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista) != null) {
+					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], false));
+				} else {
+					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], true));
+				}
+			}
+		}
+		return map;
 	}
 
 	@Override
-	public void crearReservasParaDia(Date fecha) {
-		String[] horas = { "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00",
-				"20.00" };
-		for (int pista = 1; pista <= pistaRepository.count(); pista++) {
-			for (int i = 0; i < horas.length; i++) {
-				Reserva2 reserva = new Reserva2();
-				reserva.setPista(pista);
-				reserva.setFecha(fecha);
-				reserva.setHora(horas[i]);
-				reserva.setDisponible(true);
-				reservaRepository.save(reserva);
-			}
-		}
+	public List<Reserva2> getAllFromUser(Usuario2 usuario) {
+		return reservaRepository.findAllByUsuario(usuario);
 	}
 
 }

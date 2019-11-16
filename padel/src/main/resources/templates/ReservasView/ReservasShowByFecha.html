@@ -15,35 +15,26 @@
 		<h4>Partidos</h4>
 	</div>
 	<div class="container">
-		<h2 th:if="${list.isEmpty()}">No hay reservas disponibles en este
-			momento</h2>
-		<div th:if="${!list.isEmpty()}">
-			<h3 th:text="'Reservas para la fecha ' + ${fecha}"></h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Pista</th>
-						<th>Hora</th>
-						<th>
-							<div>
-								<a th:href="@{/reservas/save/0}" class="btn btn-primary">Registrar
-									reserva</a>
-							</div>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.pista}"></td>
-						<td th:text="${reserva.hora}"></td>
-						<td><a class="btn btn-info"
-							th:href="@{/reservas/inscribir/{idReserva}/1(idReserva=${reserva.id})}">Inscribirme</a></td>
-						<!-- 							th:href="@{/reservas/inscribir/{idReserva}/{idUsuario}(idReserva=${reserva.id},idUsuario=${usuario})}" -->
-					</tr>
-				</tbody>
-			</table>
+		<h3 th:text="'Reservas para la fecha ' + ${fecha}"></h3>
+		<span> <a th:href="@{/reservas/save/0}" class="btn btn-primary">Buscar
+				en otra fecha</a>
+		</span>
+
+		<div th:each="e : ${map}">
+			<h3 th:text="'Pista ' + ${e.key.id}"></h3>
+			<div class="btn-group btn-group-lg">
+				<div th:each="reservaDao : ${e.value}">
+					<form action="#" th:action="@{/reservas/save}" class="form-group"
+						th:object="${reservaDao}" method="post">
+						<button type="submit"
+							th:class="*{disponible} ? 'btn btn-success' : 'btn btn-danger'"
+							th:text="${reservaDao.hora}"></button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
+	<br>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

@@ -7,7 +7,9 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="../../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
-<link rel="stylesheet" href="../../static/header.css">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/../../static/header.css}">
+
 </head>
 <body>
 	<div th:replace="barranav :: header"></div>
@@ -17,8 +19,10 @@
 	<div class="container">
 		<br>
 		<div>
-			<a th:href="@{/usuarios/save/0}" class="btn btn-primary">Agregar</a>
+			<a th:href="@{/usuarios/save/0}" class="btn btn-primary">Crear
+				usuario</a>
 		</div>
+		<br>
 		<h2 th:if="${list.isEmpty()}">No hay usuarios</h2>
 		<div th:if="${!list.isEmpty()}">
 			<h2>Usuarios</h2>

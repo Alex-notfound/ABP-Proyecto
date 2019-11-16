@@ -1,5 +1,7 @@
 package com.padelclub.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PruebaController {
 
-	@RequestMapping({ "", "/" })
-	public String index(Model model) {
+	@RequestMapping({ "", "/", "/index" })
+	public String index(Principal user, Model model) {
 		return "index";
 	}
 

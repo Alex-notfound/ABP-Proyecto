@@ -17,8 +17,8 @@ public class Reserva2 {
 	private Long id;
 	@ManyToOne
 	private Usuario2 usuario;
-	@Column
-	private int pista;
+	@ManyToOne
+	private Pista pista;
 	@Column
 	private Date fecha;
 	@Column
@@ -50,11 +50,11 @@ public class Reserva2 {
 		this.usuario = usuario;
 	}
 
-	public int getPista() {
+	public Pista getPista() {
 		return pista;
 	}
 
-	public void setPista(int pista) {
+	public void setPista(Pista pista) {
 		this.pista = pista;
 	}
 

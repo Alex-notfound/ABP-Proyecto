@@ -1,5 +1,7 @@
 package com.padelclub.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,17 +57,18 @@ public class CampeonatoController {
 		return "redirect:/campeonatos/";
 	}
 
-	@GetMapping("/inscribir/{idCampeonato}/{idUsuario}")
-	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, @PathVariable("idUsuario") Long idUsuario,
-			Model model) {
+	@GetMapping("/inscribir/{idCampeonato}")
+	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, Principal usuario, Model model) {
+
 		Campeonato2 campeonato = campeonatoService.get(idCampeonato);
-		Usuario2 usuario = usuarioService.get(idUsuario);
+		campeonato.setNumParticipantes(campeonato.getNumParticipantes() + 1);
+		Usuario2 user = usuarioService.getUsuario(usuario);
 		UsuarioCampeonato usuarioCampeonato = new UsuarioCampeonato();
-		usuarioCampeonato.setId(new UsuarioCampeonatoId(campeonato, usuario));
+		usuarioCampeonato.setId(new UsuarioCampeonatoId(campeonato, user));
+
+		campeonatoService.save(campeonato);
 		usuarioCampeonatoService.save(usuarioCampeonato);
 		return "redirect:/campeonatos/";
 	}
-	
-	
-	
+
 }

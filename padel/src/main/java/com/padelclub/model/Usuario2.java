@@ -1,11 +1,17 @@
 package com.padelclub.model;
 
 import java.sql.Date;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario2 {
@@ -27,6 +33,13 @@ public class Usuario2 {
 	private boolean administrador;
 	@Column
 	private Date fechaNacimiento;
+
+	@Column
+	private boolean enabled;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+	private Set<Authority> authority;
 
 	public Long getId() {
 		return id;
@@ -90,6 +103,22 @@ public class Usuario2 {
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Set<Authority> getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(Set<Authority> authority) {
+		this.authority = authority;
 	}
 
 }

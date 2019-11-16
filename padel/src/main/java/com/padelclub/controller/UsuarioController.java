@@ -1,5 +1,7 @@
 package com.padelclub.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario2;
 import com.padelclub.service.api.ReservaService;
+import com.padelclub.service.api.UsuarioCampeonatoService;
 import com.padelclub.service.api.UsuarioService;
 
 @Controller
@@ -20,6 +23,8 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private ReservaService reservaService;
+	@Autowired
+	private UsuarioCampeonatoService usuarioCampeonatoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model) {
@@ -49,11 +54,21 @@ public class UsuarioController {
 		return "redirect:/usuarios/";
 	}
 
+	@GetMapping("/profile")
+	public String myprofile(Principal principalUsuario, Model model) {
+		Usuario2 usuario = usuarioService.getUsuario(principalUsuario);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
+		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
+		return "UsuariosView/UsuariosProfile";
+	}
+
 	@GetMapping("/profile/{id}")
-	public String profile(@PathVariable Long id, Model model) {
+	public String profileId(@PathVariable Long id, Model model) {
 		Usuario2 usuario = usuarioService.get(id);
 		model.addAttribute("usuario", usuario);
-		model.addAttribute("list", reservaService.findAllByUsuario(usuario));
+		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
+		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
 		return "UsuariosView/UsuariosProfile";
 	}
 

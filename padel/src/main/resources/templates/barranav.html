@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>padelGest</title>
@@ -7,10 +7,15 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="../static/cssOwn/header.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -27,22 +32,26 @@
 					<a class="nav-item nav-link active" th:href="@{/}">INICIO<span
 						class="sr-only">(current)</span></a> <a class="nav-item nav-link"
 						th:href="@{/reservas/}">RESERVAS</a> <a class="nav-item nav-link"
-						th:href="@{/campeonatos/}">CAMPEONATOS</a> <a
-						class="nav-item nav-link" href="#">PROMOCIONES</a>
-										<div class="nav-item dropdown">
-						  		<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">PARTIDOS</a>
-						    <div class="dropdown-menu">
-						      <a class="dropdown-item" href="#">PROMOCIONADOS</a>
-						      <a class="dropdown-item" href="#">OFERTADOS</a>
-						    </div>
+						th:href="@{/campeonatos/}">CAMPEONATOS</a>
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop"
+							data-toggle="dropdown">PARTIDOS</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/partidos/promocionados/}">PROMOCIONADOS</a>
+							<a class="dropdown-item" th:href="@{/partidos/ofertados/}">OFERTADOS</a>
 						</div>
-												
-						<a class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a>
-						<a class="nav-item nav-link" th:href="@{/usuarios/profile/1}">MI
+					</div>
+
+					<a class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a> <a
+						class="nav-item nav-link" th:href="@{/usuarios/profile}">MI
 						CUENTA </a>
-		
+					<div>
+						<form th:action="@{/logout}" method="post">
+							<input type="submit" value="Cerrar Sesion" />
+						</form>
+					</div>
+				</div>
 			</div>
-		</div>
 		</nav>
 	</div>
 </body>

@@ -1,19 +1,23 @@
 package com.padelclub.service.api;
 
+import java.io.Serializable;
 import java.sql.Date;
 
+import com.padelclub.model.Pista;
 import com.padelclub.model.Usuario2;
 
-public class ReservaDao {
+public class ReservaDTO implements Serializable {
 
-	private Long id;
-	private Usuario2 usuario;
-	private int pista;
+	private static final long serialVersionUID = 1L;
+
+//	private Long id;
+//	private Usuario2 usuario;
+	private Pista pista;
 	private Date fecha;
 	private String hora;
 	private boolean disponible;
 
-	public ReservaDao(int pista, Date fecha, String hora, boolean disponible) {
+	public ReservaDTO(Pista pista, Date fecha, String hora, boolean disponible) {
 		this.pista = pista;
 		this.fecha = fecha;
 		this.hora = hora;
@@ -28,27 +32,27 @@ public class ReservaDao {
 		this.disponible = disponible;
 	}
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+//
+//	public Usuario2 getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(Usuario2 usuario) {
+//		this.usuario = usuario;
+//	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Usuario2 getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario2 usuario) {
-		this.usuario = usuario;
-	}
-
-	public int getPista() {
+	public Pista getPista() {
 		return pista;
 	}
 
-	public void setPista(int pista) {
+	public void setPista(Pista pista) {
 		this.pista = pista;
 	}
 
