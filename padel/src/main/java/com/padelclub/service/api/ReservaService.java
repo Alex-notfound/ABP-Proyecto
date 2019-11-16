@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.padelclub.commons.GenericServiceAPI;
-import com.padelclub.model.Campeonato;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;

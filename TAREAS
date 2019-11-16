@@ -38,10 +38,6 @@ Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listad
 GESTIONAR PLAYOFF
 Gestionar playoff
 
-OFERTAR PARTIDOS
-Añadir partido ofertado (en el propio listado)
-Eliminar partido ofertado (en perfil ¿e incluso en el listado?)
-
 ACEPTAR PARTIDO CAMPEONATO
 Aceptar partido campeonato (¿desde el perfil?)
 
@@ -50,10 +46,6 @@ Aceptar partido campeonato (¿desde el perfil?)
 \Editar pista
 \Consulta pista
 \Eliminar pista
-
-RESERVAR PISTA
-Reservar pista
--Eliminar reserva pista
 
 GESTIONAR CAMPEONATOS
 -Añadir campeonato
@@ -65,6 +57,14 @@ Consultar campeonato
 ###############################
 TERMINADO
 ###############################
+
+RESERVAR PISTA
+/Reservar pista
+-Eliminar reserva pista
+
+OFERTAR PARTIDOS
+/Añadir partido ofertado (en el propio listado) - FALTA FIXEAR RESERVA
+-Eliminar partido ofertado
 
 INSCRIPCION CAMPEONATO
 -Inscribirse en campeonato

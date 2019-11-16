@@ -97,7 +97,7 @@
 						<td th:text="${reserva.pista.id}"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
-						<td><a th:href="@{/reservas/liberar/{id}(id=${reserva.id})}">Borrar
+						<td><a th:href="@{/reservas/delete/{id}(id=${reserva.id})}">Borrar
 								reserva</a></td>
 					</tr>
 				</tbody>
