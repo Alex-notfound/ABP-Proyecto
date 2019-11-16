@@ -75,7 +75,7 @@
 						<td th:text="${partido.reserva.fecha}"></td>
 						<td th:text="${partido.reserva.hora}"></td>
 						<td th:text="${partido.tipo}"></td>
-						<td><a th:href="@{/partidos/liberar/{id}(id=${partido.id})}">Borrar
+						<td><a th:href="@{/partidos/delete/{id}(id=${partido.id})}">Borrar
 								partido</a></td>
 					</tr>
 				</tbody>

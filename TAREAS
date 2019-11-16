@@ -1,10 +1,6 @@
 #TAREAS DANI:
--Arreglar validacion precio inscripción
--Añadir desplegable al menu en boton Partidos (barranav.html)
--Arreglar pantalla inicio (index.html)
--Arreglar formulario login
 -Inicialización de BD por defecto
--Arreglar para que cargue el css hecho por nosotros
+-Arreglar validacion precio inscripción
 ------------------------------------------
 #CHECKEAR:
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
@@ -39,12 +35,14 @@ Consultar campeonato
 TERMINADO
 ###############################
 
+?Arreglar pantalla inicio (index.html)
+?Arreglar para que cargue el css hecho por nosotros
+
 GESTIONAR PARTIDOS PROMOCIONADOS
 -Añadir partido promocionado (desde admin en el propio listado)
 ?Editar partido promocionado (desde admin en el propio listado) - FALTA FIXEAR RESERVA
 -Eliminar partido promocionado (desde admin en el propio listado)
 -Inscribirse en partido promocionado
-
 
 GESTIONAR CAMPEONATOS
 -Añadir campeonato

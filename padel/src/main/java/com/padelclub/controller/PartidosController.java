@@ -86,9 +86,13 @@ public class PartidosController {
 			partido.setTipo("Promocionado");
 		} else {
 			partido.setTipo("Ofertado");
-			partido.setJugador1(usuario);
 		}
-		partidoService.save(partido);
+		Partido partidoGuardado = partidoService.save(partido);
+		if (!usuario.isAdministrador()) {
+			UsuarioPartido usuarioPartido = new UsuarioPartido();
+			usuarioPartido.setId(new UsuarioPartidoId(partidoGuardado, usuario));
+			usuarioPartidoService.save(usuarioPartido);
+		}
 		return "redirect:/partidos/";
 	}
 
@@ -102,7 +106,6 @@ public class PartidosController {
 		} else {
 			usuarioPartidoService.deleteUserFromPartido(partido, usuario);
 		}
-		partidoService.delete(id);
 		return "redirect:/partidos/";
 	}
 

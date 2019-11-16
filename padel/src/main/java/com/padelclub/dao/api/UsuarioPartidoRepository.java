@@ -2,7 +2,10 @@ package com.padelclub.dao.api;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -11,6 +14,8 @@ import com.padelclub.model.UsuarioPartidoId;
 
 public interface UsuarioPartidoRepository extends JpaRepository<UsuarioPartido, UsuarioPartidoId> {
 
+	@Modifying
+	@Transactional
 	@Query(value = "DELETE FROM usuario_partido WHERE partido_id = :partido AND usuario_id = :usuario ", nativeQuery = true)
 	void deleteByPartidoUsuario(@Param("partido") Long partido, @Param("usuario") Long usuario);
 
