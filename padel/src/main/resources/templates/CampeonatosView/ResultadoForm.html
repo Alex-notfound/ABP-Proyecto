@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" href="../../static/header.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div th:replace="barranav :: header"></div>
+	<div class="jumbotron">
+		<h4>Introducir resultados</h4>
+	</div>
+	<section class="container">
+		<h4>Nombre campeonato</h4>
+		<br>
+		<h5>Pepe-pepe contra Jose-Jose</h5>
+		<br>
+		<div class="container">
+		<div class="form-group row">
+						<label for="resultado" class="col-1 col-form-label">Resultado:</label>
+						<input class="col-3 form-control " id="apellidos" type="text">
+					</div>
+				</div>
+
+					<form>
+						<br>
+		<h5>Ganador:</h5>
+		  <div class="custom-control custom-radio custom-control-inline">
+		    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+		    <label class="custom-control-label" for="customRadio">Local</label>
+		  </div>
+		  <div class="custom-control custom-radio custom-control-inline">
+		    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+		    <label class="custom-control-label" for="customRadio2">Visitante</label>
+		  </div>
+</form>
+<br>
+<button class="btn btn-info" type="submit">Guardar resultado</button>
+	</section>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
