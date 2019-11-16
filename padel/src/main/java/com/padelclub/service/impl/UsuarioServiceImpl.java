@@ -17,18 +17,18 @@ import org.springframework.stereotype.Service;
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.UsuarioRepository;
 import com.padelclub.model.Authority;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.UsuarioService;
 
 @Service
-public class UsuarioServiceImpl extends GenericServiceImpl<Usuario2, Long>
+public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long>
 		implements UsuarioService, UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Override
-	public CrudRepository<Usuario2, Long> getDao() {
+	public CrudRepository<Usuario, Long> getDao() {
 		return usuarioRepository;
 	}
 
@@ -36,7 +36,7 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario2, Long>
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		// Buscar el usuario con el repositorio y si no existe lanzar una exepcion
-		Usuario2 appUser = usuarioRepository.findByDni(username)
+		Usuario appUser = usuarioRepository.findByDni(username)
 				.orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 
 		// Mapear nuestra lista de Authority con la de spring security
@@ -53,7 +53,7 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario2, Long>
 	}
 
 	@Override
-	public Usuario2 getUsuario(Principal usuario) {
+	public Usuario getUsuario(Principal usuario) {
 		return usuarioRepository.findByDni(usuario.getName()).get();
 	}
 

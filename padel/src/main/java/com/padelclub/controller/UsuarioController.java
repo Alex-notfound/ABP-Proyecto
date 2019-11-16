@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioCampeonatoService;
 import com.padelclub.service.api.UsuarioService;
@@ -37,13 +37,13 @@ public class UsuarioController {
 		if (id != null && id != 0) {
 			model.addAttribute("usuario", usuarioService.get(id));
 		} else {
-			model.addAttribute("usuario", new Usuario2());
+			model.addAttribute("usuario", new Usuario());
 		}
 		return "UsuariosView/UsuariosForm";
 	}
 
 	@PostMapping("/save")
-	public String save(Usuario2 usuario, Model model) {
+	public String save(Usuario usuario, Model model) {
 		usuarioService.save(usuario);
 		return "redirect:/usuarios/";
 	}
@@ -56,7 +56,7 @@ public class UsuarioController {
 
 	@GetMapping("/profile")
 	public String myprofile(Principal principalUsuario, Model model) {
-		Usuario2 usuario = usuarioService.getUsuario(principalUsuario);
+		Usuario usuario = usuarioService.getUsuario(principalUsuario);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
@@ -65,7 +65,7 @@ public class UsuarioController {
 
 	@GetMapping("/profile/{id}")
 	public String profileId(@PathVariable Long id, Model model) {
-		Usuario2 usuario = usuarioService.get(id);
+		Usuario usuario = usuarioService.get(id);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));

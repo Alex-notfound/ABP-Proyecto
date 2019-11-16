@@ -15,13 +15,13 @@ import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.PistaRepository;
 import com.padelclub.dao.api.ReservaRepository;
 import com.padelclub.model.Pista;
-import com.padelclub.model.Reserva2;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Reserva;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
 
 @Service
-public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> implements ReservaService {
+public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implements ReservaService {
 
 	@Autowired
 	private ReservaRepository reservaRepository;
@@ -29,22 +29,22 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> imple
 	private PistaRepository pistaRepository;
 
 	@Override
-	public CrudRepository<Reserva2, Long> getDao() {
+	public CrudRepository<Reserva, Long> getDao() {
 		return reservaRepository;
 	}
 
 	@Override
-	public List<Reserva2> findAllByFecha(Date fecha) {
+	public List<Reserva> findAllByFecha(Date fecha) {
 		return reservaRepository.findAllByFechaOrderByPistaAscHoraAsc(fecha);
 	}
 
 	@Override
-	public List<Reserva2> findAllByUsuario(Usuario2 usuario) {
+	public List<Reserva> findAllByUsuario(Usuario usuario) {
 		return reservaRepository.findAllByUsuario(usuario);
 	}
 
 	@Override
-	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva2 reserva, List<Pista> pistas) {
+	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva reserva, List<Pista> pistas) {
 		String[] horas = { "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00",
 				"20.00" };
 		Map<Pista, List<ReservaDTO>> map = new LinkedHashMap<>();
@@ -62,7 +62,7 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva2, Long> imple
 	}
 
 	@Override
-	public List<Reserva2> getAllFromUser(Usuario2 usuario) {
+	public List<Reserva> getAllFromUser(Usuario usuario) {
 		return reservaRepository.findAllByUsuario(usuario);
 	}
 

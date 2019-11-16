@@ -7,7 +7,7 @@
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
-<link rel="stylesheet" href="../static/cssOwn/header.css">
+<link rel="stylesheet" href="../static/header.css">
 
 
 <script
@@ -45,12 +45,13 @@
 					<a class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a> <a
 						class="nav-item nav-link" th:href="@{/usuarios/profile}">MI
 						CUENTA </a>
-					<div>
-						<form th:action="@{/logout}" method="post">
-							<input type="submit" value="Cerrar Sesion" />
-						</form>
-					</div>
+
 				</div>
+			</div>
+			<div>
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Cerrar sesión" />
+				</form>
 			</div>
 		</nav>
 	</div>

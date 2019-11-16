@@ -6,15 +6,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.padelclub.model.Pista;
-import com.padelclub.model.Reserva2;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Reserva;
+import com.padelclub.model.Usuario;
 
-public interface ReservaRepository extends JpaRepository<Reserva2, Long> {
+public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
-	List<Reserva2> findAllByFechaOrderByPistaAscHoraAsc(Date fecha);
+	List<Reserva> findAllByFechaOrderByPistaAscHoraAsc(Date fecha);
 
-	List<Reserva2> findAllByUsuario(Usuario2 usuario);
+	List<Reserva> findAllByUsuario(Usuario usuario);
 
-	Reserva2 findByFechaAndHoraAndPista(Date fecha, String hora, Pista pista);
+	Reserva findByFechaAndHoraAndPista(Date fecha, String hora, Pista pista);
 
 }

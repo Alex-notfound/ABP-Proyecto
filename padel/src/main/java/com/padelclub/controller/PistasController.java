@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Pista;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.PistaService;
 
 @Controller

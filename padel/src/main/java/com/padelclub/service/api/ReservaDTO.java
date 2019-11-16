@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import com.padelclub.model.Pista;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Usuario;
 
 public class ReservaDTO implements Serializable {
 

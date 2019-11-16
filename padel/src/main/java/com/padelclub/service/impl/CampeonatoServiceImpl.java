@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.CampeonatoRepository;
-import com.padelclub.model.Campeonato2;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Campeonato;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.CampeonatoService;
 
 @Service
-public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato2, Long> implements CampeonatoService {
+public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> implements CampeonatoService {
 
 	@Autowired
 	private CampeonatoRepository campeonatoRepository;
 
 	@Override
-	public CrudRepository<Campeonato2, Long> getDao() {
+	public CrudRepository<Campeonato, Long> getDao() {
 		return campeonatoRepository;
 	}
 

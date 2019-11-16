@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Pista;
-import com.padelclub.model.Reserva2;
+import com.padelclub.model.Reserva;
 import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
@@ -44,14 +44,14 @@ public class ReservaController {
 		if (id != null && id != 0) {
 			model.addAttribute("reserva", reservaService.get(id));
 		} else {
-			model.addAttribute("reserva", new Reserva2());
+			model.addAttribute("reserva", new Reserva());
 		}
 		return "ReservasView/ReservasForm";
 	}
 
 	@PostMapping("/save")
 	public String save(ReservaDTO reservaDao, Principal usuario, Model model) {
-		Reserva2 reserva = new Reserva2();
+		Reserva reserva = new Reserva();
 		System.out.println(reservaDao.toString());
 		reserva.setPista(reservaDao.getPista());
 		reserva.setFecha(reservaDao.getFecha());
@@ -63,7 +63,7 @@ public class ReservaController {
 	}
 
 	@PostMapping("/buscar")
-	public String buscar(Reserva2 reserva, Model model) {
+	public String buscar(Reserva reserva, Model model) {
 		List<Pista> pistas = pistaService.getAll();
 		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
 		model.addAttribute("pistas", pistas);
@@ -80,7 +80,7 @@ public class ReservaController {
 	@GetMapping("/inscribir/{idReserva}/{idUsuario}")
 	public String inscribir(@PathVariable("idReserva") Long idReserva, @PathVariable("idUsuario") Long idUsuario,
 			Model model) {
-		Reserva2 reserva = reservaService.get(idReserva);
+		Reserva reserva = reservaService.get(idReserva);
 		reserva.setUsuario(usuarioService.get(idUsuario));
 		reserva.setDisponible(false);
 		reservaService.save(reserva);
@@ -89,7 +89,7 @@ public class ReservaController {
 
 	@GetMapping("/liberar/{id}")
 	public String liberar(@PathVariable Long id, Model model) {
-		Reserva2 reserva = reservaService.get(id);
+		Reserva reserva = reservaService.get(id);
 		reserva.setUsuario(null);
 		reserva.setDisponible(true);
 		reservaService.save(reserva);

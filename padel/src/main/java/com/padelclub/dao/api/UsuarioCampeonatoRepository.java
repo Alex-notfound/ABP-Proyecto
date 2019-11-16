@@ -11,7 +11,7 @@ import com.padelclub.model.UsuarioCampeonatoId;
 
 public interface UsuarioCampeonatoRepository extends JpaRepository<UsuarioCampeonato, UsuarioCampeonatoId> {
 
-	@Query(value = "SELECT c.id FROM campeonato2 c, usuario_campeonato uc WHERE uc.campeonato_id=c.id AND uc.usuario_id = :usuario", nativeQuery = true)
+	@Query(value = "SELECT c.id FROM campeonato c, usuario_campeonato uc WHERE uc.campeonato_id=c.id AND uc.usuario_id = :usuario", nativeQuery = true)
 	List<Long> findAllCampeonatosByUsuario(@Param("usuario") Long usuario);
 
 }

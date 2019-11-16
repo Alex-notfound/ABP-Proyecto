@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Reserva2 {
+public class Reserva {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	private Usuario2 usuario;
+	private Usuario usuario;
 	@ManyToOne
 	private Pista pista;
 	@Column
@@ -42,11 +42,11 @@ public class Reserva2 {
 		this.id = id;
 	}
 
-	public Usuario2 getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario2 usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 

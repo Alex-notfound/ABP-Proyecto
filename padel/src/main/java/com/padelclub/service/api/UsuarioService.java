@@ -3,10 +3,10 @@ package com.padelclub.service.api;
 import java.security.Principal;
 
 import com.padelclub.commons.GenericServiceAPI;
-import com.padelclub.model.Usuario2;
+import com.padelclub.model.Usuario;
 
-public interface UsuarioService extends GenericServiceAPI<Usuario2, Long> {
+public interface UsuarioService extends GenericServiceAPI<Usuario, Long> {
 
-	Usuario2 getUsuario(Principal usuario);
+	Usuario getUsuario(Principal usuario);
 
 }

@@ -14,7 +14,7 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="jumbotron">
-		<h4>Registro de usuarios</h4>
+		<h4>Usuarios</h4>
 	</div>
 	<div class="container">
 		<br>
@@ -25,7 +25,6 @@
 		<br>
 		<h2 th:if="${list.isEmpty()}">No hay usuarios</h2>
 		<div th:if="${!list.isEmpty()}">
-			<h2>Usuarios</h2>
 			<table class="table">
 				<thead>
 					<tr>

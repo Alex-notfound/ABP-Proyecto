@@ -10,30 +10,30 @@ import javax.persistence.ManyToOne;
 public class UsuarioCampeonatoId implements Serializable {
 
 	@ManyToOne
-	private Campeonato2 campeonato;
+	private Campeonato campeonato;
 	@ManyToOne
-	private Usuario2 usuario;
+	private Usuario usuario;
 
-	public Campeonato2 getCampeonato() {
+	public Campeonato getCampeonato() {
 		return campeonato;
 	}
 
-	public void setCampeonato(Campeonato2 campeonato) {
+	public void setCampeonato(Campeonato campeonato) {
 		this.campeonato = campeonato;
 	}
 
-	public Usuario2 getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario2 usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
 	public UsuarioCampeonatoId() {
 	}
 
-	public UsuarioCampeonatoId(Campeonato2 campeonato, Usuario2 usuario) {
+	public UsuarioCampeonatoId(Campeonato campeonato, Usuario usuario) {
 		this.campeonato = campeonato;
 		this.usuario = usuario;
 	}
