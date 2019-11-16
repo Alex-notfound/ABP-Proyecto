@@ -33,6 +33,9 @@
 						<th>Jugador 2</th>
 						<th>Jugador 3</th>
 						<th>Jugador 4</th>
+						<th></th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,10 +43,10 @@
 						<td th:text="${partido.reserva.fecha}">
 						<td th:text="${partido.reserva.hora}">
 						<td th:text="${partido.tipo}">
-						<td th:text="${partido.jugador1.nombre}">
-						<td th:text="${partido.jugador2.nombre}">
-						<td th:text="${partido.jugador3.nombre}">
-						<td th:text="${partido.jugador4.nombre}">
+						<td th:text="${partido.jugador1} ? ${partido.jugador1.nombre}">
+						<td th:text="${partido.jugador2} ? ${partido.jugador2.nombre}">
+						<td th:text="${partido.jugador3} ? ${partido.jugador3.nombre}">
+						<td th:text="${partido.jugador4} ? ${partido.jugador4.nombre}">
 						<td><a th:href="@{/partidos/save/{id}(id=${partido.id})}">Editar</a></td>
 						<td><a th:href="@{/partidos/delete/{id}(id=${partido.id})}">Eliminar</a></td>
 						<td><a class="btn btn-info"
