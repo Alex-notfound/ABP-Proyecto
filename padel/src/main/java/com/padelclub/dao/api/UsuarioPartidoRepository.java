@@ -18,6 +18,9 @@ public interface UsuarioPartidoRepository extends JpaRepository<UsuarioPartido, 
 	int countAllByPartidoId(@Param("partido") Long partido);
 
 	@Query(value = "SELECT u.id FROM usuario u, usuario_partido up WHERE up.partido_id = :partido AND up.usuario_id = u.id", nativeQuery = true)
-	List<Long> findAllPartidosById(@Param("partido") Long id);
+	List<Long> findAllUsuariosByPartidoId(@Param("partido") Long id);
+
+	@Query(value = "SELECT p.id FROM partido p, usuario_partido up WHERE up.usuario_id = :usuario AND up.partido_id = p.id", nativeQuery = true)
+	List<Long> findAllByUsuario(@Param("usuario") Long id);
 
 }

@@ -4,7 +4,6 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import com.padelclub.model.Usuario;
 import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioCampeonatoService;
+import com.padelclub.service.api.UsuarioPartidoService;
 import com.padelclub.service.api.UsuarioService;
 
 @Controller
@@ -30,6 +30,8 @@ public class UsuariosController {
 	private UsuarioCampeonatoService usuarioCampeonatoService;
 	@Autowired
 	private PartidoService partidoService;
+	@Autowired
+	private UsuarioPartidoService usuarioPartidoService;
 
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
 
@@ -72,7 +74,7 @@ public class UsuariosController {
 		}
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
-		model.addAttribute("partidos", partidoService.findAllByUsuario(usuario));
+		model.addAttribute("partidos", usuarioPartidoService.getPartidosByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
 		return "UsuariosView/UsuariosProfile";
 	}

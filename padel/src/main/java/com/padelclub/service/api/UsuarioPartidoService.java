@@ -17,4 +17,5 @@ public interface UsuarioPartidoService extends GenericServiceAPI<UsuarioPartido,
 
 	public Map<Partido, List<Usuario>> getListado(List<Partido> all);
 
+	public List<Partido> getPartidosByUsuario(Usuario usuario);
 }

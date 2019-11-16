@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
+import com.padelclub.dao.api.PartidoRepository;
 import com.padelclub.dao.api.UsuarioPartidoRepository;
 import com.padelclub.dao.api.UsuarioRepository;
 import com.padelclub.model.Partido;
@@ -26,6 +27,8 @@ public class UsuarioPartidoServiceImpl extends GenericServiceImpl<UsuarioPartido
 	private UsuarioPartidoRepository usuarioPartidoRepository;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private PartidoRepository partidoRepository;
 
 	@Override
 	public CrudRepository<UsuarioPartido, UsuarioPartidoId> getDao() {
@@ -47,13 +50,18 @@ public class UsuarioPartidoServiceImpl extends GenericServiceImpl<UsuarioPartido
 		Map<Partido, List<Usuario>> map = new LinkedHashMap<>();
 		for (Partido partido : all) {
 			if (usuarioPartidoRepository.countAllByPartidoId(partido.getId()) > 0) {
-				map.put(partido,
-						usuarioRepository.findAllById(usuarioPartidoRepository.findAllPartidosById(partido.getId())));
+				map.put(partido, usuarioRepository
+						.findAllById(usuarioPartidoRepository.findAllUsuariosByPartidoId(partido.getId())));
 			} else {
 				map.put(partido, new ArrayList<>());
 			}
 		}
 		return map;
+	}
+
+	@Override
+	public List<Partido> getPartidosByUsuario(Usuario usuario) {
+		return partidoRepository.findAllById(usuarioPartidoRepository.findAllByUsuario(usuario.getId()));
 	}
 
 }
