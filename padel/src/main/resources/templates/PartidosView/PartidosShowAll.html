@@ -53,8 +53,8 @@
 						<td th:text="${entry.key.reserva.hora}">
 						<td th:text="${entry.key.tipo}">
 						<td th:each="jugador : ${entry.value}" th:text=${jugador.nombre}></td>
-						<td
-							th:each="i : ${#numbers.sequence(0,3-#lists.size(entry.value))}"></td>
+						<td th:if="${#lists.size(entry.value)} < 4"
+							th:each="i : ${#numbers.sequence(#lists.size(entry.value),3)}"></td>
 
 						<td><a th:href="@{/partidos/save/{id}(id=${entry.key.id})}">Editar</a></td>
 						<td><a th:href="@{/partidos/delete/{id}(id=${entry.key.id})}">Eliminar</a></td>
