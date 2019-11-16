@@ -6,7 +6,7 @@
 
 <link href="../../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
-	<link rel="stylesheet" href="../../static/header.css">
+<link rel="stylesheet" href="../../static/header.css">
 </head>
 <body>
 	<div th:replace="barranav :: header"></div>
@@ -35,7 +35,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="pista : ${list}">
-						<td th:text="${pista.id}">
+						<td th:text="${pista.numero}">
 						<td th:text="${pista.descripcion}">
 						<td><a th:href="@{/pistas/save/{id}(id=${pista.id})}">Editar</a></td>
 						<td><a th:href="@{/pistas/delete/{id}(id=${pista.id})}">Eliminar</a></td>

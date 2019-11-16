@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Pista;
-import com.padelclub.model.Usuario;
 import com.padelclub.service.api.PistaService;
 
 @Controller
@@ -37,7 +36,7 @@ public class PistasController {
 
 	@PostMapping("/save")
 	public String add(Pista pista, Model model) {
-		System.out.println(pistaService.get(pista.getId()));
+		pistaService.save(pista);
 //		if (pistaService.get(pista.getId()) != null) {
 //
 //		} else {

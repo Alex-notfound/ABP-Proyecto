@@ -21,7 +21,7 @@
 		</span>
 
 		<div th:each="e : ${map}">
-			<h3 th:text="'Pista ' + ${e.key.id}"></h3>
+			<h3 th:text="'Pista ' + ${e.key.numero}"></h3>
 			<div class="btn-group btn-group-lg">
 				<div th:each="reservaDao : ${e.value}">
 					<form

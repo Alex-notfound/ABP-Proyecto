@@ -23,7 +23,7 @@
 -Pistas
 -Logica campeonatos
 -Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
-
+-Delete CASCADE
 ###############################
 CASOS USO
 ###############################
@@ -41,12 +41,6 @@ Gestionar playoff
 ACEPTAR PARTIDO CAMPEONATO
 Aceptar partido campeonato (¿desde el perfil?)
 
-##GESTIONAR PISTAS
-\Añadir pista
-\Editar pista
-\Consulta pista
-\Eliminar pista
-
 GESTIONAR CAMPEONATOS
 -Añadir campeonato
 -Editar campeonato
@@ -57,6 +51,12 @@ Consultar campeonato
 ###############################
 TERMINADO
 ###############################
+
+GESTIONAR PISTAS
+-Añadir pista
+-Editar pista
+-Consulta pista
+-Eliminar pista
 
 RESERVAR PISTA
 /Reservar pista

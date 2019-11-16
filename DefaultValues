@@ -5,3 +5,4 @@ INSERT INTO `authority` (`id`, `authority`) VALUES ('1', 'ROLE_ADMIN'), ('2', 'R
 INSERT INTO `authorities_users` (`usuario_id`, `authority_id`) VALUES ('1', '1'), ('1', '2'), ('2','2');
 
 INSERT INTO `pista` (`id`, `descripcion`) VALUES ('1', NULL), ('2', NULL);
+INSERT INTO `reserva` (`id`, `disponible`, `fecha`, `hora`, `pista_id`, `usuario_id`) VALUES (NULL, b'0', '2019-11-01', '10.00', '1', '2'), (NULL, b'0', '2019-11-01', '10.00', '1', '2');
