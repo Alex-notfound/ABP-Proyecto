@@ -16,21 +16,19 @@
 -Añadir en perfil los partidos ofertados/promocionados a los que estamos inscritos (UsuarioView/UsuariosProfile.html)
 --------------------------------
 #TAREAS ALEX:
--Desinscripción campeonato?
 -Accesos a paginas
--Partidos ofertados
--Partidos promocionados
--Pistas
 -Logica campeonatos
 -Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
+-Validaciones
+
 ###############################
 CASOS USO
 ###############################
 
 GESTIONAR PARTIDOS PROMOCIONADOS
 -Añadir partido promocionado (desde admin en el propio listado)
-?Editar partido promocionado (desde admin en el propio listado)
+?Editar partido promocionado (desde admin en el propio listado) - FALTA FIXEAR RESERVA
 -Eliminar partido promocionado (desde admin en el propio listado)
 Inscribirse en partido promocionado
 Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listado?)

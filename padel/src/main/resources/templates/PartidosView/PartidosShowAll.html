@@ -28,11 +28,12 @@
 				partido</a>
 		</div>
 		<br>
-		<h2 th:if="${list.isEmpty()}">No hay partidos en este momento</h2>
-		<div th:if="${!list.isEmpty()}">
+		<h2 th:if="${map.isEmpty()}">No hay partidos en este momento</h2>
+		<div th:if="${!map.isEmpty()}">
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Pista</th>
 						<th>Día</th>
 						<th>Hora</th>
 						<th>Tipo</th>
@@ -46,18 +47,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="partido : ${list}">
-						<td th:text="${partido.reserva.fecha}">
-						<td th:text="${partido.reserva.hora}">
-						<td th:text="${partido.tipo}">
-						<td th:text="${partido.jugador1} ? ${partido.jugador1.nombre}">
-						<td th:text="${partido.jugador2} ? ${partido.jugador2.nombre}">
-						<td th:text="${partido.jugador3} ? ${partido.jugador3.nombre}">
-						<td th:text="${partido.jugador4} ? ${partido.jugador4.nombre}">
-						<td><a th:href="@{/partidos/save/{id}(id=${partido.id})}">Editar</a></td>
-						<td><a th:href="@{/partidos/delete/{id}(id=${partido.id})}">Eliminar</a></td>
+					<tr th:each="entry : ${map}">
+						<td th:text="${entry.key.reserva.pista.numero}">
+						<td th:text="${entry.key.reserva.fecha}">
+						<td th:text="${entry.key.reserva.hora}">
+						<td th:text="${entry.key.tipo}">
+						<td th:each="jugador : ${entry.value}" th:text=${jugador.nombre}></td>
+						<td
+							th:each="i : ${#numbers.sequence(0,3-#lists.size(entry.value))}"></td>
+
+						<td><a th:href="@{/partidos/save/{id}(id=${entry.key.id})}">Editar</a></td>
+						<td><a th:href="@{/partidos/delete/{id}(id=${entry.key.id})}">Eliminar</a></td>
 						<td><a class="btn btn-info"
-							th:href="@{/partidos/inscribir/{id}(id=${partido.id})}">Inscribirme</a></td>
+							th:href="@{/partidos/inscribir/{id}(id=${entry.key.id})}">Inscribirme</a></td>
 					</tr>
 				</tbody>
 			</table>
