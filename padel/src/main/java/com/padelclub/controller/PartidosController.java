@@ -78,9 +78,9 @@ public class PartidosController {
 		partido.setReserva(reserva);
 
 		if (usuario.isAdministrador()) {
-			partido.setTipo("promocionado");
+			partido.setTipo("Promocionado");
 		} else {
-			partido.setTipo("ofertado");
+			partido.setTipo("Ofertado");
 			partido.setJugador1(usuario);
 		}
 		partidoService.save(partido);

@@ -24,12 +24,12 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 
 	@Override
 	public List<Partido> getPromocionados() {
-		return partidoRepository.findAllByTipo("promocionado");
+		return partidoRepository.findAllByTipo("Promocionado");
 	}
 
 	@Override
 	public List<Partido> getOfertados() {
-		return partidoRepository.findAllByTipo("ofertado");
+		return partidoRepository.findAllByTipo("Ofertado");
 	}
 
 }
