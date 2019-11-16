@@ -58,6 +58,7 @@ public class PartidosController {
 		} else {
 			model.addAttribute("reserva", new Reserva());
 		}
+		model.addAttribute("partido", true);
 		return "ReservasView/ReservasForm";
 	}
 
