@@ -33,7 +33,6 @@ public class Usuario {
 	private boolean administrador;
 	@Column
 	private Date fechaNacimiento;
-
 	@Column
 	private boolean enabled;
 

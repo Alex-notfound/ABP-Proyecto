@@ -125,7 +125,6 @@
 						<th>Precio de inscripción</th>
 						<th>Inscripción hasta</th>
 						<th></th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -136,9 +135,6 @@
 						<td th:text="${campeonato.numParticipantes}"></td>
 						<td th:text="${campeonato.precioInscripcion}"></td>
 						<td th:text="${campeonato.limiteInscripcion}"></td>
-						<td><a class="btn btn-info"
-							th:href="@{/campeonatos/inscribir/{id}(id=${campeonato.id})}">Desinscribirme</a></td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
