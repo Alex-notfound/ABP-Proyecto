@@ -18,7 +18,8 @@
 -Validaciones
 
 VISIBILIDAD
-Boton Eliminar Partido solo para creador de la reserva del partido / Creador partido 
+Mostrar Boton Eliminar Partido solo para creador de la reserva del partido / Creador partido 
+---Ocultar Boton Inscribirse en partido si está lleno
 
 GESTIONAR PLAYOFF
 Gestionar playoff
