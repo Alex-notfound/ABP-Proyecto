@@ -25,7 +25,7 @@
 
 	<div class="container">
 		<br>
-		<h4>Ronda actual</h4>
+		<h4>Partidos de la liga</h4>
 		<br>
 		<table class="table">
 			<thead>
@@ -56,107 +56,28 @@
 
 	<div class="container">
 		<br>
-		<h4>Liga</h4>
+		<h4>Clasificación</h4>
 		<br>
 		<table class="table">
 			<thead>
 				<tr>
+					<th>Nombre</th>
 					<th>Miembro 1</th>
 					<th>Miembro 2</th>
 					<th>Puntos</th>
-					<th>Partidos jugados</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Pepe</td>
-					<td>Pepe</td>
-					<td>4</td>
-					<td>5</td>
-				</tr>
-				<tr>
-					<td>Pepe</td>
-					<td>Pepe</td>
-					<td>4</td>
-					<td>5</td>
-				</tr>
-				<tr>
-					<td>Pepe</td>
-					<td>Pepe</td>
-					<td>4</td>
-					<td>5</td>
+				<tr th:each="p : ${parejas}">
+					<td th:text="${p.id.pareja.nombre}"></td>
+					<td th:text="${p.id.pareja.miembro1.nombre}"></td>
+					<td th:text="${p.id.pareja.miembro2.nombre}"></td>
+					<td th:text="${p.puntos}"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<div class="container">
-		<br>
-		<h4>Jugadores inscritos</h4>
-		<br>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>ID Pareja</th>
-					<th>Miembro 1</th>
-					<th>Miembro 2</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>ID</td>
-					<td>Jose</td>
-					<td>Pepe</td>
-				</tr>
-				<tr>
-					<td>ID</td>
-					<td>Jose</td>
-					<td>Pepe</td>
-				</tr>
-				<tr>
-					<td>ID</td>
-					<td>Jose</td>
-					<td>Pepe</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="container">
-		<br>
-		<h4>Resultados anteriores</h4>
-		<br>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Pareja 1</th>
-					<th>Pareja 2</th>
-					<th>Resultado</th>
-					<th>Fecha</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Pareja 1</td>
-					<td>Pareja 2</td>
-					<td>Resultado</td>
-					<td>Fecha</td>
-				</tr>
-				<tr>
-					<td>Pareja 1</td>
-					<td>Pareja 2</td>
-					<td>Resultado</td>
-					<td>Fecha</td>
-				</tr>
-				<tr>
-					<td>Pareja 1</td>
-					<td>Pareja 2</td>
-					<td>Resultado</td>
-					<td>Fecha</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

@@ -104,6 +104,7 @@ public class CampeonatoController {
 		Campeonato campeonato = campeonatoService.get(id);
 
 		model.addAttribute("rondaActual", enfrentamientoService.getAllByCampeonato(campeonato));
+		model.addAttribute("parejas", parejaCampeonatoService.getClasificacion(campeonato));
 
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoDetail";

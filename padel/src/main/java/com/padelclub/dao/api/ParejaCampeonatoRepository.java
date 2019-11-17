@@ -20,4 +20,6 @@ public interface ParejaCampeonatoRepository extends JpaRepository<ParejaCampeona
 	@Query(value = "SELECT p.id FROM pareja p, pareja_campeonato pc WHERE pc.campeonato_id= :campeonato AND pc.pareja_id = p.id", nativeQuery = true)
 	List<Long> findAllParejasByCampeonato(@Param("campeonato") Long campeonato);
 
+	@Query(value = "SELECT * FROM pareja_campeonato WHERE campeonato_id= :campeonato ORDER BY puntos DESC", nativeQuery = true)
+	List<ParejaCampeonato> findAllByCampeonatoOrderByPuntos(@Param("campeonato") Long campeonato);
 }

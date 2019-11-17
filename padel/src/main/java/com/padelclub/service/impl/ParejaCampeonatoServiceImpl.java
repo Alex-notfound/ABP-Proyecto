@@ -47,4 +47,9 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 	public List<Pareja> getParejasByCampeonato(Campeonato campeonato) {
 		return parejaRepository.findAllById(parejaCampeonatoRepository.findAllParejasByCampeonato(campeonato.getId()));
 	}
+
+	@Override
+	public List<ParejaCampeonato> getClasificacion(Campeonato campeonato) {
+		return parejaCampeonatoRepository.findAllByCampeonatoOrderByPuntos(campeonato.getId());
+	}
 }
