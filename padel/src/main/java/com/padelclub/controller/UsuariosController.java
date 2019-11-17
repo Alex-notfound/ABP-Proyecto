@@ -40,13 +40,15 @@ public class UsuariosController {
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model) {
+	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("usuario", usuarioService.get(id));
 		} else {
 			model.addAttribute("usuario", new Usuario());
 		}
-//		addUserToModel(usuarioLogeado, model);
+		if (usuarioLogeado != null) {
+			addUserToModel(usuarioLogeado, model);
+		}
 		return "UsuariosView/UsuariosForm";
 	}
 
