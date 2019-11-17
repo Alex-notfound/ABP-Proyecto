@@ -1,0 +1,14 @@
+FUNCIONALIDADES VISIBLES SOLO PARA ADMINISTRADOR
+- Botón "REGISTRAR CAMPEONATO", "EDITAR" Y "ELIMINAR" en vista CampeonatosShowAll
+- Botón "ADMINISTRADOR" en UsuariosForm
+
+
+VISTAS VISIBLES SOLO PARA ADMINISTRADOR:
+-ResultadoForm
+-CampeonatosForm
+-PistasForm
+-PistasShowAll
+-UsuariosShowAll
+
+VISTAS VISIBLES SOLO PARA DEPORTISTA
+-NotifiacionShow
