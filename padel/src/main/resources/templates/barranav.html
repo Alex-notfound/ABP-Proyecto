@@ -15,12 +15,13 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="https://kit.fontawesome.com/038b7a38fe.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/038b7a38fe.js"
+	crossorigin="anonymous"></script>
 
 
 </head>
 <body>
-	<div th:fragment="header">
+	<div th:if="${sesion}" th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" th:href="@{/}">PadelGest</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -48,7 +49,8 @@
 						th:href="@{/usuarios/}">USUARIOS</a> <a
 						th:if="${sesion.administrador}" class="nav-item nav-link"
 						th:href="@{/pistas/}">PISTAS</a><a class="nav-item nav-link"
-						th:href="@{/usuarios/profile/0}">MI CUENTA <i class="fas fa-bell"></i>
+						th:href="@{/usuarios/profile/0}">MI CUENTA <i
+						class="fas fa-bell"></i>
 					</a>
 
 				</div>
