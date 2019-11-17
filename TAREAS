@@ -3,6 +3,7 @@
 -Inicialización de BD por defecto
 -Arreglar validacion precio inscripción
 -Añadir icono notificacion
+-Detectar fallos y visibilidad para usuarios y anotarlos
 ------------------------------------------
 #CHECKEAR:
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
@@ -15,6 +16,9 @@
 -Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
 -Validaciones
+
+VISIBILIDAD
+Boton Eliminar Partido solo para creador de la reserva del partido / Creador partido 
 
 GESTIONAR PLAYOFF
 Gestionar playoff
