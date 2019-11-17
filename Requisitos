@@ -1,10 +1,10 @@
 Reserva de pistas:
-● Las reservas de pistas son de 90 minutos.
-● Hay un número máximo de pistas que un usuario puede reservar (tener “activas”),
+--Las reservas de pistas son de 90 minutos.
+--Hay un número máximo de pistas que un usuario puede reservar (tener “activas”),
 por ejemplo cinco.
-● Las pistas se pueden reservar con una serie de días de antelación prefijados en el
+--Las pistas se pueden reservar con una serie de días de antelación prefijados en el
 sistema, por ejemplo siete días.
-● Una pista reservada se puede cancelar solo hasta un determinado número de horas
+●Una pista reservada se puede cancelar solo hasta un determinado número de horas
 antes de la reserva, por ejemplo 12 horas.
 ● Una vez creada una reserva de una pista por el deportista, ésta no puede ser
 modificada, sólo eliminada o consultada.

@@ -50,7 +50,6 @@ public class ReservasController {
 			}
 		} else {
 			model.addAttribute("error", "Ya tienes 5 reservas a tu nombre");
-			addUserToModel(usuarioLogeado, model);
 			return index(model, usuarioLogeado);
 		}
 		addUserToModel(usuarioLogeado, model);
@@ -59,18 +58,36 @@ public class ReservasController {
 
 	@SuppressWarnings("deprecation")
 	@PostMapping("/save")
-	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuario, Model model) {
+	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
 		reserva.setPista(pistaService.get(idPista));
 		reserva.setDisponible(false);
-		reserva.setUsuario(usuarioService.getUsuario(usuario));
+		reserva.setUsuario(usuarioService.getUsuario(usuarioLogeado));
 
-		Date fechaActual = new Date();
-		Date fechaReserva = new Date(reserva.getFecha().getYear(), reserva.getFecha().getMonth(),
-				reserva.getFecha().getDay());
-		if (fechaReserva.after(fechaActual)) {
+		Calendar fechaActual = Calendar.getInstance();
+		fechaActual.add(Calendar.DAY_OF_MONTH, -1);
+
+		Calendar fechaAfterWeek = Calendar.getInstance();
+		fechaAfterWeek.add(Calendar.DAY_OF_MONTH, 7);
+
+		Calendar fechaReserva = Calendar.getInstance();
+		fechaReserva.setTime(reserva.getFecha());
+
+		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek)) {
+
+//		Date fechaActual = new Date();
+//		System.out.println(fechaActual);
+//		System.out.println("DAY: " + fechaActual.getDate());
+//		System.out.println("AFTER WEEK: " + (fechaActual.getDay() + 7));
+//		Date fechaAfterWeek = new Date(fechaActual.getYear(), fechaActual.getMonth(), fechaActual.getDay() + 7);
+//		System.out.println(fechaAfterWeek);
+//		Date fechaReserva = new Date(reserva.getFecha().getYear(), reserva.getFecha().getMonth(),
+//				reserva.getFecha().getDay());
+//		fechaReserva.after(fechaActual) && 
+//		if (fechaReserva.before(fechaAfterWeek)) {
 			reservaService.save(reserva);
 		} else {
 			model.addAttribute("error", "La fecha no es válida");
+			return index(model, usuarioLogeado);
 		}
 		return "redirect:/reservas/";
 	}
