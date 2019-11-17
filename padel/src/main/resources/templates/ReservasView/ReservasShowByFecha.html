@@ -27,18 +27,28 @@
 		</span>
 
 		<div th:each="e : ${map}">
-			<h3 th:text="'Pista ' + ${e.key.numero}"></h3>
-			<div class="btn-group btn-group-lg">
-				<div th:each="reservaDao : ${e.value}">
-					<form
-						th:action="${partido} ? @{/partidos/save} : @{/reservas/save}"
-						class="form-group" th:object="${reservaDao}" method="post">
-						<button type="submit"
-							th:class="*{disponible} ? 'btn btn-success' : 'btn btn-danger'"
-							th:text="${reservaDao.hora}"></button>
-					</form>
+			<form
+				th:action=" ${partido} ? @{/partidos/save} :
+				@{/reservas/save}"
+				class="form-group" th:object="${reserva}" method="post">
+				<h3 th:text="'Pista ' + ${e.key.numero}"></h3>
+				<div class="btn-group btn-group-lg">
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{pista}"> <input type="hidden" name="pistaId"
+						th:value="${e.key.id}"><input type="hidden"
+						th:field="*{fecha}">
+
+					<div class="btn-group btn-group-toggle" data-toggle="buttons"
+						th:each="reservaDao : ${e.value}">
+						<label
+							th:class="${reservaDao.disponible} ? 'btn btn-success' : 'btn btn-danger'"><input
+							type="radio" th:text="${reservaDao.hora}" th:field="*{hora}"
+							th:value="${reservaDao.hora}"> </label>
+					</div>
 				</div>
-			</div>
+				<br> <br>
+				<button class="btn btn-primary" type="submit">Reservar</button>
+			</form>
 		</div>
 	</div>
 	<br>

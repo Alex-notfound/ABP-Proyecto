@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.service.api.PistaService;
-import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -46,12 +46,8 @@ public class ReservasController {
 	}
 
 	@PostMapping("/save")
-	public String save(ReservaDTO reservaDao, Principal usuario, Model model) {
-		Reserva reserva = new Reserva();
-		System.out.println(reservaDao.toString());
-		reserva.setPista(reservaDao.getPista());
-		reserva.setFecha(reservaDao.getFecha());
-		reserva.setHora(reservaDao.getHora());
+	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuario, Model model) {
+		reserva.setPista(pistaService.get(idPista));
 		reserva.setDisponible(false);
 		reserva.setUsuario(usuarioService.getUsuario(usuario));
 		reservaService.save(reserva);
@@ -64,6 +60,8 @@ public class ReservasController {
 		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
 		model.addAttribute("pistas", pistas);
 		model.addAttribute("fecha", reserva.getFecha());
+		model.addAttribute("reserva", reserva);
+
 		return "ReservasView/ReservasShowByFecha";
 	}
 
