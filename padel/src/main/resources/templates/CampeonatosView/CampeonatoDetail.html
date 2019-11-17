@@ -22,148 +22,140 @@
 	<div class="jumbotron">
 		<h4>Detalles de Campeonato</h4>
 	</div>
-	<div class="container">	
-	<h3>Nombre de campeonato</h3>
-</div>
 
 	<div class="container">
 		<br>
 		<h4>Ronda actual</h4>
-			<br>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Pareja 1</th>
-						<th>Pareja 2</th>
-						<th>Resultado</th>
-						<th>Fecha</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-				</tbody>
-			</table>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Pareja 1</th>
+					<th>Pareja 2</th>
+					<th>Resultado</th>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Pista</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="enfrentamiento : ${rondaActual}">
+					<td th:text="${enfrentamiento.pareja1.nombre}"></td>
+					<td th:text="${enfrentamiento.pareja2.nombre}"></td>
+					<td th:text="${enfrentamiento.resultado}"></td>
+					<td
+						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.fecha} : ''"></td>
+					<td
+						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
+					<td
+						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.pista} : ''"></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
 	<div class="container">
 		<br>
 		<h4>Liga</h4>
-			<br>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Miembro 1</th>
-						<th>Miembro 2</th>
-						<th>Puntos</th>
-						<th>Partidos jugados</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Pepe</td>
-						<td>Pepe</td>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Pepe</td>
-						<td>Pepe</td>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>Pepe</td>
-						<td>Pepe</td>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-				</tbody>
-			</table>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Miembro 1</th>
+					<th>Miembro 2</th>
+					<th>Puntos</th>
+					<th>Partidos jugados</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Pepe</td>
+					<td>Pepe</td>
+					<td>4</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Pepe</td>
+					<td>Pepe</td>
+					<td>4</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Pepe</td>
+					<td>Pepe</td>
+					<td>4</td>
+					<td>5</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
 	<div class="container">
 		<br>
 		<h4>Jugadores inscritos</h4>
-			<br>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>ID Pareja</th>
-						<th>Miembro 1</th>
-						<th>Miembro 2</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>ID</td>
-						<td>Jose </td>
-						<td>Pepe</td>
-					</tr>
-					<tr>
-						<td>ID</td>
-						<td>Jose </td>
-						<td>Pepe</td>
-					</tr>
-					<tr>
-						<td>ID</td>
-						<td>Jose </td>
-						<td>Pepe</td>
-					</tr>
-				</tbody>
-			</table>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID Pareja</th>
+					<th>Miembro 1</th>
+					<th>Miembro 2</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>ID</td>
+					<td>Jose</td>
+					<td>Pepe</td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td>Jose</td>
+					<td>Pepe</td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td>Jose</td>
+					<td>Pepe</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
-		<div class="container">
+	<div class="container">
 		<br>
 		<h4>Resultados anteriores</h4>
-			<br>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Pareja 1</th>
-						<th>Pareja 2</th>
-						<th>Resultado</th>
-						<th>Fecha</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-					<tr>
-						<td>Pareja 1</td>
-						<td>Pareja 2</td>
-						<td>Resultado</td>
-						<td>Fecha</td>
-					</tr>
-				</tbody>
-			</table>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Pareja 1</th>
+					<th>Pareja 2</th>
+					<th>Resultado</th>
+					<th>Fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Pareja 1</td>
+					<td>Pareja 2</td>
+					<td>Resultado</td>
+					<td>Fecha</td>
+				</tr>
+				<tr>
+					<td>Pareja 1</td>
+					<td>Pareja 2</td>
+					<td>Resultado</td>
+					<td>Fecha</td>
+				</tr>
+				<tr>
+					<td>Pareja 1</td>
+					<td>Pareja 2</td>
+					<td>Resultado</td>
+					<td>Fecha</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
