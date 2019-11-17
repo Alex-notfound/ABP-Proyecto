@@ -21,7 +21,7 @@ public class Campeonato {
 	@Column
 	private int maxNumParticipantes;
 	@Column
-	private double precioInscripcion;
+	private String precioInscripcion;
 	@Column
 	private Date limiteInscripcion;
 
@@ -57,11 +57,11 @@ public class Campeonato {
 		this.maxNumParticipantes = maxNumParticipantes;
 	}
 
-	public double getPrecioInscripcion() {
+	public String getPrecioInscripcion() {
 		return precioInscripcion;
 	}
 
-	public void setPrecioInscripcion(double precioInscripcion) {
+	public void setPrecioInscripcion(String precioInscripcion) {
 		this.precioInscripcion = precioInscripcion;
 	}
 

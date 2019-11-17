@@ -1,5 +1,6 @@
 package com.padelclub.service.impl;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -41,8 +42,7 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 
 	@Override
 	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva reserva, List<Pista> pistas) {
-		String[] horas = { "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00",
-				"20.00" };
+		String[] horas = { "9.00", "10.30", "12.00", "13.30", "15.00", "16.30", "18.00", "19.30", "21.00" };
 		Map<Pista, List<ReservaDTO>> map = new LinkedHashMap<>();
 		for (Pista pista : pistas) {
 			map.put(pista, new ArrayList<>());
@@ -60,6 +60,11 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	@Override
 	public List<Reserva> getAllFromUser(Usuario usuario) {
 		return reservaRepository.findAllByUsuario(usuario);
+	}
+
+	@Override
+	public int getNumReservasByUsuario(Usuario usuario) {
+		return reservaRepository.countByUsuario(usuario);
 	}
 
 }

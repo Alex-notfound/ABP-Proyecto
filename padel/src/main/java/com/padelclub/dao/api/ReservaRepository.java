@@ -17,4 +17,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
 	Reserva findByFechaAndHoraAndPista(Date fecha, String hora, Pista pista);
 
+	int countByUsuario(Usuario usuario);
+
 }

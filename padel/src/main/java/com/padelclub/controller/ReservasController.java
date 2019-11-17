@@ -1,6 +1,10 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,29 +34,44 @@ public class ReservasController {
 	private PistaService pistaService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Principal usuario, Model model, Principal usuarioLogeado) {
-		model.addAttribute("list", reservaService.getAllFromUser(usuarioService.getUsuario(usuario)));
+	public String index(Model model, Principal usuarioLogeado) {
+		model.addAttribute("list", reservaService.getAllFromUser(usuarioService.getUsuario(usuarioLogeado)));
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowAll";
 	}
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
-		if (id != null && id != 0) {
-			model.addAttribute("reserva", reservaService.get(id));
+		if (reservaService.getNumReservasByUsuario(usuarioService.getUsuario(usuarioLogeado)) <= 5) {
+			if (id != null && id != 0) {
+				model.addAttribute("reserva", reservaService.get(id));
+			} else {
+				model.addAttribute("reserva", new Reserva());
+			}
 		} else {
-			model.addAttribute("reserva", new Reserva());
+			model.addAttribute("error", "Ya tienes 5 reservas a tu nombre");
+			addUserToModel(usuarioLogeado, model);
+			return index(model, usuarioLogeado);
 		}
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasForm";
 	}
 
+	@SuppressWarnings("deprecation")
 	@PostMapping("/save")
 	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuario, Model model) {
 		reserva.setPista(pistaService.get(idPista));
 		reserva.setDisponible(false);
 		reserva.setUsuario(usuarioService.getUsuario(usuario));
-		reservaService.save(reserva);
+
+		Date fechaActual = new Date();
+		Date fechaReserva = new Date(reserva.getFecha().getYear(), reserva.getFecha().getMonth(),
+				reserva.getFecha().getDay());
+		if (fechaReserva.after(fechaActual)) {
+			reservaService.save(reserva);
+		} else {
+			model.addAttribute("error", "La fecha no es válida");
+		}
 		return "redirect:/reservas/";
 	}
 

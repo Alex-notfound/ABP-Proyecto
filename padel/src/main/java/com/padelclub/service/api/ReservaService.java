@@ -19,4 +19,6 @@ public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 
 	public List<Reserva> getAllFromUser(Usuario usuario);
 
+	public int getNumReservasByUsuario(Usuario usuario);
+
 }
