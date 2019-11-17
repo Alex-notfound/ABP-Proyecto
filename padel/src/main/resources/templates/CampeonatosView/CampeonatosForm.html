@@ -50,13 +50,12 @@
 			<div class="form-group row">
 				<label for="precio" class="col-2 col-form-label">Nº de
 					participantes</label> <input class="form-control col-3" id="precio"
-					type="number" required="[0-9]+" th:field="*{maxNumParticipantes}">
+					type="number" required pattern="[0-9]+" th:field="*{maxNumParticipantes}">
 			</div>
 			<div class="form-group row">
 				<label for="precio" class="col-2 col-form-label">Precio
 					inscripción</label> <input class="form-control col-3" id="precio"
-					type="text" required="[0-9]+[,]*[0-9]{2}"
-					th:field="*{precioInscripcion}">
+					type="text" required pattern="[0-9]+,?[0-9]{1,2}" th:field="*{precioInscripcion}">
 			</div>
 			<div class="form-group row">
 				<label for="fechaCierre" class="col-2 col-form-label">Cierre
