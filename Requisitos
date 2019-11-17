@@ -4,9 +4,9 @@ Reserva de pistas:
 por ejemplo cinco.
 --Las pistas se pueden reservar con una serie de días de antelación prefijados en el
 sistema, por ejemplo siete días.
-●Una pista reservada se puede cancelar solo hasta un determinado número de horas
+--Una pista reservada se puede cancelar solo hasta un determinado número de horas
 antes de la reserva, por ejemplo 12 horas.
--Una vez creada una reserva de una pista por el deportista, ésta no puede ser
+--Una vez creada una reserva de una pista por el deportista, ésta no puede ser
 modificada, sólo eliminada o consultada.
 ? Al reservar una pista para una fecha y hora determinada, el sistema debe de verificar
 si es la última pista libre, en cuyo caso debe eliminar las promociones de partidos o

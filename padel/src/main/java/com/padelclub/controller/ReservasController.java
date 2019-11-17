@@ -56,7 +56,6 @@ public class ReservasController {
 		return "ReservasView/ReservasForm";
 	}
 
-	@SuppressWarnings("deprecation")
 	@PostMapping("/save")
 	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
 		reserva.setPista(pistaService.get(idPista));
@@ -73,17 +72,6 @@ public class ReservasController {
 		fechaReserva.setTime(reserva.getFecha());
 
 		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek)) {
-
-//		Date fechaActual = new Date();
-//		System.out.println(fechaActual);
-//		System.out.println("DAY: " + fechaActual.getDate());
-//		System.out.println("AFTER WEEK: " + (fechaActual.getDay() + 7));
-//		Date fechaAfterWeek = new Date(fechaActual.getYear(), fechaActual.getMonth(), fechaActual.getDay() + 7);
-//		System.out.println(fechaAfterWeek);
-//		Date fechaReserva = new Date(reserva.getFecha().getYear(), reserva.getFecha().getMonth(),
-//				reserva.getFecha().getDay());
-//		fechaReserva.after(fechaActual) && 
-//		if (fechaReserva.before(fechaAfterWeek)) {
 			reservaService.save(reserva);
 		} else {
 			model.addAttribute("error", "La fecha no es válida");
@@ -105,8 +93,20 @@ public class ReservasController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id, Model model) {
-		reservaService.delete(id);
+	public String delete(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+
+		Calendar fechaActual = Calendar.getInstance();
+
+		Calendar fechaTope = Calendar.getInstance();
+		fechaTope.setTime(reservaService.get(id).getFecha());
+		fechaTope.add(Calendar.DAY_OF_MONTH, -1);
+
+		if (fechaActual.before(fechaTope)) {
+			reservaService.delete(id);
+		} else {
+			model.addAttribute("error", "No se puede liberar una reserva con tan poca antelación");
+			return index(model, usuarioLogeado);
+		}
 		return "redirect:/reservas/";
 	}
 
