@@ -29,22 +29,18 @@
 			<div class="form-group row">
 				<label for="categoria" class="col-2 col-form-label">Categoría</label>
 				<select class="form-control col-3" th:field="*{categoria}">
-					<option value="Absoluto">Absoluto</option>
-					<option value="Benjamin">Benjamin (hasta 12 años)</option>
-					<option value="Alevin">Alevin (12-16 años)</option>
-					<option value="Juvenil">Juvenil (16-19 años)</option>
-					<option value="Veteranos">Veteranos (35-65 años)</option>
-					<option value="Leyendas">Leyendas (mayores de 65)</option>
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="Mixto">Mixto</option>
 				</select>
+
 			</div>
 			<div class="form-group row">
-				<label for="nivel" class="col-2 col-form-label">Nivel</label> <select
-					class="form-control col-3" th:field="*{nivel}">
-					<option value="Open">Open</option>
-					<option value="Basico">Basico</option>
-					<option value="Medio">Medio</option>
-					<option value="Alto">Alto</option>
-					<option value="Profesional">Profesional</option>
+				<label for="nivel" class="col-2 col-form-label">Nivel</label> 
+				<select class="form-control col-3" th:field="*{nivel}">
+					<option value="Basico">Basico (1)</option>
+					<option value="Medio">Medio (2)</option>
+					<option value="Alto">Alto (3)</option>
 				</select>
 			</div>
 			<div class="form-group row">
