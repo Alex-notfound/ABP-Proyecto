@@ -30,21 +30,35 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 
 	@Override
 	public void sorteo(List<Pareja> parejasCampeonato, Campeonato campeonato) {
-		sorteoLiga(parejasCampeonato, campeonato);
+		sorteoTodosContraTodos(parejasCampeonato, campeonato);
+//		sorteoLiga(parejasCampeonato, campeonato);
 	}
 
 	private void sorteoLiga(List<Pareja> parejasCampeonato, Campeonato campeonato) {
-		while (parejasCampeonato.size() > 0) {
+		while (!parejasCampeonato.isEmpty()) {
 			Enfrentamiento enfrentamiento = new Enfrentamiento();
 			enfrentamiento.setCampeonato(campeonato);
-			int numAleatorio = (int) (Math.random() * (parejasCampeonato.size() + 1));
+			int numAleatorio = (int) (Math.random() * (parejasCampeonato.size()) + 1);
 
 			enfrentamiento.setPareja1(parejasCampeonato.get(0));
 			enfrentamiento.setPareja2(parejasCampeonato.get(numAleatorio));
 			enfrentamientoService.save(enfrentamiento);
 
-			parejasCampeonato.remove(0);
 			parejasCampeonato.remove(numAleatorio);
+			parejasCampeonato.remove(0);
+		}
+	}
+
+	private void sorteoTodosContraTodos(List<Pareja> parejasCampeonato, Campeonato campeonato) {
+		while (parejasCampeonato.size() > 1) {
+			for (int i = 1; i < parejasCampeonato.size(); i++) {
+				Enfrentamiento enfrentamiento = new Enfrentamiento();
+				enfrentamiento.setCampeonato(campeonato);
+				enfrentamiento.setPareja1(parejasCampeonato.get(0));
+				enfrentamiento.setPareja2(parejasCampeonato.get(i));
+				enfrentamientoService.save(enfrentamiento);
+			}
+			parejasCampeonato.remove(0);
 		}
 	}
 
