@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Campeonato;
+import com.padelclub.model.Pareja;
+import com.padelclub.model.ParejaCampeonato;
+import com.padelclub.model.ParejaCampeonatoId;
 import com.padelclub.model.Usuario;
-import com.padelclub.model.UsuarioCampeonato;
-import com.padelclub.model.UsuarioCampeonatoId;
 import com.padelclub.service.api.CampeonatoService;
-import com.padelclub.service.api.UsuarioCampeonatoService;
+import com.padelclub.service.api.ParejaCampeonatoService;
+import com.padelclub.service.api.ParejaService;
 import com.padelclub.service.api.UsuarioService;
 
 @Controller
@@ -25,9 +28,11 @@ public class CampeonatoController {
 	@Autowired
 	private CampeonatoService campeonatoService;
 	@Autowired
-	private UsuarioCampeonatoService usuarioCampeonatoService;
+	private ParejaCampeonatoService parejaCampeonatoService;
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private ParejaService parejaService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model, Principal usuarioLogeado) {
@@ -59,17 +64,36 @@ public class CampeonatoController {
 		return "redirect:/campeonatos/";
 	}
 
-	@GetMapping("/inscribir/{idCampeonato}")
-	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, Principal usuario, Model model) {
+	@GetMapping("/formInscribir/{idCampeonato}")
+	public String formInscribir(@PathVariable("idCampeonato") Long idCampeonato, Principal usuarioLogeado,
+			Model model) {
+		Campeonato campeonato = campeonatoService.get(idCampeonato);
+		Pareja pareja = new Pareja();
+
+		model.addAttribute("campeonato", campeonato);
+		model.addAttribute("pareja", pareja);
+
+		addUserToModel(usuarioLogeado, model);
+		return "CampeonatosView/CampeonatosInscripcionForm";
+	}
+
+	@RequestMapping("/inscribir/{idCampeonato}")
+	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, @RequestParam("dni") String dni,
+			Pareja pareja, Principal usuario, Model model) {
+
+		pareja.setMiembro1(usuarioService.getUsuario(usuario));
+		pareja.setMiembro2(usuarioService.getUsuarioByDni(dni));
 
 		Campeonato campeonato = campeonatoService.get(idCampeonato);
-		campeonato.setNumParticipantes(campeonato.getNumParticipantes() + 1);
-		Usuario user = usuarioService.getUsuario(usuario);
-		UsuarioCampeonato usuarioCampeonato = new UsuarioCampeonato();
-		usuarioCampeonato.setId(new UsuarioCampeonatoId(campeonato, user));
+		ParejaCampeonato parejaCampeonato = new ParejaCampeonato();
+		parejaCampeonato.setId(new ParejaCampeonatoId(campeonato, parejaService.save(pareja)));
+		parejaCampeonatoService.save(parejaCampeonato);
 
-		campeonatoService.save(campeonato);
-		usuarioCampeonatoService.save(usuarioCampeonato);
+		if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
+				.getNumParticipantesByCampeonato(campeonato)) {
+			System.err.println("SORTEA CAMPEONATO");
+			campeonatoService.sorteo(parejaCampeonatoService.getParejasByCampeonato(campeonato), campeonato);
+		}
 		return "redirect:/campeonatos/";
 	}
 

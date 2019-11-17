@@ -19,19 +19,11 @@ public class Campeonato {
 	@Column
 	private String nivel;
 	@Column
-	private int numParticipantes;
+	private int maxNumParticipantes;
 	@Column
 	private double precioInscripcion;
 	@Column
 	private Date limiteInscripcion;
-
-	public Date getLimiteInscripcion() {
-		return limiteInscripcion;
-	}
-
-	public void setLimiteInscripcion(Date limiteInscripcion) {
-		this.limiteInscripcion = limiteInscripcion;
-	}
 
 	public Long getId() {
 		return id;
@@ -57,12 +49,12 @@ public class Campeonato {
 		this.nivel = nivel;
 	}
 
-	public int getNumParticipantes() {
-		return numParticipantes;
+	public int getMaxNumParticipantes() {
+		return maxNumParticipantes;
 	}
 
-	public void setNumParticipantes(int numParticipantes) {
-		this.numParticipantes = numParticipantes;
+	public void setMaxNumParticipantes(int maxNumParticipantes) {
+		this.maxNumParticipantes = maxNumParticipantes;
 	}
 
 	public double getPrecioInscripcion() {
@@ -71,6 +63,14 @@ public class Campeonato {
 
 	public void setPrecioInscripcion(double precioInscripcion) {
 		this.precioInscripcion = precioInscripcion;
+	}
+
+	public Date getLimiteInscripcion() {
+		return limiteInscripcion;
+	}
+
+	public void setLimiteInscripcion(Date limiteInscripcion) {
+		this.limiteInscripcion = limiteInscripcion;
 	}
 
 }

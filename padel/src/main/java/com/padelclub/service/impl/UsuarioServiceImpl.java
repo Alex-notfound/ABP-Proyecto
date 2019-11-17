@@ -57,4 +57,9 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long>
 		return usuarioRepository.findByDni(usuario.getName()).get();
 	}
 
+	@Override
+	public Usuario getUsuarioByDni(String dni) {
+		return usuarioRepository.findByDni(dni).get();
+	}
+
 }
