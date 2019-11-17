@@ -27,3 +27,13 @@ INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fe
 INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `telefono`) VALUES (NULL, b'0', 'Lamas', '19945687K', b'001', '1998-11-02', 'Damián', '$2a$04$JG59zE940cTgfuWODJa3de.hxdWpkV5FH.HONdwOEbP6f93yGiZvi', '657896589');
 INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `telefono`) VALUES (NULL, b'0', 'Gonzalez', '54568921Z', b'001', '1950-11-01', 'Benito', '$2a$04$JG59zE940cTgfuWODJa3de.hxdWpkV5FH.HONdwOEbP6f93yGiZvi', '601236563');
 INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `telefono`) VALUES (NULL, b'0', 'Barros', '79643125T', b'001', '1991-11-02', 'Diego', '$2a$04$JG59zE940cTgfuWODJa3de.hxdWpkV5FH.HONdwOEbP6f93yGiZvi', '678945610');
+
+
+###################################
+PAREJAS
+####################################
+INSERT INTO `pareja` (`id`, `nombre`, `miembro1_id`, `miembro2_id`) VALUES (NULL, 'a', '3', '4'), (NULL, 'b', '5', '6'), (NULL, 'c', '7', '8'), (NULL, 'd', '9', '10'), (NULL, 'e', '11', '12'), (NULL, 'f', '13', '14'), (NULL, 'g', '15', '16'), (NULL, 'h', '17', '18');
+#################
+PAREJA_CAMPEONATO
+#################
+INSERT INTO `pareja_campeonato`(`campeonato_id`, `pareja_id`) VALUES (1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10);

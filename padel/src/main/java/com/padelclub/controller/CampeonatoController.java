@@ -15,8 +15,8 @@ import com.padelclub.model.Campeonato;
 import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
-import com.padelclub.model.Usuario;
 import com.padelclub.service.api.CampeonatoService;
+import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.ParejaCampeonatoService;
 import com.padelclub.service.api.ParejaService;
 import com.padelclub.service.api.UsuarioService;
@@ -33,6 +33,8 @@ public class CampeonatoController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private ParejaService parejaService;
+	@Autowired
+	private EnfrentamientoService enfrentamientoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model, Principal usuarioLogeado) {
@@ -99,6 +101,10 @@ public class CampeonatoController {
 
 	@GetMapping("/consultar/{id}")
 	public String consultar(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+		Campeonato campeonato = campeonatoService.get(id);
+
+		model.addAttribute("rondaActual", enfrentamientoService.getAllByCampeonato(campeonato));
+
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoDetail";
 	}

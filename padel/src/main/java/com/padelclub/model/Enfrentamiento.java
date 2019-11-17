@@ -23,7 +23,7 @@ public class Enfrentamiento {
 	@ManyToOne
 	private Pareja ganador;
 	@OneToOne
-	private Partido partido;
+	private Reserva reserva;
 	@ManyToOne
 	private Campeonato campeonato;
 
@@ -67,12 +67,12 @@ public class Enfrentamiento {
 		this.resultado = resultado;
 	}
 
-	public Partido getPartido() {
-		return partido;
+	public Reserva getReserva() {
+		return reserva;
 	}
 
-	public void setPartido(Partido partido) {
-		this.partido = partido;
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
 	}
 
 	public Pareja getGanador() {
