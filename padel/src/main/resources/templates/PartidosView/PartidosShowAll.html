@@ -41,9 +41,9 @@
 						<th>Jugador 2</th>
 						<th>Jugador 3</th>
 						<th>Jugador 4</th>
+						<th th:if="${sesion.administrador}"></th>
 						<th></th>
-						<th></th>
-						<th></th>
+						<th th:unless="${sesion.administrador}"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,10 +56,11 @@
 						<td th:if="${#lists.size(entry.value)} < 4"
 							th:each="i : ${#numbers.sequence(#lists.size(entry.value),3)}"></td>
 
-						<td><a
+						<td th:if="${sesion.administrador}"><a
 							th:href="@{/partidos/save/{id}(id=${entry.key.reserva.id})}">Editar</a></td>
 						<td><a th:href="@{/partidos/delete/{id}(id=${entry.key.id})}">Eliminar</a></td>
-						<td><a class="btn btn-info"
+						<td th:unless="${sesion.administrador}"><a
+							class="btn btn-info"
 							th:href="@{/partidos/inscribir/{id}(id=${entry.key.id})}">Inscribirme</a></td>
 					</tr>
 				</tbody>
