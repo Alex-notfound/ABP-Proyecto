@@ -36,15 +36,17 @@
 						<a class="nav-link dropdown-toggle" th:href="@{/partidos/}"
 							id="navbardrop" data-toggle="dropdown">PARTIDOS</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" th:href="@{/partidos/promocionados/}">PROMOCIONADOS</a>
+							<a class="dropdown-item" th:href="@{/partidos/}">PARTIDOS</a> <a
+								class="dropdown-item" th:href="@{/partidos/promocionados/}">PROMOCIONADOS</a>
 							<a class="dropdown-item" th:href="@{/partidos/ofertados/}">OFERTADOS</a>
 						</div>
 					</div>
 
-					<a class="nav-item nav-link" th:href="@{/usuarios/}">USUARIOS</a> <a
-						class="nav-item nav-link" th:href="@{/pistas/}">PISTAS</a><a
-						class="nav-item nav-link" th:href="@{/usuarios/profile/0}">MI
-						CUENTA </a>
+					<a th:if="${sesion.administrador}" class="nav-item nav-link"
+						th:href="@{/usuarios/}">USUARIOS</a> <a
+						th:if="${sesion.administrador}" class="nav-item nav-link"
+						th:href="@{/pistas/}">PISTAS</a><a class="nav-item nav-link"
+						th:href="@{/usuarios/profile/0}">MI CUENTA </a>
 
 				</div>
 			</div>
