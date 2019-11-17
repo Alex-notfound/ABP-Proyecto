@@ -6,23 +6,24 @@ por ejemplo cinco.
 sistema, por ejemplo siete días.
 ●Una pista reservada se puede cancelar solo hasta un determinado número de horas
 antes de la reserva, por ejemplo 12 horas.
-● Una vez creada una reserva de una pista por el deportista, ésta no puede ser
+-Una vez creada una reserva de una pista por el deportista, ésta no puede ser
 modificada, sólo eliminada o consultada.
-● Al reservar una pista para una fecha y hora determinada, el sistema debe de verificar
+? Al reservar una pista para una fecha y hora determinada, el sistema debe de verificar
 si es la última pista libre, en cuyo caso debe eliminar las promociones de partidos o
 enfrentamientos (sin cerrar) para esa fecha y hora.
-Aprendizaje Basado en Proyectos 2019/2020
+
 Promoción de partidos:
 ● Los partidos promocionados (por el club) NO suponen la reserva de pista hasta que
 se inscriben cuatro jugadores.
-● En el caso de que no exista ninguna pista disponible se cancela el partido
+-En el caso de que no exista ninguna pista disponible se cancela el partido
 promocionado.
+
 Campeonatos:
-● Los campeonatos siempre se juegan por parejas.
-● Para que una pareja se inscriba en una categoría de un campeonato ambos
+-Los campeonatos siempre se juegan por parejas.
+-Para que una pareja se inscriba en una categoría de un campeonato ambos
 deportistas tienen que estar registrados en el sistema. El deportista que realiza la
 inscripción (capitán) debe introducir el login de su pareja.
-● Los deportistas que se inscriban en un campeonato eligen la categoría y nivel.
+-Los deportistas que se inscriban en un campeonato eligen la categoría y nivel.
 ○ Las categorías de un campeonato son: masculina, femenina y mixto.
 ○ Los niveles de un campeonato son: 1, 2 y 3.
 ● Cada grupo de un campeonato (categoría + nivel) tendrá entre 8 y 12 parejas. Los
