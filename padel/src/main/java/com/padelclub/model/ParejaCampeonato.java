@@ -4,16 +4,16 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 @Entity
-public class UsuarioCampeonato {
+public class ParejaCampeonato {
 
 	@EmbeddedId
-	private UsuarioCampeonatoId id;
+	private ParejaCampeonatoId id;
 
-	public UsuarioCampeonatoId getId() {
+	public ParejaCampeonatoId getId() {
 		return id;
 	}
 
-	public void setId(UsuarioCampeonatoId id) {
+	public void setId(ParejaCampeonatoId id) {
 		this.id = id;
 	}
 

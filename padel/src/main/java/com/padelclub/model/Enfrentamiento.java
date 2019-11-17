@@ -20,10 +20,20 @@ public class Enfrentamiento {
 	private Pareja pareja2;
 	@Column
 	private String resultado;
-	@Column
-	private boolean ganador;
+	@ManyToOne
+	private Pareja ganador;
 	@OneToOne
 	private Partido partido;
+	@ManyToOne
+	private Campeonato campeonato;
+
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
 
 	public Long getId() {
 		return id;
@@ -65,12 +75,11 @@ public class Enfrentamiento {
 		this.partido = partido;
 	}
 
-	// Si es true, ganó PAREJA1 si es false, PAREJA2
-	public boolean getGanador() {
+	public Pareja getGanador() {
 		return ganador;
 	}
 
-	public void setGanador(boolean ganador) {
+	public void setGanador(Pareja ganador) {
 		this.ganador = ganador;
 	}
 

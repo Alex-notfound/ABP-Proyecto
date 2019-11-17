@@ -9,4 +9,6 @@ public interface UsuarioService extends GenericServiceAPI<Usuario, Long> {
 
 	Usuario getUsuario(Principal usuario);
 
+	Usuario getUsuarioByDni(String dni);
+
 }

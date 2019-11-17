@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario;
 import com.padelclub.service.api.ReservaService;
-import com.padelclub.service.api.UsuarioCampeonatoService;
+import com.padelclub.service.api.ParejaCampeonatoService;
 import com.padelclub.service.api.UsuarioPartidoService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -26,7 +26,7 @@ public class UsuariosController {
 	@Autowired
 	private ReservaService reservaService;
 	@Autowired
-	private UsuarioCampeonatoService usuarioCampeonatoService;
+	private ParejaCampeonatoService usuarioCampeonatoService;
 	@Autowired
 	private UsuarioPartidoService usuarioPartidoService;
 
