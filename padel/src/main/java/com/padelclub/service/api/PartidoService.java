@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.padelclub.commons.GenericServiceAPI;
 import com.padelclub.model.Partido;
+import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
 
 public interface PartidoService extends GenericServiceAPI<Partido, Long> {
@@ -14,4 +15,5 @@ public interface PartidoService extends GenericServiceAPI<Partido, Long> {
 
 	List<Partido> findAllByUsuario(Usuario usuario);
 
+	boolean existePartido(Reserva reservaGuardada);
 }

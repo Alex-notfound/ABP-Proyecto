@@ -79,7 +79,9 @@ public class PartidosController {
 		reserva.setDisponible(false);
 		reserva.setUsuario(usuario);
 		Reserva reservaGuardada = reservaService.save(reserva);
-		if (reserva.getId() == null) {
+
+		// Si es una adicion, hay que crear el partido asociandole la reserva
+		if (!partidoService.existePartido(reservaGuardada)) {
 			Partido partido = new Partido();
 			partido.setReserva(reservaGuardada);
 
