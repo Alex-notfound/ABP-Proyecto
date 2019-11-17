@@ -51,7 +51,7 @@
 						<td th:text="${campeonato.id}"></td>
 						<td th:text="${campeonato.categoria}"></td>
 						<td th:text="${campeonato.nivel}"></td>
-						<td th:text="${campeonato.numParticipantes}"></td>
+						<td th:text="${campeonato.maxNumParticipantes}"></td>
 						<td th:text="${campeonato.precioInscripcion}"></td>
 						<td th:text="${campeonato.limiteInscripcion}"></td>
 						<td><a
@@ -63,7 +63,7 @@
 							th:href="@{/campeonatos/delete/{id}(id=${campeonato.id})}">Eliminar</a></td>
 						<td th:unless="${sesion.administrador}"><a
 							class="btn btn-info"
-							th:href="@{/campeonatos/inscribir/{id}(id=${campeonato.id})}">Inscribirme</a></td>
+							th:href="@{/campeonatos/formInscribir/{idCampeonato}(idCampeonato=${campeonato.id})}">Inscribirme</a></td>
 					</tr>
 				</tbody>
 			</table>
