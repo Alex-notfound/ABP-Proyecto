@@ -56,7 +56,8 @@
 						<td th:if="${#lists.size(entry.value)} < 4"
 							th:each="i : ${#numbers.sequence(#lists.size(entry.value),3)}"></td>
 
-						<td><a th:href="@{/partidos/save/{id}(id=${entry.key.id})}">Editar</a></td>
+						<td><a
+							th:href="@{/partidos/save/{id}(id=${entry.key.reserva.id})}">Editar</a></td>
 						<td><a th:href="@{/partidos/delete/{id}(id=${entry.key.id})}">Eliminar</a></td>
 						<td><a class="btn btn-info"
 							th:href="@{/partidos/inscribir/{id}(id=${entry.key.id})}">Inscribirme</a></td>

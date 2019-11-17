@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Partido;
 import com.padelclub.model.Pista;
@@ -68,30 +69,27 @@ public class PartidosController {
 	}
 
 	@PostMapping("/save")
-	public String save(Principal principal, Model model) {
-
-		Partido partido = new Partido();
-		Reserva reserva = new Reserva();
-//		reserva.setPista(reservaDTO.getPista());
-//		reserva.setFecha(reservaDTO.getFecha());
-//		reserva.setHora(reservaDTO.getHora());
-//		reserva.setDisponible(false);
-
+	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal principal, Model model) {
 		Usuario usuario = usuarioService.getUsuario(principal);
+		reserva.setPista(pistaService.get(idPista));
+		reserva.setDisponible(false);
 		reserva.setUsuario(usuario);
-		reservaService.save(reserva);
-		partido.setReserva(reserva);
+		Reserva reservaGuardada = reservaService.save(reserva);
+		if (reserva.getId() == null) {
+			Partido partido = new Partido();
+			partido.setReserva(reservaGuardada);
 
-		if (usuario.isAdministrador()) {
-			partido.setTipo("Promocionado");
-		} else {
-			partido.setTipo("Ofertado");
-		}
-		Partido partidoGuardado = partidoService.save(partido);
-		if (!usuario.isAdministrador()) {
-			UsuarioPartido usuarioPartido = new UsuarioPartido();
-			usuarioPartido.setId(new UsuarioPartidoId(partidoGuardado, usuario));
-			usuarioPartidoService.save(usuarioPartido);
+			if (usuario.isAdministrador()) {
+				partido.setTipo("Promocionado");
+			} else {
+				partido.setTipo("Ofertado");
+			}
+			Partido partidoGuardado = partidoService.save(partido);
+			if (!usuario.isAdministrador()) {
+				UsuarioPartido usuarioPartido = new UsuarioPartido();
+				usuarioPartido.setId(new UsuarioPartidoId(partidoGuardado, usuario));
+				usuarioPartidoService.save(usuarioPartido);
+			}
 		}
 		return "redirect:/partidos/";
 	}
