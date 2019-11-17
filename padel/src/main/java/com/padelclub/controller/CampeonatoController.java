@@ -30,18 +30,20 @@ public class CampeonatoController {
 	private UsuarioService usuarioService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model) {
+	public String index(Model model, Principal usuarioLogeado) {
 		model.addAttribute("list", campeonatoService.getAll());
+		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model) {
+	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("campeonato", campeonatoService.get(id));
 		} else {
 			model.addAttribute("campeonato", new Campeonato());
 		}
+		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatosForm";
 	}
 
@@ -72,8 +74,13 @@ public class CampeonatoController {
 	}
 
 	@GetMapping("/consultar/{id}")
-	public String consultar(@PathVariable Long id, Model model) {
+	public String consultar(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoDetail";
+	}
+
+	public void addUserToModel(Principal usuario, Model model) {
+		model.addAttribute("sesion", usuarioService.getUsuario(usuario));
 	}
 
 }

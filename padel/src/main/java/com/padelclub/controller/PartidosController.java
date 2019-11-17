@@ -40,31 +40,35 @@ public class PartidosController {
 	private UsuarioService usuarioService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model) {
+	public String index(Model model, Principal usuarioLogeado) {
 		model.addAttribute("map", usuarioPartidoService.getListado(partidoService.getAll()));
+		addUserToModel(usuarioLogeado, model);
 		return "PartidosView/PartidosShowAll";
 	}
 
 	@RequestMapping("/promocionados")
-	public String listPromocionados(Model model) {
+	public String listPromocionados(Model model, Principal usuarioLogeado) {
 		model.addAttribute("map", usuarioPartidoService.getListado(partidoService.getPromocionados()));
+		addUserToModel(usuarioLogeado, model);
 		return "/PartidosView/PartidosShowAll";
 	}
 
 	@RequestMapping("/ofertados")
-	public String listOfertados(Model model) {
+	public String listOfertados(Model model, Principal usuarioLogeado) {
 		model.addAttribute("map", usuarioPartidoService.getListado(partidoService.getOfertados()));
+		addUserToModel(usuarioLogeado, model);
 		return "/PartidosView/PartidosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model) {
+	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("reserva", reservaService.get(id));
 		} else {
 			model.addAttribute("reserva", new Reserva());
 		}
 		model.addAttribute("partido", true);
+		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasForm";
 	}
 
@@ -108,12 +112,13 @@ public class PartidosController {
 	}
 
 	@PostMapping("/buscar")
-	public String buscar(Reserva reserva, Model model) {
+	public String buscar(Reserva reserva, Model model, Principal usuarioLogeado) {
 		List<Pista> pistas = pistaService.getAll();
 		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
 		model.addAttribute("pistas", pistas);
 		model.addAttribute("fecha", reserva.getFecha());
 		model.addAttribute("partido", true);
+		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowByFecha";
 	}
 
@@ -131,12 +136,7 @@ public class PartidosController {
 		return "redirect:/partidos/";
 	}
 
-	// @GetMapping("/liberar/{id}")
-//	public String liberar(@PathVariable Long id, Model model) {
-//		Reserva reserva = reservaService.get(id);
-//		reserva.setUsuario(null);
-//		reserva.setDisponible(true);
-//		reservaService.save(reserva);
-//		return "redirect:/reservas/";
-//	}
+	public void addUserToModel(Principal usuario, Model model) {
+		model.addAttribute("sesion", usuarioService.getUsuario(usuario));
+	}
 }

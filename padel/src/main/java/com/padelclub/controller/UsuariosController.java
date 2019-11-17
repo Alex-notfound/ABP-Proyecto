@@ -33,18 +33,20 @@ public class UsuariosController {
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model) {
+	public String index(Model model, Principal usuarioLogeado) {
 		model.addAttribute("list", usuarioService.getAll());
+		addUserToModel(usuarioLogeado, model);
 		return "UsuariosView/UsuariosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model) {
+	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("usuario", usuarioService.get(id));
 		} else {
 			model.addAttribute("usuario", new Usuario());
 		}
+		addUserToModel(usuarioLogeado, model);
 		return "UsuariosView/UsuariosForm";
 	}
 
@@ -62,7 +64,7 @@ public class UsuariosController {
 	}
 
 	@GetMapping("/profile/{id}")
-	public String myprofile(@PathVariable Long id, Principal principalUsuario, Model model) {
+	public String myprofile(@PathVariable Long id, Principal principalUsuario, Model model, Principal usuarioLogeado) {
 		Usuario usuario;
 		if (id != null && id != 0) {
 			usuario = usuarioService.get(id);
@@ -73,7 +75,12 @@ public class UsuariosController {
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
 		model.addAttribute("partidos", usuarioPartidoService.getPartidosByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));
+		addUserToModel(usuarioLogeado, model);
 		return "UsuariosView/UsuariosProfile";
+	}
+
+	public void addUserToModel(Principal usuario, Model model) {
+		model.addAttribute("sesion", usuarioService.getUsuario(usuario));
 	}
 
 }
