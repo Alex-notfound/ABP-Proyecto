@@ -1,6 +1,8 @@
 #TAREAS DANI:
+-Crear sentencias insert en todas las tablas
 -Inicialización de BD por defecto
 -Arreglar validacion precio inscripción
+-Añadir icono notificacion
 ------------------------------------------
 #CHECKEAR:
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
@@ -14,13 +16,6 @@
 -Delete CASCADE
 -Validaciones
 
-###############################
-CASOS USO
-###############################
-
-GESTIONAR PARTIDOS PROMOCIONADOS
-Eliminar inscripcion partido promocionado (desde perfil ¿e incluso en el listado?)
-
 GESTIONAR PLAYOFF
 Gestionar playoff
 
@@ -30,17 +25,19 @@ Aceptar partido campeonato (¿desde el perfil?)
 GESTIONAR CAMPEONATOS
 Consultar campeonato
 
---------------------------------
-###############################
+#################################################################################
 TERMINADO
-###############################
+#################################################################################
+
+GESTIONAR PARTIDOS PROMOCIONADOS
+-Eliminar inscripcion partido promocionado
 
 ?Arreglar pantalla inicio (index.html)
 ?Arreglar para que cargue el css hecho por nosotros
 
 GESTIONAR PARTIDOS PROMOCIONADOS
 -Añadir partido promocionado (desde admin en el propio listado)
-?Editar partido promocionado (desde admin en el propio listado) - FALTA FIXEAR RESERVA
+-Editar partido promocionado (desde admin en el propio listado)
 -Eliminar partido promocionado (desde admin en el propio listado)
 -Inscribirse en partido promocionado
 
@@ -56,11 +53,11 @@ GESTIONAR PISTAS
 -Eliminar pista
 
 RESERVAR PISTA
-/Reservar pista
+-Reservar pista
 -Eliminar reserva pista
 
 OFERTAR PARTIDOS
-/Añadir partido ofertado (en el propio listado) - FALTA FIXEAR RESERVA
+-Añadir partido ofertado
 -Eliminar partido ofertado
 
 INSCRIPCION CAMPEONATO
