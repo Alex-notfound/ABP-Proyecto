@@ -28,8 +28,8 @@
 
 		<div th:each="e : ${map}">
 			<form
-				th:action=" ${partido} ? @{/partidos/save} :
-				@{/reservas/save}"
+				th:action=" ${partido} ? @{/partidos/save} : (${enfrentamiento} ? @{/enfrentamientos/save} :
+				@{/reservas/save})"
 				class="form-group" th:object="${reserva}" method="post">
 				<h3 th:text="'Pista ' + ${e.key.numero}"></h3>
 				<div class="btn-group btn-group-lg">

@@ -36,6 +36,7 @@
 					<th>Fecha</th>
 					<th>Hora</th>
 					<th>Pista</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,7 +49,9 @@
 					<td
 						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
 					<td
-						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.pista} : ''"></td>
+						th:text="${enfrentamiento.reserva.pista} ? ${enfrentamiento.reserva.pista.numero} : ''"></td>
+					<td><a
+						th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Editar</a></td>
 				</tr>
 			</tbody>
 		</table>

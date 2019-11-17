@@ -12,8 +12,10 @@ import com.padelclub.dao.api.CampeonatoRepository;
 import com.padelclub.model.Campeonato;
 import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Pareja;
+import com.padelclub.model.Reserva;
 import com.padelclub.service.api.CampeonatoService;
 import com.padelclub.service.api.EnfrentamientoService;
+import com.padelclub.service.api.ReservaService;
 
 @Service
 public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> implements CampeonatoService {
@@ -22,6 +24,8 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 	private CampeonatoRepository campeonatoRepository;
 	@Autowired
 	private EnfrentamientoService enfrentamientoService;
+	@Autowired
+	private ReservaService reservaService;
 
 	@Override
 	public CrudRepository<Campeonato, Long> getDao() {
@@ -54,6 +58,7 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 			for (int i = 1; i < parejasCampeonato.size(); i++) {
 				Enfrentamiento enfrentamiento = new Enfrentamiento();
 				enfrentamiento.setCampeonato(campeonato);
+				enfrentamiento.setReserva(reservaService.save(new Reserva()));
 				enfrentamiento.setPareja1(parejasCampeonato.get(0));
 				enfrentamiento.setPareja2(parejasCampeonato.get(i));
 				enfrentamientoService.save(enfrentamiento);

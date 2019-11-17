@@ -10,6 +10,7 @@ import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.EnfrentamientoRepository;
 import com.padelclub.model.Campeonato;
 import com.padelclub.model.Enfrentamiento;
+import com.padelclub.model.Reserva;
 import com.padelclub.service.api.EnfrentamientoService;
 
 @Service
@@ -27,5 +28,10 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	@Override
 	public List<Enfrentamiento> getAllByCampeonato(Campeonato campeonato) {
 		return enfrentamientoRepository.findAllByCampeonato(campeonato);
+	}
+
+	@Override
+	public Campeonato getCampeonatoByReserva(Reserva reserva) {
+		return enfrentamientoRepository.findByReserva(reserva).getCampeonato();
 	}
 }

@@ -23,7 +23,7 @@
 	</div>
 	<div class="container">
 		<form
-			th:action="${partido} ? @{/partidos/buscar} : @{/reservas/buscar}"
+			th:action="${partido} ? @{/partidos/buscar} : (${enfrentamiento} ? @{/enfrentamientos/buscar} : @{/reservas/buscar})"
 			class="form-group" th:object="${reserva}" method="post">
 			<input type="hidden" th:field="*{id}">
 			<div class="form-group row">
