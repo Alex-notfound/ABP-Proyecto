@@ -1,0 +1,44 @@
+Reserva de pistas:
+--Las reservas de pistas son de 90 minutos.
+--Hay un número máximo de pistas que un usuario puede reservar (tener “activas”),
+por ejemplo cinco.
+--Las pistas se pueden reservar con una serie de días de antelación prefijados en el
+sistema, por ejemplo siete días.
+--Una pista reservada se puede cancelar solo hasta un determinado número de horas
+antes de la reserva, por ejemplo 12 horas.
+--Una vez creada una reserva de una pista por el deportista, ésta no puede ser
+modificada, sólo eliminada o consultada.
+? Al reservar una pista para una fecha y hora determinada, el sistema debe de verificar
+si es la última pista libre, en cuyo caso debe eliminar las promociones de partidos o
+enfrentamientos (sin cerrar) para esa fecha y hora.
+
+Promoción de partidos:
+● Los partidos promocionados (por el club) NO suponen la reserva de pista hasta que
+se inscriben cuatro jugadores.
+-En el caso de que no exista ninguna pista disponible se cancela el partido
+promocionado.
+
+Campeonatos:
+-Los campeonatos siempre se juegan por parejas.
+-Para que una pareja se inscriba en una categoría de un campeonato ambos
+deportistas tienen que estar registrados en el sistema. El deportista que realiza la
+inscripción (capitán) debe introducir el login de su pareja.
+-Los deportistas que se inscriban en un campeonato eligen la categoría y nivel.
+○ Las categorías de un campeonato son: masculina, femenina y mixto.
+○ Los niveles de un campeonato son: 1, 2 y 3.
+● Cada grupo de un campeonato (categoría + nivel) tendrá entre 8 y 12 parejas. Los
+grupos se crean automáticamente una vez finalizado el periodo de inscripción.
+● Los campeonatos o torneos que se organicen serán del tipo Ranking:
+○ Hay una fase de liga regular donde juegan todos contra todos del mismo
+grupo, a una sola vuelta (único partido).
+○ Cada partido ganado de la fase regular se valorará con 3 puntos y cada
+partido jugado con 1 punto (clasificación). Un partido se juega al mejor de
+tres sets (hay siempre un ganador).
+○ Para la segunda fase los ocho primeros clasificados de cada grupo se cruzan
+en cuartos (8 parejas), semifinales (4 parejas) y final (2 parejas). Los cruces
+de la fase de cuartos serán 1º-8º, 2º-7º, etc. Los cruces de semifinales son
+aleatorios.
+○ En el caso de que haya varios grupos en una categoría/nivel habrá una final
+con los campeones de cada grupo, para tener una única pareja ganadora.
+● Solo se reserva pista para un enfrentamiento en un campeonato cuando se ha
+confirmado la participación de ambas parejas
