@@ -44,10 +44,10 @@ INSERT INTO `reserva` (`id`, `disponible`, `fecha`, `hora`, `pista_id`, `usuario
 (7, b'1', '2019-11-21', '15.00', 1, 2);
 
 INSERT INTO `partido` (`id`, `abierto`, `tipo`, `reserva_id`) VALUES
-(1, b'0', 'Promocionado', 2),
-(2, b'0', 'Promocionado', 3),
-(6, b'0', 'Promocionado', 7),
-(4, b'0', 'Promocionado', 5);
+(1, b'1', 'Promocionado', 2),
+(2, b'1', 'Promocionado', 3),
+(6, b'1', 'Promocionado', 7),
+(4, b'1', 'Promocionado', 5);
 
 INSERT INTO `pareja` (`id`, `nombre`, `miembro1_id`, `miembro2_id`) VALUES
 (1, 'Duque - Rego', 1, 3),
