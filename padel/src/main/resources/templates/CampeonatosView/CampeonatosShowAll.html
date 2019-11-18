@@ -62,7 +62,7 @@
 							th:href="@{/campeonatos/save/{id}(id=${campeonato.id})}">Editar</a></td>
 						<td th:if="${sesion.administrador}"><a
 							th:href="@{/campeonatos/delete/{id}(id=${campeonato.id})}">Eliminar</a></td>
-						<td th:unless="${sesion.administrador}"><a
+						<td th:if="${!sesion.administrador} AND  ${campeonato.abierto}"><a
 							class="btn btn-info"
 							th:href="@{/campeonatos/formInscribir/{idCampeonato}(idCampeonato=${campeonato.id})}">Inscribirme</a></td>
 					</tr>
