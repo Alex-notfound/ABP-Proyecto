@@ -1,20 +1,34 @@
 #TAREAS DANI:
 -Crear sentencias insert en todas las tablas
 -Inicialización de BD por defecto
+-Arreglar validacion precio inscripción
 -Añadir icono notificacion
 -Detectar fallos y visibilidad para usuarios y anotarlos
 ------------------------------------------
 #CHECKEAR:
+-Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
 -Añadir notificacion enfrentamiento
+-Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
 --------------------------------
 #TAREAS ALEX:
-
-HACER MANUAL
-GESTIONAR PLAYOFF
-ACEPTAR PARTIDO CAMPEONATO
-
-----------------
+-Accesos a paginas
+-Logica campeonatos
+-Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
+-Validaciones
+
+VISIBILIDAD
+Mostrar Boton Eliminar Partido solo para creador de la reserva del partido / Creador partido 
+---Ocultar Boton Inscribirse en partido si está lleno
+
+GESTIONAR PLAYOFF
+Gestionar playoff
+
+ACEPTAR PARTIDO CAMPEONATO
+Aceptar partido campeonato (¿desde el perfil?)
+
+GESTIONAR CAMPEONATOS
+Consultar campeonato
 
 #################################################################################
 TERMINADO
