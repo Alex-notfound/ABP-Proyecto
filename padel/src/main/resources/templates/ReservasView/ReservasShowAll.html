@@ -39,7 +39,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="reserva : ${list}">
-						<td th:text="${reserva.pista.numero}"></td>
+						<td th:text="${reserva.pista} ? ${reserva.pista.numero} : ''"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
 						<td><a th:href="@{/reservas/delete/{id}(id=${reserva.id})}">Borrar
