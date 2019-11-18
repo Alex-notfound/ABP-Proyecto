@@ -1,33 +1,21 @@
 #TAREAS DANI:
--Arreglar ResultadoForm
 -Crear sentencias insert en todas las tablas
 -Inicialización de BD por defecto
--Arreglar validacion precio inscripción
 -Añadir icono notificacion
 -Detectar fallos y visibilidad para usuarios y anotarlos
 ------------------------------------------
 #CHECKEAR:
 -Añadir notificacion enfrentamiento
--Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
 --------------------------------
 #TAREAS ALEX:
 
 HACER MANUAL
-
-USUARIO
-	-Añadir sexo
-	-Calcular edad y validar inscripcion campeonato(comprobar si ya está inscrito y si cumple los requisitos)
-
-VISTAS VISIBLES SOLO PARA DEPORTISTA
--NotifiacionShow
-
--Delete CASCADE
-
 GESTIONAR PLAYOFF
-Gestionar playoff
-
 ACEPTAR PARTIDO CAMPEONATO
-Aceptar partido campeonato (¿desde el perfil?)
+-Calcular edad y validar inscripcion campeonato(comprobar si ya está inscrito y si cumple los requisitos)
+
+----------------
+-Delete CASCADE
 
 #################################################################################
 TERMINADO

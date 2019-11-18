@@ -2,8 +2,6 @@ Campeonatos:
 ● Cada grupo de un campeonato (categoría + nivel) tendrá entre 8 y 12 parejas. Los
 grupos se crean automáticamente una vez finalizado el periodo de inscripción.
 ● Los campeonatos o torneos que se organicen serán del tipo Ranking:
-	○ Cada partido ganado de la fase regular se valorará con 3 puntos y cada
-	partido jugado con 1 punto (clasificación)
 	○ Para la segunda fase los ocho primeros clasificados de cada grupo se cruzan
 	en cuartos (8 parejas), semifinales (4 parejas) y final (2 parejas). Los cruces
 	de la fase de cuartos serán 1º-8º, 2º-7º, etc. Los cruces de semifinales son

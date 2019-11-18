@@ -35,10 +35,20 @@ public class Usuario {
 	private Date fechaNacimiento;
 	@Column
 	private boolean enabled;
+	@Column
+	private String sexo;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
 	private Set<Authority> authority;
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
 	public Long getId() {
 		return id;

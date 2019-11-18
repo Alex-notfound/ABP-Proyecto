@@ -21,7 +21,7 @@
 		<h4>Mi cuenta</h4>
 	</div>
 
-	<div class="container">
+	<div th:unless="${sesion.administrador}" class="container">
 		<h4>Mis notificaciones</h4>
 		<table class="table">
 			<tbody>
