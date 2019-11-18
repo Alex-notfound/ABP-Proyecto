@@ -14,7 +14,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	</head>
+</head>
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="jumbotron">
@@ -27,8 +27,8 @@
 					th:object="${usuario}" method="post">
 					<input type="hidden" th:field="*{id}" />
 					<div class="form-group row">
-						<label for="nombre" class="col-4 col-form-label">Nombre</label> 
-						<input class="form-control col-7" id="nombre" type="text"
+						<label for="nombre" class="col-4 col-form-label">Nombre</label> <input
+							class="form-control col-7" id="nombre" type="text"
 							th:field="*{nombre}" required>
 					</div>
 					<div class="form-group row">
@@ -42,8 +42,8 @@
 							th:field="*{dni}" pattern="[0-9]{8}[A-Z]">
 					</div>
 					<div class="form-group row">
-						<label for="pwd" class="col-4 col-form-label">Contraseña</label>
-						<input type="password" class="col-7 form-control" id="pwd"
+						<label for="pwd" class="col-4 col-form-label">Contraseña</label> <input
+							type="password" class="col-7 form-control" id="pwd"
 							th:field="*{password}">
 					</div>
 					<div class="form-group row">
@@ -56,11 +56,6 @@
 						<label for="telefono" class="col-4 col-form-label">Teléfono</label>
 						<input class="col-7 form-control" id="telefono" type="text"
 							th:field="*{telefono}" required pattern="[0-9]{9}">
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="checkbox"
-							class="form-check-input" th:field="*{administrador}">Administrador
-						</label> <br> <br>
 					</div>
 					<button class="btn btn-info" type="submit">Registrar</button>
 				</form>
