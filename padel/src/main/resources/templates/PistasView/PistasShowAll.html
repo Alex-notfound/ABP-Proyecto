@@ -22,13 +22,12 @@
 	<div class="jumbotron">
 		<h4>Pistas</h4>
 	</div>
-
 	<div class="container">
-		<br>
 		<div>
 			<a th:href="@{/pistas/save/0}" class="btn btn-primary">Agregar
 				pista</a>
 		</div>
+		<br>
 		<h2 th:if="${list.isEmpty()}">No hay pistas</h2>
 		<div th:if="${!list.isEmpty()}">
 			<h2>Pistas</h2>
