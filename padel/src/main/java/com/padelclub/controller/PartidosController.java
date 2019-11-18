@@ -79,16 +79,20 @@ public class PartidosController {
 		reserva.setDisponible(true);
 		reserva.setUsuario(usuario);
 		Reserva reservaGuardada = reservaService.save(reserva);
+		if (pistaService.get(idPista) != null) {
+			reserva.setPista(pistaService.get(idPista));
+		}
 
 		// Si es una adicion, hay que crear el partido asociandole la reserva
 		if (!partidoService.existePartido(reservaGuardada)) {
 			Partido partido = new Partido();
-			partido.setReserva(reservaGuardada);
-
 			if (usuario.isAdministrador()) {
 				partido.setTipo("Promocionado");
+				partido.setReserva(reservaGuardada);
 			} else {
 				partido.setTipo("Ofertado");
+				reservaGuardada.setDisponible(false);
+				partido.setReserva(reservaService.save(reservaGuardada));
 			}
 			Partido partidoGuardado = partidoService.save(partido);
 			if (!usuario.isAdministrador()) {

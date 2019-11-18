@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +73,7 @@ public class ReservasController {
 		Calendar fechaReserva = Calendar.getInstance();
 		fechaReserva.setTime(reserva.getFecha());
 
-		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek)) {
+		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek) && reserva.getHora() != null) {
 			reservaService.save(reserva);
 			if (reservaService.findPistaForReserva(reserva) == null) {
 				partidoService.CerrarPartidosAbiertos(reserva);
@@ -80,7 +82,7 @@ public class ReservasController {
 				partidoService.CerrarPartidosAbiertos();
 			}
 		} else {
-			model.addAttribute("error", "La fecha no es válida");
+			model.addAttribute("error", "Los datos no son válida");
 			return index(model, usuarioLogeado);
 		}
 		return "redirect:/reservas/";

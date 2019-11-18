@@ -42,8 +42,11 @@
 						th:each="reservaDao : ${e.value}">
 						<label
 							th:class="${reservaDao.disponible} ? 'btn btn-success' : 'btn btn-danger'"><input
-							type="radio" th:text="${reservaDao.hora}" th:field="*{hora}"
-							th:value="${reservaDao.hora}"> </label>
+							th:if="${reservaDao.disponible}" type="radio"
+							th:text="${reservaDao.hora}" th:field="*{hora}"
+							th:value="${reservaDao.hora}"> <span
+							th:unless="${reservaDao.disponible}" th:text="${reservaDao.hora}"></span>
+						</label>
 					</div>
 				</div>
 				<br> <br>
