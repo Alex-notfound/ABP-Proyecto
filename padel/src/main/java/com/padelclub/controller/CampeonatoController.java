@@ -40,6 +40,7 @@ public class CampeonatoController {
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model, Principal usuarioLogeado) {
+		campeonatoService.CerrarTorneosFueraDePlazo();
 		model.addAttribute("list", campeonatoService.getAll());
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatosShowAll";
@@ -106,7 +107,6 @@ public class CampeonatoController {
 
 			if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
 					.getNumParticipantesByCampeonato(campeonato)) {
-				System.err.println("SORTEA CAMPEONATO");
 				campeonatoService.sorteo(parejaCampeonatoService.getParejasByCampeonato(campeonato), campeonato);
 			}
 			return "redirect:/campeonatos/";

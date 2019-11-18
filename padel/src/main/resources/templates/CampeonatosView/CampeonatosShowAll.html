@@ -40,6 +40,7 @@
 						<th>Inscripción hasta</th>
 						<th></th>
 						<th></th>
+						<th></th>
 						<th th:if="${sesion.administrador}"></th>
 						<th th:if="${sesion.administrador}"></th>
 						<th th:unless="${sesion.administrador}"></th>
@@ -53,6 +54,7 @@
 						<td th:text="${campeonato.maxNumParticipantes}"></td>
 						<td th:text="${campeonato.precioInscripcion}"></td>
 						<td th:text="${campeonato.limiteInscripcion}"></td>
+						<td th:text="${campeonato.abierto} ? 'Sí' : 'No' "></td>
 						<td><a
 							th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}">Consultar</a></td>
 						<td>

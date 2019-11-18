@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 public class Campeonato {
 
@@ -24,6 +26,16 @@ public class Campeonato {
 	private String precioInscripcion;
 	@Column
 	private Date limiteInscripcion;
+	@ColumnDefault("1")
+	private boolean abierto;
+
+	public boolean isAbierto() {
+		return abierto;
+	}
+
+	public void setAbierto(boolean abierto) {
+		this.abierto = abierto;
+	}
 
 	public Long getId() {
 		return id;

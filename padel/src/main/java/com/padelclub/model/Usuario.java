@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 public class Usuario {
 
@@ -35,7 +37,7 @@ public class Usuario {
 	private Date fechaNacimiento;
 	@Column
 	private boolean enabled;
-	@Column
+	@ColumnDefault("Masculino")
 	private String sexo;
 
 	@ManyToMany(fetch = FetchType.EAGER)
