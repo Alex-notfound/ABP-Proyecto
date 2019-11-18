@@ -1,1 +1,103 @@
 INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `sexo`, `telefono`) VALUES (NULL, b'1', 'admin', '12345678A', b'001', '2019-11-01', 'admin', '$2a$04$YFWatPcRPwJflbfhMicUVecegvEqE6k1pvWJCrfaJUR0R1Y0jR/uC', 'Masculino', '697217053');
+
+INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `sexo`, `telefono`) VALUES
+(1, b'0', 'Duque', '77484954R', b'0', '1998-04-26', 'Daniel', '$2a$04$3yE4piuMJ.ummpSM/jVPG.0EEFTOlZP9IusaUmnwy0n6giywVjD0O', 'Masculino', 673449470),
+(2, b'1', 'admin', '12345678A', b'1', '2019-11-01', 'admin', '$2a$04$YFWatPcRPwJflbfhMicUVecegvEqE6k1pvWJCrfaJUR0R1Y0jR/uC', 'Masculino', 697217053),
+(3, b'0', 'Rego', '11111111Q', b'0', '1961-02-15', 'Pepe', '$2a$04$W4IqQ.iJLj9anD5y90usN.RA06bM2LMBqdQx4mVbXOveDoiwbjMJe', 'Masculino', 666999333),
+(4, b'0', 'Suarez', '99889988G', b'0', '1990-05-22', 'Maria', '$2a$04$SAeyr8PO2dRNx9/4PWIrI.lUoNm7t.L0O7o8TV/VV39tE6MnbzXX6', 'Femenino', 666555444),
+(5, b'0', 'Perez', '44444444W', b'0', '1975-08-17', 'Jose', '$2a$04$ypGRPS5KrL8elQOIDD2okuR2Wq5hsb0dX0IcI.BYx0ajUKTsKLDlC', 'Masculino', 698521145),
+(6, b'0', 'Ramirez', '14725836H', b'0', '1994-04-04', 'Juan', '$2a$04$P06tx4wfTAOX1InlKAk9KO613XyeSa55xcpwYuCX7YvQ16K4dJ9ta', 'Masculino', 693685625),
+(7, b'0', 'del Mar', '99887788N', b'0', '1995-08-26', 'Maria', '$2a$04$GrMcS2bXgJ3OIs3t22KuhuNx8s6REIICfuJio5y.jgQ7lFWXtK/lW', 'Femenino', 632256698),
+(8, b'0', 'Mendez', '98765432C', b'0', '1997-02-28', 'Brais', '$2a$04$Z6QhHWnH8ag97iT.9NYMD.kK6IYMqlO2r8bHwXTquFXBTVIqzzVSS', 'Masculino', 666333222),
+(9, b'0', 'Nuñez', '33221155Y', b'0', '1991-12-15', 'Tomás', '$2a$04$OT8tLD1fHk/slAyOOqLOC.Zf4jcH1UQzYlNIU0VNpDo6qZxG/groa', 'Masculino', 666999888),
+(10, b'0', 'Crespo', '55446699Z', b'0', '1992-12-18', 'Pablo', '$2a$04$9wPAaZU8M62t3pMdoSnLmuBqCM40Mrko2SO6f8ZM.xnpdkbHdjeM6', 'Masculino', 666888444),
+(11, b'0', 'Barros', '77445566H', b'0', '2004-01-17', 'Paula', '$2a$04$s9t.8/KCf34hG03MD24s5OM1vHOxyTaelORDX1STAQQmx4kDAI8Qm', 'Femenino', 741258963),
+(12, b'0', 'Lopez', '78965412L', b'0', '1985-04-21', 'Héctor', '$2a$04$wEGnQwa3yhzADa7OLqrZP.U0UJ2iXfLE8PXE6TZm6w36a/YkJimCu', 'Masculino', 654123987),
+(13, b'0', 'Puga', '66554455T', b'0', '1987-05-14', 'Manuel', '$2a$04$kjiuSGcebPt9.Zv78cpvm.vH6GID5gJdzRENTaim1mTOVSCV87TXq', 'Masculino', 654987321),
+(14, b'0', 'Fonseca', '22113366M', b'0', '1984-08-17', 'Paulo', '$2a$04$wKGfWcMH9yGwLgCBZtX8Y.PCIRirkY1GBNHDxKQUb03EPPOCECuH6', 'Masculino', 654123999),
+(15, b'0', 'Rodriguez', '88888888Z', b'0', '1995-08-28', 'Carlos', '$2a$04$6RNQT5UiQT6G3i4Gfl8H2OJO2zITjAiCKj7Dv3tudHguI3V4rrW.6', 'Masculino', 693546871),
+(16, b'0', 'Pereiro', '66699933D', b'0', '1981-09-23', 'Pedro', '$2a$04$y4nUf5aPB06GTWzZKZW2W.cBoNM.pnp38HQ1UHHK7HC/wJTqJYqXK', 'Masculino', 632212369),
+(17, b'0', 'Meira', '99663366A', b'0', '1987-02-02', 'Xavier', '$2a$04$SjUYNHg3X2dLvmNnQleRX.YIO8lCPu.HxAoaVjZkidf10vQH3Sy/O', 'Masculino', 698852369),
+(18, b'0', 'Manrique', '11225544E', b'0', '1964-08-01', 'Jorge', '$2a$04$KLsR8MrwBjX8twU.eC951.vM1JcewOZoSeWD0Z1GlwwjkDUeqWKti', 'Masculino', 666555888),
+(19, b'0', 'Ferro', '78963654V', b'0', '2001-06-25', 'Braulio', '$2a$04$/baJ4pV39XmGw7h2gSx13uB5gX4L7I0/sOO/qgtVH5.tPbqoNqccG', 'Masculino', 699966333),
+(20, b'0', 'Caro', '44558877P', b'0', '1985-06-14', 'Julio', '$2a$04$Gj5Wdui39qa4dm9VtQ/bP.k5Tq5JTQzEQ9HoWGQefSMz6ZgQwhwmS', 'Masculino', 654123987);
+
+INSERT INTO `pista` (`id`, `descripcion`, `numero`) VALUES
+(1, 'Abierta', 1),
+(2, 'Cubierta', 2),
+(3, 'Cubierta con pared de cristal', 3),
+(4, 'Cubierta con pared de cristal y grada', 4);
+
+INSERT INTO `campeonato` (`id`, `abierto`, `categoria`, `limite_inscripcion`, `max_num_participantes`, `nivel`, `precio_inscripcion`) VALUES
+(1, b'1', 'Masculino', '2019-11-19', 8, 'Medio', '5'),
+(2, b'1', 'Femenino', '2019-11-22', 8, 'Alto', '3'),
+(3, b'1', 'Mixto', '2019-11-20', 12, 'Basico', '15'),
+(4, b'1', 'Masculino', '2019-11-20', 12, 'Alto', '25');
+
+INSERT INTO `reserva` (`id`, `disponible`, `fecha`, `hora`, `pista_id`, `usuario_id`) VALUES
+(1, b'0', '2019-11-20', '13.30', 1, 1),
+(2, b'1', '2019-11-19', '18.00', 1, 2),
+(3, b'1', '2019-11-19', '15.00', 1, 2),
+(4, b'1', '2019-11-19', '21.00', NULL, 2),
+(5, b'1', '2019-11-20', '19.30', 1, 2),
+(6, b'1', '2019-11-20', '19.30', 1, 2),
+(7, b'1', '2019-11-21', '15.00', 1, 2);
+
+INSERT INTO `partido` (`id`, `abierto`, `tipo`, `reserva_id`) VALUES
+(1, b'0', 'Promocionado', 2),
+(2, b'0', 'Promocionado', 3),
+(6, b'0', 'Promocionado', 7),
+(4, b'0', 'Promocionado', 5);
+
+INSERT INTO `pareja` (`id`, `nombre`, `miembro1_id`, `miembro2_id`) VALUES
+(1, 'Duque - Rego', 1, 3),
+(2, 'Duque - Rego', 1, 3),
+(3, 'Perez - Ramirez', 5, 6),
+(4, 'Mendez - Nuñez', 8, 9),
+(5, 'Crespo - Lopez', 10, 12),
+(6, 'Pereiro - Rodriguez', 16, 15),
+(7, 'Fonseca - Puga', 14, 13),
+(8, 'Meira - Manrique', 17, 18),
+(9, 'Ferro - Caro', 19, 20);
+
+INSERT INTO `pareja_campeonato` (`puntos`, `campeonato_id`, `pareja_id`) VALUES
+(0, 1, 1),
+(0, 4, 2),
+(0, 1, 3),
+(0, 1, 4),
+(0, 1, 5),
+(0, 1, 6),
+(0, 1, 7),
+(0, 1, 8),
+(0, 1, 9);
+
+
+INSERT INTO `enfrentamiento` (`id`, `resultado`, `campeonato_id`, `ganador_id`, `pareja1_id`, `pareja2_id`, `reserva_id`) VALUES
+(1, NULL, 1, NULL, 1, 3, 8),
+(2, NULL, 1, NULL, 1, 4, 9),
+(3, NULL, 1, NULL, 1, 5, 10),
+(4, NULL, 1, NULL, 1, 6, 11),
+(5, NULL, 1, NULL, 1, 7, 12),
+(6, NULL, 1, NULL, 1, 8, 13),
+(7, NULL, 1, NULL, 1, 9, 14),
+(8, NULL, 1, NULL, 3, 4, 15),
+(9, NULL, 1, NULL, 3, 5, 16),
+(10, NULL, 1, NULL, 3, 6, 17),
+(11, NULL, 1, NULL, 3, 7, 18),
+(12, NULL, 1, NULL, 3, 8, 19),
+(13, NULL, 1, NULL, 3, 9, 20),
+(14, NULL, 1, NULL, 4, 5, 21),
+(15, NULL, 1, NULL, 4, 6, 22),
+(16, NULL, 1, NULL, 4, 7, 23),
+(17, NULL, 1, NULL, 4, 8, 24),
+(18, NULL, 1, NULL, 4, 9, 25),
+(19, NULL, 1, NULL, 5, 6, 26),
+(20, NULL, 1, NULL, 5, 7, 27),
+(21, NULL, 1, NULL, 5, 8, 28),
+(22, NULL, 1, NULL, 5, 9, 29),
+(23, NULL, 1, NULL, 6, 7, 30),
+(24, NULL, 1, NULL, 6, 8, 31),
+(25, NULL, 1, NULL, 6, 9, 32),
+(26, NULL, 1, NULL, 7, 8, 33),
+(27, NULL, 1, NULL, 7, 9, 34),
+(28, NULL, 1, NULL, 8, 9, 35);
