@@ -19,7 +19,7 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 
-	<div class="jumbotron">
+	<div class="myheader">
 		<h4>Ofertar partido</h4>
 	</div>
 	<div class="container">
@@ -32,25 +32,25 @@
 					type="date" th:field="*{fecha}">
 				<button type="submit" class="btn btn-info">Buscar</button>
 			</div>
-			
+
 		</form>
 
-	<div class="container">
-		<div class="btn-group btn-group-lg">
-  		<button type="button" class="btn btn-success">10-11</button>
-  		<button type="button" class="btn btn-danger">11-12</button>
-  		<button type="button" class="btn btn-danger">12-13</button>
-  		<button type="button" class="btn btn-success">13-14</button>
-</div>
-</div>
-<div class="container">
-		<div class="btn-group btn-group-lg">
-  		<button type="button" class="btn btn-danger">16-17</button>
-  		<button type="button" class="btn btn-success">17-18</button>
-  		<button type="button" class="btn btn-success">18-19</button>
-  		<button type="button" class="btn btn-success">19-20</button>
-</div>
-	</div>
+		<div class="container">
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-success">10-11</button>
+				<button type="button" class="btn btn-danger">11-12</button>
+				<button type="button" class="btn btn-danger">12-13</button>
+				<button type="button" class="btn btn-success">13-14</button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-danger">16-17</button>
+				<button type="button" class="btn btn-success">17-18</button>
+				<button type="button" class="btn btn-success">18-19</button>
+				<button type="button" class="btn btn-success">19-20</button>
+			</div>
+		</div>
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
