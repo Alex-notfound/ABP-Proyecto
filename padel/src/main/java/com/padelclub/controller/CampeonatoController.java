@@ -69,9 +69,15 @@ public class CampeonatoController {
 	@GetMapping("/formInscribir/{idCampeonato}")
 	public String formInscribir(@PathVariable("idCampeonato") Long idCampeonato, Principal usuarioLogeado,
 			Model model) {
-		Campeonato campeonato = campeonatoService.get(idCampeonato);
-		Pareja pareja = new Pareja();
 
+		Campeonato campeonato = campeonatoService.get(idCampeonato);
+		if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
+				.getNumParticipantesByCampeonato(campeonato)) {
+			model.addAttribute("error", "Ya se han ocupado todas las plazas");
+			return index(model, usuarioLogeado);
+		}
+
+		Pareja pareja = new Pareja();
 		model.addAttribute("campeonato", campeonato);
 		model.addAttribute("pareja", pareja);
 

@@ -12,7 +12,7 @@
 HACER MANUAL
 GESTIONAR PLAYOFF
 ACEPTAR PARTIDO CAMPEONATO
--Calcular edad y validar inscripcion campeonato(comprobar si ya está inscrito y si cumple los requisitos)
+-Validar inscripcion campeonato(comprobar si ya está inscrito y si cumple los requisitos)
 
 ----------------
 -Delete CASCADE
