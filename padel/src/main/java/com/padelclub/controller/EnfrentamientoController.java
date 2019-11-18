@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.padelclub.model.Enfrentamiento;
+import com.padelclub.model.ParejaCampeonato;
+import com.padelclub.model.ParejaCampeonatoId;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.CampeonatoService;
 import com.padelclub.service.api.EnfrentamientoService;
+import com.padelclub.service.api.ParejaCampeonatoService;
 import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
@@ -32,6 +37,10 @@ public class EnfrentamientoController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private PistaService pistaService;
+	@Autowired
+	private CampeonatoService campeonatoService;
+	@Autowired
+	private ParejaCampeonatoService parejaCampeonatoService;
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
@@ -62,6 +71,47 @@ public class EnfrentamientoController {
 		model.addAttribute("enfrentamiento", true);
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowByFecha";
+	}
+
+	@GetMapping("/resultado/{id}")
+	public String resultado(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
+		model.addAttribute("enfrentamiento", enfrentamientoService.get(id));
+		addUserToModel(usuarioLogeado, model);
+		return "CampeonatosView/ResultadoForm";
+	}
+
+	@PostMapping("/resultado")
+	public String resultadoSave(Enfrentamiento enfrentamiento, @RequestParam("ganoPrimero") boolean ganoPrimero,
+			Model model, Principal usuarioLogeado) {
+
+		if (ganoPrimero) {
+			enfrentamiento.setGanador(enfrentamiento.getPareja1());
+		} else {
+			enfrentamiento.setGanador(enfrentamiento.getPareja2());
+		}
+
+		enfrentamientoService.save(enfrentamiento);
+		ParejaCampeonato ganador;
+		ParejaCampeonato perdedor;
+
+		if (enfrentamiento.getGanador().equals(enfrentamiento.getPareja1())) {
+			ganador = parejaCampeonatoService
+					.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1()));
+			perdedor = parejaCampeonatoService
+					.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2()));
+		} else {
+			perdedor = parejaCampeonatoService
+					.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1()));
+			ganador = parejaCampeonatoService
+					.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2()));
+		}
+		ganador.setPuntos(ganador.getPuntos() + 4);
+		perdedor.setPuntos(perdedor.getPuntos() + 1);
+
+		parejaCampeonatoService.save(ganador);
+		parejaCampeonatoService.save(perdedor);
+
+		return "redirect:/campeonatos/consultar/" + enfrentamiento.getCampeonato().getId();
 	}
 
 	public void addUserToModel(Principal usuario, Model model) {

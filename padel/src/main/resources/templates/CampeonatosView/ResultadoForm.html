@@ -23,31 +23,34 @@
 		<h4>Introducir resultados</h4>
 	</div>
 	<section class="container">
-		<h4>Nombre campeonato</h4>
-		<br>
-		<h5>Pepe-pepe contra Jose-Jose</h5>
-		<br>
-		<div class="container">
-		<div class="form-group row">
-						<label for="resultado" class="col-1 col-form-label">Resultado:</label>
-						<input class="col-3 form-control " id="apellidos" type="text">
-					</div>
-				</div>
+		<form th:action="@{/enfrentamientos/resultado}" class="form-group"
+			th:object="${enfrentamiento}" method="post">
+			<br>
+			<h5 th:text="*{pareja1.nombre} + ' VS ' + *{pareja2.nombre}"></h5>
+			<br> <input type="hidden" th:field="*{id}"> <input
+				type="hidden" th:field="*{campeonato}"> <input type="hidden"
+				th:field="*{pareja1}"> <input type="hidden"
+				th:field="*{pareja2}"> <input type="hidden"
+				th:field="*{reserva}">
+			<!-- 			<input type="hidden" th:field="*{ganador}"> -->
 
-					<form>
-						<br>
-		<h5>Ganador:</h5>
-		  <div class="custom-control custom-radio custom-control-inline">
-		    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
-		    <label class="custom-control-label" for="customRadio">Local</label>
-		  </div>
-		  <div class="custom-control custom-radio custom-control-inline">
-		    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
-		    <label class="custom-control-label" for="customRadio2">Visitante</label>
-		  </div>
-</form>
-<br>
-<button class="btn btn-info" type="submit">Guardar resultado</button>
+			<div class="form-group row">
+				<label class="col-4 col-form-label" for="resultado">Resultado</label>
+				<input class="col-3 form-control" id="resultado" type="text"
+					th:field="*{resultado}">
+			</div>
+			<div class="form-group row">
+				<label class="col-4 col-form-label" for="customRadio">Ganador</label>
+				<label class="col-2 col-form-label" for="customRadio1"> <input
+					type="radio" id="customRadio1" name="ganoPrimero" th:value="true"
+					th:text="*{pareja1.nombre}"></label><br> <label
+					class="col-2 col-form-label" for="customRadio2"> <input
+					type="radio" id="customRadio2" name="ganoPrimero" th:value="false"
+					th:text="*{pareja2.nombre}"></label>
+			</div>
+			<br>
+			<button class="btn btn-info" type="submit">Guardar resultado</button>
+		</form>
 	</section>
 
 	<script src="js/jquery.js"></script>
