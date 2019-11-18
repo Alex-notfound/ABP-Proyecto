@@ -73,6 +73,9 @@ public class ReservasController {
 
 		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek)) {
 			reservaService.save(reserva);
+			if (reservaService.findPistaForReserva(reserva) == null) {
+				partidoService.CerrarPartidosAbiertos(reserva);
+			}
 			if (reservaService.findReservaForToday() == null) {
 				partidoService.CerrarPartidosAbiertos();
 			}
@@ -122,15 +125,6 @@ public class ReservasController {
 		reservaService.save(reserva);
 		return "redirect:/reservas/";
 	}
-
-//	@GetMapping("/liberar/{id}")
-//	public String liberar(@PathVariable Long id, Model model) {
-//		Reserva reserva = reservaService.get(id);
-//		reserva.setUsuario(null);
-//		reserva.setDisponible(true);
-//		reservaService.save(reserva);
-//		return "redirect:/reservas/";
-//	}
 
 	public void addUserToModel(Principal usuario, Model model) {
 		model.addAttribute("sesion", usuarioService.getUsuario(usuario));

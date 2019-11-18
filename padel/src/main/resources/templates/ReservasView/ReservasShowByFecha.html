@@ -24,7 +24,7 @@
 		<h3 th:text="'Reservas para la fecha ' + ${fecha}"></h3>
 		<span> <a th:href="@{/reservas/save/0}" class="btn btn-primary">Buscar
 				en otra fecha</a>
-		</span>
+		</span> <br>
 
 		<div th:each="e : ${map}">
 			<form

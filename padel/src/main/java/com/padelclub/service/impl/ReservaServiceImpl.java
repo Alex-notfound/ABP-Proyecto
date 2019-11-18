@@ -51,7 +51,9 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 		for (Pista pista : pistas) {
 			map.put(pista, new ArrayList<>());
 			for (int j = 0; j < horas.length; j++) {
-				if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista) != null) {
+				if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista) != null
+						&& !reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista)
+								.isDisponible()) {
 					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], false));
 				} else {
 					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], true));
@@ -87,6 +89,19 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 					reserva.setDisponible(true);
 					return reserva;
 				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Reserva findPistaForReserva(Reserva reserva) {
+		List<Pista> pistas = pistaService.getAll();
+		for (Pista pista : pistas) {
+			if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), reserva.getHora(), pista) == null) {
+				reserva.setPista(pista);
+				reserva.setDisponible(false);
+				return reserva;
 			}
 		}
 		return null;

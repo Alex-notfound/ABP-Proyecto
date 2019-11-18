@@ -18,4 +18,6 @@ public interface PartidoService extends GenericServiceAPI<Partido, Long> {
 	boolean existePartido(Reserva reservaGuardada);
 
 	void CerrarPartidosAbiertos();
+
+	void CerrarPartidosAbiertos(Reserva reserva);
 }

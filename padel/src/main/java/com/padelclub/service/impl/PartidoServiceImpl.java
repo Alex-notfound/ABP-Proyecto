@@ -53,4 +53,16 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 		}
 	}
 
+	@Override
+	public void CerrarPartidosAbiertos(Reserva reserva) {
+		List<Partido> partidos = partidoRepository.findAllByAbiertoAndTipo(true, "Promocionado");
+		for (Partido partido : partidos) {
+			Reserva reservaPartido = partido.getReserva();
+			if (reservaPartido.getFecha().equals(reserva.getFecha())
+					&& reservaPartido.getHora().equals(reserva.getHora())) {
+				this.delete(partido.getId());
+			}
+		}
+	}
+
 }

@@ -23,4 +23,6 @@ public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 
 	public Reserva findReservaForToday();
 
+	public Reserva findPistaForReserva(Reserva reserva);
+
 }

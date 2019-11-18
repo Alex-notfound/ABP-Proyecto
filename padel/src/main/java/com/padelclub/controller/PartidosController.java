@@ -65,17 +65,10 @@ public class PartidosController {
 		if (id != null && id != 0) {
 			model.addAttribute("reserva", reservaService.get(id));
 		} else {
-			if (usuarioService.getUsuario(usuarioLogeado).isAdministrador()) {
-				System.err.println("ADMIN");
-				Partido partido = new Partido();
-				partido.setTipo("Promocionado");
-				partido.setReserva(reservaService.save(new Reserva()));
-				partidoService.save(partido);
-				return index(model, usuarioLogeado);
-			}
 			model.addAttribute("reserva", new Reserva());
 		}
 		model.addAttribute("partido", true);
+
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasForm";
 	}
@@ -83,8 +76,7 @@ public class PartidosController {
 	@PostMapping("/save")
 	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal principal, Model model) {
 		Usuario usuario = usuarioService.getUsuario(principal);
-		reserva.setPista(pistaService.get(idPista));
-		reserva.setDisponible(false);
+		reserva.setDisponible(true);
 		reserva.setUsuario(usuario);
 		Reserva reservaGuardada = reservaService.save(reserva);
 
@@ -144,10 +136,9 @@ public class PartidosController {
 			if (usuarioPartidoService.getNumJugadoresPartido(partido) == 4) {
 				partido.setAbierto(false);
 				if (partido.getTipo().equals("Promocionado")) {
-					Reserva reserva = reservaService.findReservaForToday();
+					Reserva reserva = reservaService.findPistaForReserva(partido.getReserva());
 					if (reserva != null) {
 						reservaService.save(reserva);
-						partido.setReserva(reserva);
 						partidoService.save(partido);
 					} else {
 						partidoService.delete(idPartido);
@@ -157,6 +148,7 @@ public class PartidosController {
 		}
 
 		return "redirect:/partidos/";
+
 	}
 
 	public void addUserToModel(Principal usuario, Model model) {
