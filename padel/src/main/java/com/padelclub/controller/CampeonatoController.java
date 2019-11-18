@@ -1,6 +1,7 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import com.padelclub.model.Campeonato;
 import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
+import com.padelclub.model.Usuario;
 import com.padelclub.service.api.CampeonatoService;
 import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.ParejaCampeonatoService;
@@ -87,22 +89,31 @@ public class CampeonatoController {
 
 	@RequestMapping("/inscribir/{idCampeonato}")
 	public String inscribir(@PathVariable("idCampeonato") Long idCampeonato, @RequestParam("dni") String dni,
-			Pareja pareja, Principal usuario, Model model) {
+			Pareja pareja, Principal usuarioLogeado, Model model) {
 
-		pareja.setMiembro1(usuarioService.getUsuario(usuario));
-		pareja.setMiembro2(usuarioService.getUsuarioByDni(dni));
-
+		Usuario miembro1 = usuarioService.getUsuario(usuarioLogeado);
+		Usuario miembro2 = usuarioService.getUsuarioByDni(dni);
 		Campeonato campeonato = campeonatoService.get(idCampeonato);
-		ParejaCampeonato parejaCampeonato = new ParejaCampeonato();
-		parejaCampeonato.setId(new ParejaCampeonatoId(campeonato, parejaService.save(pareja)));
-		parejaCampeonatoService.save(parejaCampeonato);
 
-		if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
-				.getNumParticipantesByCampeonato(campeonato)) {
-			System.err.println("SORTEA CAMPEONATO");
-			campeonatoService.sorteo(parejaCampeonatoService.getParejasByCampeonato(campeonato), campeonato);
+		if (parejaCampeonatoService.validarInscripcion(miembro1, miembro2, campeonato)) {
+
+			pareja.setMiembro1(miembro1);
+			pareja.setMiembro2(miembro2);
+
+			ParejaCampeonato parejaCampeonato = new ParejaCampeonato();
+			parejaCampeonato.setId(new ParejaCampeonatoId(campeonato, parejaService.save(pareja)));
+			parejaCampeonatoService.save(parejaCampeonato);
+
+			if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
+					.getNumParticipantesByCampeonato(campeonato)) {
+				System.err.println("SORTEA CAMPEONATO");
+				campeonatoService.sorteo(parejaCampeonatoService.getParejasByCampeonato(campeonato), campeonato);
+			}
+			return "redirect:/campeonatos/";
+		} else {
+			model.addAttribute("error", "No cumples los requisitos");
+			return index(model, usuarioLogeado);
 		}
-		return "redirect:/campeonatos/";
 	}
 
 	@GetMapping("/consultar/{id}")

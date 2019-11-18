@@ -52,4 +52,28 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 	public List<ParejaCampeonato> getClasificacion(Campeonato campeonato) {
 		return parejaCampeonatoRepository.findAllByCampeonatoOrderByPuntos(campeonato.getId());
 	}
+
+	@Override
+	public boolean validarInscripcion(Usuario miembro1, Usuario miembro2, Campeonato campeonato) {
+		List<Pareja> parejasInscritas = getParejasByCampeonato(campeonato);
+		for (Pareja pareja : parejasInscritas) {
+			Usuario inscrito1 = pareja.getMiembro1();
+			Usuario inscrito2 = pareja.getMiembro2();
+			if (inscrito1.equals(miembro1) || inscrito1.equals(miembro2) || inscrito2.equals(miembro1)
+					|| inscrito2.equals(miembro2)) {
+				return false;
+			}
+		}
+		if (campeonato.getCategoria().equals("Mixto")) {
+			return true;
+		} else if (campeonato.getCategoria().equals("Masculino")) {
+			return miembro1.getSexo().equals("Masculino") && miembro2.getSexo().equals("Masculino");
+		} else if (campeonato.getCategoria().equals("Femenino")) {
+			return miembro1.getSexo().equals("Femenino") && miembro2.getSexo().equals("Femenino");
+		} else {
+			return false;
+		}
+
+	}
+
 }

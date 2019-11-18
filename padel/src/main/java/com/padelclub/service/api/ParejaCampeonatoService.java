@@ -19,4 +19,6 @@ public interface ParejaCampeonatoService extends GenericServiceAPI<ParejaCampeon
 
 	public List<ParejaCampeonato> getClasificacion(Campeonato campeonato);
 
+	public boolean validarInscripcion(Usuario miembro1, Usuario miembro2, Campeonato campeonato);
+
 }
