@@ -14,7 +14,7 @@ public class GeneralController {
 
 	@RequestMapping("/prueba2")
 	public String prueba2(Model model) {
-		return "login";
+		return "CampeonatosView/ResultadoForm";
 	}
 
 }
