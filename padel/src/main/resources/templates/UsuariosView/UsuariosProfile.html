@@ -111,36 +111,8 @@
 			</table>
 		</div>
 	</section>
-
-	<section class="container">
-		<div class="container">
-			<br>
-			<h4>Mis campeonatos</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Categoria</th>
-						<th>Nivel</th>
-						<th>Participantes apuntados</th>
-						<th>Precio de inscripción</th>
-						<th>Inscripción hasta</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="campeonato : ${campeonatos}">
-						<td th:text="${campeonato.id}"></td>
-						<td th:text="${campeonato.categoria}"></td>
-						<td th:text="${campeonato.nivel}"></td>
-						<td th:text="${campeonato.numParticipantes}"></td>
-						<td th:text="${campeonato.precioInscripcion}"></td>
-						<td th:text="${campeonato.limiteInscripcion}"></td>
-				</tbody>
-			</table>
-		</div>
-	</section>
 	<br>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
