@@ -1,5 +1,7 @@
 .myheader {
-	background: url("padel1.jpg");
+	background: url("padel.jpg");
 	background-size: cover;
 	overflow: hidden;
+	height: 75px;
+	margin-bottom: 10px;
 }

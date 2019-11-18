@@ -17,8 +17,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// Necesario para evitar que la seguridad se aplique a los resources
 	// Como los css, imagenes y javascripts
-	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**",
-			"/usuarios/save/0", "/usuarios/save" };
+	String[] resources = new String[] { "/header.css", "/padel.jpg", "/include/**", "/css/**", "/icons/**", "/img/**",
+			"/js/**", "/layer/**", "/usuarios/save/0", "/usuarios/save", "/static/**", "../static/**", "*.css", "*.jpg",
+			"src/main/resources/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

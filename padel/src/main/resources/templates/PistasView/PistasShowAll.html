@@ -3,29 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>padelGest</title>
-
 <link href="../../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
-
-
-<link rel="stylesheet" href="../../static/header.css">
+<link rel="stylesheet" th:href="@{/header.css}">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 	<div th:replace="barranav :: header"></div>
-	<div class="jumbotron">
+	<div class="myheader">
 		<h4>Pistas</h4>
 	</div>
 	<div class="container">
 		<div>
-			<a th:href="@{/pistas/save/0}" class="btn btn-info">Agregar
-				pista</a>
+			<a th:href="@{/pistas/save/0}" class="btn btn-info">Agregar pista</a>
 		</div>
 		<br>
 		<h2 th:if="${list.isEmpty()}">No hay pistas</h2>
