@@ -18,7 +18,7 @@ public class Enfrentamiento {
 	private Pareja pareja1;
 	@ManyToOne
 	private Pareja pareja2;
-	@Column
+	@Column(columnDefinition = "varchar(255) default ''")
 	private String resultado;
 	@ManyToOne
 	private Pareja ganador;

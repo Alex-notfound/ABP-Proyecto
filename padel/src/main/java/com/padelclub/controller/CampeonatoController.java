@@ -59,6 +59,7 @@ public class CampeonatoController {
 
 	@PostMapping("/save")
 	public String save(Campeonato campeonato, Model model) {
+		campeonato.setAbierto(true);
 		campeonatoService.save(campeonato);
 		return "redirect:/campeonatos/";
 	}

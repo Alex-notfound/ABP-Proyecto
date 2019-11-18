@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity
 public class Usuario {
 
@@ -31,13 +29,13 @@ public class Usuario {
 	private String password;
 	@Column
 	private int telefono;
-	@Column
+	@Column(columnDefinition = "bit default b'0'")
 	private boolean administrador;
 	@Column
 	private Date fechaNacimiento;
-	@Column
+	@Column(columnDefinition = "bit default b'0'")
 	private boolean enabled;
-	@ColumnDefault("Masculino")
+	@Column(columnDefinition = "varchar(255) default 'Masculino'")
 	private String sexo;
 
 	@ManyToMany(fetch = FetchType.EAGER)
