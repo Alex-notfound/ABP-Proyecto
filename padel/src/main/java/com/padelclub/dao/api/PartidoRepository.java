@@ -17,4 +17,6 @@ public interface PartidoRepository extends JpaRepository<Partido, Long> {
 	List<Partido> findAllByUsuario(@Param("usuario") Long usuario);
 
 	Partido findByReserva(Reserva reserva);
+
+	List<Partido> findAllByAbiertoAndTipo(boolean b, String string);
 }

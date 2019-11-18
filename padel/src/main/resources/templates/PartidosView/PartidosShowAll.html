@@ -48,9 +48,12 @@
 				</thead>
 				<tbody>
 					<tr th:each="entry : ${map}">
-						<td th:text="${entry.key.reserva.pista.numero}">
-						<td th:text="${entry.key.reserva.fecha}">
-						<td th:text="${entry.key.reserva.hora}">
+						<td
+							th:text="${entry.key.reserva.pista} ? ${entry.key.reserva.pista.numero} : ''">
+						<td
+							th:text="${entry.key.reserva.fecha} ? ${entry.key.reserva.fecha} : ''">
+						<td
+							th:text="${entry.key.reserva.hora} ? ${entry.key.reserva.hora} : ''">
 						<td th:text="${entry.key.tipo}">
 						<td th:each="jugador : ${entry.value}" th:text=${jugador.nombre}></td>
 						<td th:if="${#lists.size(entry.value)} < 4"

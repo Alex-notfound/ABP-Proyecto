@@ -44,4 +44,13 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 		return partidoRepository.findByReserva(reserva) != null;
 	}
 
+	@Override
+	public void CerrarPartidosAbiertos() {
+		List<Partido> partidos = partidoRepository.findAllByAbiertoAndTipo(true, "Promocionado");
+		System.err.println("CERRANDO PARTIDOS: " + partidos.size());
+		for (Partido partido : partidos) {
+			this.delete(partido.getId());
+		}
+	}
+
 }

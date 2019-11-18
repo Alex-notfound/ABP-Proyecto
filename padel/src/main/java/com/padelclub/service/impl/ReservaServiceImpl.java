@@ -1,8 +1,9 @@
 package com.padelclub.service.impl;
 
-import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import com.padelclub.dao.api.ReservaRepository;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
 
@@ -24,6 +26,8 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 
 	@Autowired
 	private ReservaRepository reservaRepository;
+	@Autowired
+	private PistaService pistaService;
 
 	@Override
 	public CrudRepository<Reserva, Long> getDao() {
@@ -65,6 +69,27 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	@Override
 	public int getNumReservasByUsuario(Usuario usuario) {
 		return reservaRepository.countByUsuario(usuario);
+	}
+
+	@Override
+	public Reserva findReservaForToday() {
+		Calendar c = Calendar.getInstance();
+		Date fecha = new java.sql.Date(c.getTimeInMillis());
+		List<Pista> pistas = pistaService.getAll();
+		String[] horas = { "9.00", "10.30", "12.00", "13.30", "15.00", "16.30", "18.00", "19.30", "21.00" };
+		for (Pista pista : pistas) {
+			for (int j = 0; j < horas.length; j++) {
+				if (reservaRepository.findByFechaAndHoraAndPista(fecha, horas[j], pista) == null) {
+					Reserva reserva = new Reserva();
+					reserva.setFecha(fecha);
+					reserva.setHora(horas[j]);
+					reserva.setPista(pista);
+					reserva.setDisponible(true);
+					return reserva;
+				}
+			}
+		}
+		return null;
 	}
 
 }

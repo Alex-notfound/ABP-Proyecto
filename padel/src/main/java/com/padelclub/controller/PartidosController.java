@@ -65,6 +65,14 @@ public class PartidosController {
 		if (id != null && id != 0) {
 			model.addAttribute("reserva", reservaService.get(id));
 		} else {
+			if (usuarioService.getUsuario(usuarioLogeado).isAdministrador()) {
+				System.err.println("ADMIN");
+				Partido partido = new Partido();
+				partido.setTipo("Promocionado");
+				partido.setReserva(reservaService.save(new Reserva()));
+				partidoService.save(partido);
+				return index(model, usuarioLogeado);
+			}
 			model.addAttribute("reserva", new Reserva());
 		}
 		model.addAttribute("partido", true);
@@ -133,6 +141,19 @@ public class PartidosController {
 			UsuarioPartido usuarioPartido = new UsuarioPartido();
 			usuarioPartido.setId(new UsuarioPartidoId(partido, usuario));
 			usuarioPartidoService.save(usuarioPartido);
+			if (usuarioPartidoService.getNumJugadoresPartido(partido) == 4) {
+				partido.setAbierto(false);
+				if (partido.getTipo().equals("Promocionado")) {
+					Reserva reserva = reservaService.findReservaForToday();
+					if (reserva != null) {
+						reservaService.save(reserva);
+						partido.setReserva(reserva);
+						partidoService.save(partido);
+					} else {
+						partidoService.delete(idPartido);
+					}
+				}
+			}
 		}
 
 		return "redirect:/partidos/";

@@ -16,4 +16,6 @@ public interface PartidoService extends GenericServiceAPI<Partido, Long> {
 	List<Partido> findAllByUsuario(Usuario usuario);
 
 	boolean existePartido(Reserva reservaGuardada);
+
+	void CerrarPartidosAbiertos();
 }

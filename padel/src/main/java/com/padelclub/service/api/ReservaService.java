@@ -21,4 +21,6 @@ public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 
 	public int getNumReservasByUsuario(Usuario usuario);
 
+	public Reserva findReservaForToday();
+
 }

@@ -1,10 +1,7 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
+import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
@@ -32,6 +30,8 @@ public class ReservasController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private PistaService pistaService;
+	@Autowired
+	private PartidoService partidoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String index(Model model, Principal usuarioLogeado) {
@@ -73,6 +73,9 @@ public class ReservasController {
 
 		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek)) {
 			reservaService.save(reserva);
+			if (reservaService.findReservaForToday() == null) {
+				partidoService.CerrarPartidosAbiertos();
+			}
 		} else {
 			model.addAttribute("error", "La fecha no es válida");
 			return index(model, usuarioLogeado);
