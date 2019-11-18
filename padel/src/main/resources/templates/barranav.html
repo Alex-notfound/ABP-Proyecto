@@ -32,7 +32,8 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-item nav-link active" th:href="@{/}">INICIO<span
-						class="sr-only">(current)</span></a> <a class="nav-item nav-link"
+						class="sr-only">(current)</span></a> <a
+						th:unless="${sesion.administrador}" class="nav-item nav-link"
 						th:href="@{/reservas/}">RESERVAS</a> <a class="nav-item nav-link"
 						th:href="@{/campeonatos/}">CAMPEONATOS</a>
 					<div class="nav-item dropdown">
