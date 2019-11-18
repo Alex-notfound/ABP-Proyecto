@@ -71,7 +71,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="partido : ${partidos}">
-						<td th:text="${partido.reserva.pista.numero}"></td>
+						<td
+							th:text="${partido.reserva.pista} ? ${partido.reserva.pista.numero} : '' "></td>
 						<td th:text="${partido.reserva.fecha}"></td>
 						<td th:text="${partido.reserva.hora}"></td>
 						<td th:text="${partido.tipo}"></td>
@@ -100,7 +101,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="reserva : ${reservas}">
-						<td th:text="${reserva.pista.numero}"></td>
+						<td th:text="${reserva.pista} ? ${reserva.pista.numero} : ''"></td>
 						<td th:text="${reserva.fecha}"></td>
 						<td th:text="${reserva.hora}"></td>
 						<td><a th:href="@{/reservas/delete/{id}(id=${reserva.id})}">Borrar
