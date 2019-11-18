@@ -24,6 +24,9 @@
 	</div>
 
 	<div class="container">
+		<div th:if="${sesion.administrador}">
+			<a th:href="@{/campeonatos/playoff/0}" class="btn btn-info">Playoff</a>
+		</div>
 		<br>
 		<h4>Partidos de la liga</h4>
 		<br>
@@ -51,10 +54,10 @@
 						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
 					<td
 						th:text="${enfrentamiento.reserva.pista} ? ${enfrentamiento.reserva.pista.numero} : ''"></td>
-					<td><a
+					<td><a th:if="${sesion.administrador}"
 						th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Editar
 							fecha</a></td>
-					<td><a
+					<td><a th:if="${sesion.administrador}"
 						th:href="@{/enfrentamientos/resultado/{id}(id=${enfrentamiento.id})}">Añadir
 							resultado</a></td>
 				</tr>

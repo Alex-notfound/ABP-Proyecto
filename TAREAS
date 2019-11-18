@@ -17,10 +17,6 @@ HACER MANUAL
 USUARIO
 	-Añadir sexo
 	-Calcular edad y validar inscripcion campeonato(comprobar si ya está inscrito y si cumple los requisitos)
-	-Editar resultado y ganador
-
-VISTAS VISIBLES SOLO PARA ADMINISTRADOR:
-	-ResultadoForm
 
 VISTAS VISIBLES SOLO PARA DEPORTISTA
 -NotifiacionShow
