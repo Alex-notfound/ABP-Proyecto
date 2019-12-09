@@ -36,14 +36,14 @@ public class ReservasController {
 	private PartidoService partidoService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model, Principal usuarioLogeado) {
+	public String list(Model model, Principal usuarioLogeado) {
 		model.addAttribute("list", reservaService.getAllFromUser(usuarioService.getUsuario(usuarioLogeado)));
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
+	public String mostrarForm(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (reservaService.getNumReservasByUsuario(usuarioService.getUsuario(usuarioLogeado)) <= 5) {
 			if (id != null && id != 0) {
 				model.addAttribute("reserva", reservaService.get(id));
@@ -52,14 +52,14 @@ public class ReservasController {
 			}
 		} else {
 			model.addAttribute("error", "Ya tienes 5 reservas a tu nombre");
-			return index(model, usuarioLogeado);
+			return list(model, usuarioLogeado);
 		}
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasForm";
 	}
 
 	@PostMapping("/save")
-	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
+	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
 		reserva.setPista(pistaService.get(idPista));
 		reserva.setDisponible(false);
 		reserva.setUsuario(usuarioService.getUsuario(usuarioLogeado));
@@ -83,7 +83,7 @@ public class ReservasController {
 			}
 		} else {
 			model.addAttribute("error", "Los datos no son válida");
-			return index(model, usuarioLogeado);
+			return list(model, usuarioLogeado);
 		}
 		return "redirect:/reservas/";
 	}
@@ -101,7 +101,7 @@ public class ReservasController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+	public String borrar(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 
 		Calendar fechaActual = Calendar.getInstance();
 
@@ -113,7 +113,7 @@ public class ReservasController {
 			reservaService.delete(id);
 		} else {
 			model.addAttribute("error", "No se puede liberar una reserva con tan poca antelación");
-			return index(model, usuarioLogeado);
+			return list(model, usuarioLogeado);
 		}
 		return "redirect:/reservas/";
 	}
