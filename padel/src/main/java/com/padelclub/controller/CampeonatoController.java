@@ -109,6 +109,8 @@ public class CampeonatoController {
 			if (campeonato.getMaxNumParticipantes() == parejaCampeonatoService
 					.getNumParticipantesByCampeonato(campeonato)) {
 				campeonatoService.sorteo(parejaCampeonatoService.getParejasByCampeonato(campeonato), campeonato);
+				campeonato.setAbierto(false);
+				campeonatoService.save(campeonato);
 			}
 			return "redirect:/campeonatos/";
 		} else {
