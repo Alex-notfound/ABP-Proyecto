@@ -24,14 +24,14 @@ public class PistasController {
 	private UsuarioService usuarioService;
 
 	@RequestMapping({ "", "/" })
-	public String index(Model model, Principal usuarioLogeado) {
+	public String listar(Model model, Principal usuarioLogeado) {
 		model.addAttribute("list", pistaService.getAll());
 		addUserToModel(usuarioLogeado, model);
 		return "PistasView/PistasShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
+	public String mostrarForm(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("pista", pistaService.get(id));
 		} else {
@@ -48,7 +48,7 @@ public class PistasController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id, Model model) {
+	public String borrar(@PathVariable Long id, Model model) {
 		pistaService.delete(id);
 		return "redirect:/pistas/";
 	}

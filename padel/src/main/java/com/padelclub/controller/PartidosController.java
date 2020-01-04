@@ -40,7 +40,7 @@ public class PartidosController {
 	private UsuarioService usuarioService;
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model, Principal usuarioLogeado) {
+	public String listAll(Model model, Principal usuarioLogeado) {
 		model.addAttribute("map", usuarioPartidoService.getListado(partidoService.getAll()));
 		addUserToModel(usuarioLogeado, model);
 		return "PartidosView/PartidosShowAll";
@@ -61,7 +61,7 @@ public class PartidosController {
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
+	public String mostrarForm(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("reserva", reservaService.get(id));
 		} else {
@@ -74,7 +74,7 @@ public class PartidosController {
 	}
 
 	@PostMapping("/save")
-	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal principal, Model model) {
+	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal principal, Model model) {
 		Usuario usuario = usuarioService.getUsuario(principal);
 		reserva.setDisponible(true);
 		reserva.setUsuario(usuario);
@@ -108,7 +108,7 @@ public class PartidosController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id, Principal principal, Model model) {
+	public String borrar(@PathVariable Long id, Principal principal, Model model) {
 		Usuario usuario = usuarioService.getUsuario(principal);
 		Partido partido = partidoService.get(id);
 		if (usuario.isAdministrador()

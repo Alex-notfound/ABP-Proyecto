@@ -33,14 +33,14 @@ public class UsuariosController {
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
 
 	@RequestMapping(value = { "", "/" })
-	public String index(Model model, Principal usuarioLogeado) {
+	public String listar(Model model, Principal usuarioLogeado) {
 		model.addAttribute("list", usuarioService.getAll());
 		addUserToModel(usuarioLogeado, model);
 		return "UsuariosView/UsuariosShowAll";
 	}
 
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
+	public String cargarForm(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
 		if (id != null && id != 0) {
 			model.addAttribute("usuario", usuarioService.get(id));
 		} else {
@@ -53,20 +53,20 @@ public class UsuariosController {
 	}
 
 	@PostMapping("/save")
-	public String save(Usuario usuario, Model model) {
+	public String guardar(Usuario usuario, Model model) {
 		usuario.setPassword(encoder.encode(usuario.getPassword()));
 		usuarioService.save(usuario);
 		return "redirect:/usuarios/";
 	}
 
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable Long id, Model model) {
+	public String borrar(@PathVariable Long id, Model model) {
 		usuarioService.delete(id);
 		return "redirect:/usuarios/";
 	}
 
 	@GetMapping("/profile/{id}")
-	public String myprofile(@PathVariable Long id, Principal principalUsuario, Model model, Principal usuarioLogeado) {
+	public String mostrarPerfil(@PathVariable Long id, Principal principalUsuario, Model model, Principal usuarioLogeado) {
 		Usuario usuario;
 		if (id != null && id != 0) {
 			usuario = usuarioService.get(id);
