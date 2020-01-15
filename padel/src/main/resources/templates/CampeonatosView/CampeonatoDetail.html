@@ -20,9 +20,10 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-		<h4>Detalles de Campeonato</h4>
+		<div style="padding-left:10px;">
+		<p><h6> </h6><h4>Detalles de campeonato</h4></p>
 	</div>
-
+	</div>
 	<div class="container">
 		<div th:if="${sesion.administrador}">
 			<a th:href="@{/campeonatos/playoff/0}" class="btn btn-info">Playoff</a>

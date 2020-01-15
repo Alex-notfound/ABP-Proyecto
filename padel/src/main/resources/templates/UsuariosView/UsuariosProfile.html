@@ -18,7 +18,9 @@
 	<div th:replace="barranav :: header"></div>
 
 	<div class="myheader">
-		<h4>Mi cuenta</h4>
+		<div style="padding-left:10px;">
+		<p><h6> </h6><h4>Mi cuenta</h4></p>
+	</div>
 	</div>
 
 	<div th:unless="${sesion.administrador}" class="container">
