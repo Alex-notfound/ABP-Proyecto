@@ -1,10 +1,3 @@
-#TAREAS DANI:
--Crear sentencias insert en todas las tablas
--Inicialización de BD por defecto
--Arreglar validacion precio inscripción
--Añadir icono notificacion
--Detectar fallos y visibilidad para usuarios y anotarlos
-------------------------------------------
 #CHECKEAR:
 -Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
 -Añadir notificacion enfrentamiento
@@ -12,7 +5,6 @@
 --------------------------------
 #TAREAS ALEX:
 -Accesos a paginas
--Logica campeonatos
 -Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
 -Validaciones
@@ -24,15 +16,20 @@ Mostrar Boton Eliminar Partido solo para creador de la reserva del partido / Cre
 GESTIONAR PLAYOFF
 Gestionar playoff
 
-ACEPTAR PARTIDO CAMPEONATO
+ACEPTAR ENFRENTAMIENTO
 Aceptar partido campeonato (¿desde el perfil?)
 
-GESTIONAR CAMPEONATOS
-Consultar campeonato
+GESTIONAR CAMPEONATO
+Concretar enfrentamiento (envío notificación - mostrar notificacion - aceptación/rechazo - reserva para enfrentamiento)
+
+Eliminar reservas anteriores a la fecha actual
 
 #################################################################################
 TERMINADO
 #################################################################################
+
+GESTIONAR CAMPEONATOS
+Consultar campeonato
 
 GESTIONAR PARTIDOS PROMOCIONADOS
 -Eliminar inscripcion partido promocionado
