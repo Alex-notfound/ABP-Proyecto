@@ -18,9 +18,12 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-		<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Registro de usuarios</h4></p>
-	</div>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Registro de usuarios</h4>
+			</p>
+		</div>
 	</div>
 	<section class="container">
 		<div class="row">
@@ -65,6 +68,11 @@
 							<option value="Masculino">Masculino</option>
 							<option value="Femenino">Femenino</option>
 						</select>
+					</div>
+					<div class="form-group row">
+						<label for="email" class="col-4 col-form-label">Email</label> <input
+							class="form-control col-7" id="email" type="email"
+							th:field="*{email}" required>
 					</div>
 
 					<button class="btn btn-info" type="submit">Registrar</button>
