@@ -13,4 +13,6 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	Campeonato getCampeonatoByReserva(Reserva reservaGuardada);
 
+	Enfrentamiento getByReserva(Reserva reserva);
+
 }

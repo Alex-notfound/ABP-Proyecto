@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padelclub.model.Usuario;
-import com.padelclub.service.api.ReservaService;
+import com.padelclub.service.api.NotificacionService;
 import com.padelclub.service.api.ParejaCampeonatoService;
+import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioPartidoService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -25,6 +26,8 @@ public class UsuariosController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private ReservaService reservaService;
+	@Autowired
+	private NotificacionService notificacionService;
 	@Autowired
 	private ParejaCampeonatoService usuarioCampeonatoService;
 	@Autowired
@@ -66,7 +69,8 @@ public class UsuariosController {
 	}
 
 	@GetMapping("/profile/{id}")
-	public String mostrarPerfil(@PathVariable Long id, Principal principalUsuario, Model model, Principal usuarioLogeado) {
+	public String mostrarPerfil(@PathVariable Long id, Principal principalUsuario, Model model,
+			Principal usuarioLogeado) {
 		Usuario usuario;
 		if (id != null && id != 0) {
 			usuario = usuarioService.get(id);
@@ -74,6 +78,7 @@ public class UsuariosController {
 			usuario = usuarioService.getUsuario(principalUsuario);
 		}
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("notificaciones", notificacionService.getAllByCapitanReceptor(usuario));
 		model.addAttribute("reservas", reservaService.findAllByUsuario(usuario));
 		model.addAttribute("partidos", usuarioPartidoService.getPartidosByUsuario(usuario));
 		model.addAttribute("campeonatos", usuarioCampeonatoService.findAllCampeonatosByUsuario(usuario));

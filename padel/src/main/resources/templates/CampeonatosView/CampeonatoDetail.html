@@ -20,9 +20,12 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-		<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Detalles de campeonato</h4></p>
-	</div>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Detalles de campeonato</h4>
+			</p>
+		</div>
 	</div>
 	<div class="container">
 		<div th:if="${sesion.administrador}">
@@ -41,7 +44,7 @@
 					<th>Hora</th>
 					<th>Pista</th>
 					<th></th>
-					<th></th>
+					<th th:if="${sesion.administrador}"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,10 +58,12 @@
 						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
 					<td
 						th:text="${enfrentamiento.reserva.pista} ? ${enfrentamiento.reserva.pista.numero} : ''"></td>
-					<td><a th:if="${sesion.administrador}"
-						th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Editar
+					<td><a
+						th:if="${enfrentamiento.reserva.fecha==null} AND (${enfrentamiento.pareja1.miembro1.id} == ${idUsuarioLogueado} OR 
+						${enfrentamiento.pareja2.miembro1.id} == ${idUsuarioLogueado})"
+						th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Proponer
 							fecha</a></td>
-					<td><a th:if="${sesion.administrador}"
+					<td th:if="${sesion.administrador}"><a
 						th:href="@{/enfrentamientos/resultado/{id}(id=${enfrentamiento.id})}">Añadir
 							resultado</a></td>
 				</tr>

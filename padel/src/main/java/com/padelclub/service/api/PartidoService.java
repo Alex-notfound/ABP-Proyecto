@@ -20,4 +20,6 @@ public interface PartidoService extends GenericServiceAPI<Partido, Long> {
 	void CerrarPartidosAbiertos();
 
 	void CerrarPartidosAbiertos(Reserva reserva);
+
+	Partido findByReserva(Reserva reserva);
 }

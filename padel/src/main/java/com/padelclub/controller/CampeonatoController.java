@@ -1,7 +1,6 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -125,6 +124,7 @@ public class CampeonatoController {
 
 		model.addAttribute("rondaActual", enfrentamientoService.getAllByCampeonato(campeonato));
 		model.addAttribute("parejas", parejaCampeonatoService.getClasificacion(campeonato));
+		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
 
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoDetail";

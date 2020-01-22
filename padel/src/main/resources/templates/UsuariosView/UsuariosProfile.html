@@ -18,27 +18,12 @@
 	<div th:replace="barranav :: header"></div>
 
 	<div class="myheader">
-		<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Mi cuenta</h4></p>
-	</div>
-	</div>
-
-	<div th:unless="${sesion.administrador}" class="container">
-		<h4>Mis notificaciones</h4>
-		<table class="table">
-			<tbody>
-				<tr>
-					<td>Partido contra Pepe-Pepe</td>
-					<td><button class="btn btn-info" type="submit">Responder
-							notifiación</button></td>
-				</tr>
-				<tr>
-					<td>Partido contra Jose-Jose</td>
-					<td><button class="btn btn-info" type="submit">Responder
-							notifiación</button></td>
-				</tr>
-			</tbody>
-		</table>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Mi cuenta</h4>
+			</p>
+		</div>
 	</div>
 
 	<section class="container">
@@ -52,6 +37,40 @@
 				<h6 th:text="'Fecha de nacimiento: ' + *{fechaNacimiento}"></h6>
 				<h6 th:text="'Telefono: ' + *{telefono}"></h6>
 			</div>
+		</div>
+	</section>
+
+	<section th:if="${!notificaciones.isEmpty()}" class="container">
+		<div class="container">
+			<br>
+			<h4>Notificaciones</h4>
+		</div>
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Oponente</th>
+						<th>Campeonato</th>
+						<th>Día</th>
+						<th>Hora</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="notificacion : ${notificaciones}">
+						<td th:text="${notificacion.emisora.nombre}"></td>
+						<td
+							th:text="${notificacion.campeonato.categoria} + ' - ' + ${notificacion.campeonato.nivel}"></td>
+						<td th:text="${notificacion.reserva.fecha}"></td>
+						<td th:text="${notificacion.reserva.hora}"></td>
+						<td><a
+							th:href="@{/enfrentamientos/aceptar/{id}(id=${notificacion.id})}">Aceptar</a></td>
+						<td><a
+							th:href="@{/enfrentamientos/rechazar/{id}(id=${notificacion.id})}">Rechazar</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</section>
 

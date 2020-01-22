@@ -50,7 +50,7 @@
 						th:if="${sesion.administrador}" class="nav-item nav-link"
 						th:href="@{/pistas/}">PISTAS</a><a class="nav-item nav-link"
 						th:href="@{/usuarios/profile/0}">MI CUENTA <i
-						class="fas fa-bell"></i>
+						class="fas fa-bell"></i><span class="badge badge-light">!</span>
 					</a>
 
 				</div>
@@ -61,7 +61,8 @@
 				</form>
 			</div>
 		</nav>
-		<div th:text="${error} ? ${error} :''"></div>
+		<div th:if="${error!=null}" th:text="${error}"
+			class="alert alert-danger" role="alert"></div>
 	</div>
 </body>
 </html>
