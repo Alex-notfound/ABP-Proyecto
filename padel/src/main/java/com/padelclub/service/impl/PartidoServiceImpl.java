@@ -1,5 +1,6 @@
 package com.padelclub.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 	@Override
 	public boolean existePartido(Reserva reserva) {
 		return partidoRepository.findByReserva(reserva) != null;
+	}
+
+	@Override
+	public Partido findByReserva(Reserva reserva) {
+		return partidoRepository.findByReserva(reserva);
 	}
 
 	@Override

@@ -74,8 +74,15 @@ public class PartidosController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal principal, Model model) {
-		Usuario usuario = usuarioService.getUsuario(principal);
+	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado,
+			Model model) {
+
+		if (!reservaService.validarReserva(reserva)) {
+			model.addAttribute("error", "Los datos no son válidos");
+			return listAll(model, usuarioLogeado);
+		}
+
+		Usuario usuario = usuarioService.getUsuario(usuarioLogeado);
 		reserva.setDisponible(true);
 		reserva.setUsuario(usuario);
 		if (pistaService.get(idPista) != null) {

@@ -3,7 +3,6 @@ package com.padelclub.service.impl;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,7 @@ import com.padelclub.dao.api.ReservaRepository;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaDTO;
 import com.padelclub.service.api.ReservaService;
@@ -28,6 +28,8 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	private ReservaRepository reservaRepository;
 	@Autowired
 	private PistaService pistaService;
+	@Autowired
+	private PartidoService partidoService;
 
 	@Override
 	public CrudRepository<Reserva, Long> getDao() {
@@ -105,6 +107,48 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void deleteReservasAntiguas() {
+		Calendar fechaActual = Calendar.getInstance();
+//		fechaActual.add(Calendar.DAY_OF_MONTH);
+		List<Reserva> list = reservaRepository.findOld(new java.sql.Date(fechaActual.getTimeInMillis()));
+		for (Reserva reserva : list) {
+			if (partidoService.existePartido(reserva)) {
+				partidoService.delete(partidoService.findByReserva(reserva).getId());
+			}
+			reservaRepository.delete(reserva);
+		}
+	}
+
+	@Override
+	public boolean validarReserva(Reserva reserva) {
+		Calendar fechaActual = Calendar.getInstance();
+		fechaActual.add(Calendar.DAY_OF_MONTH, -1);
+
+		Calendar fechaAfterWeek = Calendar.getInstance();
+		fechaAfterWeek.add(Calendar.DAY_OF_MONTH, 7);
+
+		Calendar fechaReserva = Calendar.getInstance();
+		fechaReserva.setTime(reserva.getFecha());
+
+		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek) && reserva.getHora() != null) {
+			save(reserva);
+			if (findPistaForReserva(reserva) == null) {
+				partidoService.CerrarPartidosAbiertos(reserva);
+			}
+			if (findReservaForToday() == null) {
+				partidoService.CerrarPartidosAbiertos();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Reserva findById(Long id) {
+		return reservaRepository.findOneById(id);
 	}
 
 }

@@ -4,8 +4,6 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,11 +30,10 @@ public class ReservasController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private PistaService pistaService;
-	@Autowired
-	private PartidoService partidoService;
 
 	@RequestMapping(value = { "", "/" })
 	public String list(Model model, Principal usuarioLogeado) {
+		reservaService.deleteReservasAntiguas();
 		model.addAttribute("list", reservaService.getAllFromUser(usuarioService.getUsuario(usuarioLogeado)));
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowAll";
@@ -59,30 +56,14 @@ public class ReservasController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
+	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado,
+			Model model) {
 		reserva.setPista(pistaService.get(idPista));
 		reserva.setDisponible(false);
 		reserva.setUsuario(usuarioService.getUsuario(usuarioLogeado));
 
-		Calendar fechaActual = Calendar.getInstance();
-		fechaActual.add(Calendar.DAY_OF_MONTH, -1);
-
-		Calendar fechaAfterWeek = Calendar.getInstance();
-		fechaAfterWeek.add(Calendar.DAY_OF_MONTH, 7);
-
-		Calendar fechaReserva = Calendar.getInstance();
-		fechaReserva.setTime(reserva.getFecha());
-
-		if (fechaReserva.after(fechaActual) && fechaReserva.before(fechaAfterWeek) && reserva.getHora() != null) {
-			reservaService.save(reserva);
-			if (reservaService.findPistaForReserva(reserva) == null) {
-				partidoService.CerrarPartidosAbiertos(reserva);
-			}
-			if (reservaService.findReservaForToday() == null) {
-				partidoService.CerrarPartidosAbiertos();
-			}
-		} else {
-			model.addAttribute("error", "Los datos no son válida");
+		if (!reservaService.validarReserva(reserva)) {
+			model.addAttribute("error", "Los datos no son válidos");
 			return list(model, usuarioLogeado);
 		}
 		return "redirect:/reservas/";
