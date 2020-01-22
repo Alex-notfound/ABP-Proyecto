@@ -37,6 +37,8 @@ public class Usuario {
 	private boolean enabled;
 	@Column(columnDefinition = "varchar(255) default 'Masculino'")
 	private String sexo;
+	@Column
+	private String email;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
@@ -128,6 +130,14 @@ public class Usuario {
 
 	public void setAuthority(Set<Authority> authority) {
 		this.authority = authority;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

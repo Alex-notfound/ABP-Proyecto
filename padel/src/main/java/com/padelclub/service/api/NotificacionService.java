@@ -13,4 +13,6 @@ public interface NotificacionService extends GenericServiceAPI<Notificacion, Lon
 
 	void deleteForEnfrentamiento(Enfrentamiento enfrentamiento);
 
+	void sendEmail(Usuario usuario);
+
 }

@@ -82,6 +82,7 @@ public class EnfrentamientoController {
 			notificacion.setReceptora(pareja1);
 		}
 		notificacionService.save(notificacion);
+		notificacionService.sendEmail(usuario);
 
 		return "redirect:/campeonatos/consultar/" + campeonato.getId();
 	}
