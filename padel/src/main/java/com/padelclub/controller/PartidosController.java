@@ -150,6 +150,8 @@ public class PartidosController {
 					} else {
 						partidoService.delete(idPartido);
 					}
+				} else {
+					partidoService.save(partido);
 				}
 			}
 		}
