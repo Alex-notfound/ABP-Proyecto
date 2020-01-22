@@ -8,21 +8,16 @@
 -Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
 -Validaciones
-
-VISIBILIDAD
-Mostrar Boton Eliminar Partido solo para creador de la reserva del partido / Creador partido 
----Ocultar Boton Inscribirse en partido si está lleno
+-------------------------------
 
 GESTIONAR PLAYOFF
 Gestionar playoff
 
-ACEPTAR ENFRENTAMIENTO
-Aceptar partido campeonato (¿desde el perfil?)
-
 GESTIONAR CAMPEONATO
-Concretar enfrentamiento (envío notificación - mostrar notificacion - aceptación/rechazo - reserva para enfrentamiento)
+Crear grupos
 
-Eliminar reservas anteriores a la fecha actual
+Impedir reservar en el mismo día en horas pasadas
+No hacer reserva en una pista concreta
 
 #################################################################################
 TERMINADO
