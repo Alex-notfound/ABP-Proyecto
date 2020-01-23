@@ -1,0 +1,69 @@
+INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fecha_nacimiento`, `nombre`, `password`, `sexo`, `telefono`, `email`) VALUES
+(1, b'0', 'Duque', '77484954R', b'0', '1998-04-26', 'Daniel', '$2a$04$3yE4piuMJ.ummpSM/jVPG.0EEFTOlZP9IusaUmnwy0n6giywVjD0O', 'Masculino', 673449470, 'a@gmail.com'),
+(2, b'1', 'admin', '12345678A', b'1', '2019-11-01', 'admin', '$2a$04$YFWatPcRPwJflbfhMicUVecegvEqE6k1pvWJCrfaJUR0R1Y0jR/uC', 'Masculino', 697217053, 'b@gmail.com'),
+(3, b'0', 'Rego', '11111111Q', b'0', '1961-02-15', 'Pepe', '$2a$04$W4IqQ.iJLj9anD5y90usN.RA06bM2LMBqdQx4mVbXOveDoiwbjMJe', 'Masculino', 666999333, 'c@gmail.com'),
+(4, b'0', 'Suarez', '99889988G', b'0', '1990-05-22', 'Maria', '$2a$04$SAeyr8PO2dRNx9/4PWIrI.lUoNm7t.L0O7o8TV/VV39tE6MnbzXX6', 'Femenino', 666555444, 'd@gmail.com'),
+(5, b'0', 'Perez', '44444444W', b'0', '1975-08-17', 'Jose', '$2a$04$ypGRPS5KrL8elQOIDD2okuR2Wq5hsb0dX0IcI.BYx0ajUKTsKLDlC', 'Masculino', 698521145, 'e@gmail.com'),
+(6, b'0', 'Ramirez', '14725836H', b'0', '1994-04-04', 'Juan', '$2a$04$P06tx4wfTAOX1InlKAk9KO613XyeSa55xcpwYuCX7YvQ16K4dJ9ta', 'Masculino', 693685625, 'f@gmail.com'),
+(7, b'0', 'del Mar', '99887788N', b'0', '1995-08-26', 'Maria', '$2a$04$GrMcS2bXgJ3OIs3t22KuhuNx8s6REIICfuJio5y.jgQ7lFWXtK/lW', 'Femenino', 632256698, 'g@gmail.com'),
+(8, b'0', 'Mendez', '98765432C', b'0', '1997-02-28', 'Brais', '$2a$04$Z6QhHWnH8ag97iT.9NYMD.kK6IYMqlO2r8bHwXTquFXBTVIqzzVSS', 'Masculino', 666333222, 'h@gmail.com'),
+(9, b'0', 'Nuñez', '33221155Y', b'0', '1991-12-15', 'Tomás', '$2a$04$OT8tLD1fHk/slAyOOqLOC.Zf4jcH1UQzYlNIU0VNpDo6qZxG/groa', 'Masculino', 666999888, 'ie@gmail.com'),
+(10, b'0', 'Crespo', '55446699Z', b'0', '1992-12-18', 'Pablo', '$2a$04$9wPAaZU8M62t3pMdoSnLmuBqCM40Mrko2SO6f8ZM.xnpdkbHdjeM6', 'Masculino', 666888444, 'i@gmail.com'),
+(11, b'0', 'Barros', '77445566H', b'0', '2004-01-17', 'Paula', '$2a$04$s9t.8/KCf34hG03MD24s5OM1vHOxyTaelORDX1STAQQmx4kDAI8Qm', 'Femenino', 741258963, 'je@gmail.com'),
+(12, b'0', 'Lopez', '78965412L', b'0', '1985-04-21', 'Héctor', '$2a$04$wEGnQwa3yhzADa7OLqrZP.U0UJ2iXfLE8PXE6TZm6w36a/YkJimCu', 'Masculino', 654123987, 'el@gmail.com'),
+(13, b'0', 'Puga', '66554455T', b'0', '1987-05-14', 'Manuel', '$2a$04$kjiuSGcebPt9.Zv78cpvm.vH6GID5gJdzRENTaim1mTOVSCV87TXq', 'Masculino', 654987321, 'a@gmail.com'),
+(14, b'0', 'Fonseca', '22113366M', b'0', '1984-08-17', 'Paulo', '$2a$04$wKGfWcMH9yGwLgCBZtX8Y.PCIRirkY1GBNHDxKQUb03EPPOCECuH6', 'Masculino', 654123999, 'h@gmail.com'),
+(15, b'0', 'Rodriguez', '88888888Z', b'0', '1995-08-28', 'Carlos', '$2a$04$6RNQT5UiQT6G3i4Gfl8H2OJO2zITjAiCKj7Dv3tudHguI3V4rrW.6', 'Masculino', 693546871, 'gh@gmail.com'),
+(16, b'0', 'Pereiro', '66699933D', b'0', '1981-09-23', 'Pedro', '$2a$04$y4nUf5aPB06GTWzZKZW2W.cBoNM.pnp38HQ1UHHK7HC/wJTqJYqXK', 'Masculino', 632212369, 'fe@gmail.com'),
+(17, b'0', 'Meira', '99663366A', b'0', '1987-02-02', 'Xavier', '$2a$04$SjUYNHg3X2dLvmNnQleRX.YIO8lCPu.HxAoaVjZkidf10vQH3Sy/O', 'Masculino', 698852369, 'rm@gmail.com'),
+(18, b'0', 'Manrique', '11225544E', b'0', '1964-08-01', 'Jorge', '$2a$04$KLsR8MrwBjX8twU.eC951.vM1JcewOZoSeWD0Z1GlwwjkDUeqWKti', 'Masculino', 666555888, 'sl@gmail.com'),
+(19, b'0', 'Ferro', '78963654V', b'0', '2001-06-25', 'Braulio', '$2a$04$/baJ4pV39XmGw7h2gSx13uB5gX4L7I0/sOO/qgtVH5.tPbqoNqccG', 'Masculino', 699966333, 'js@gmail.com'),
+(20, b'0', 'Caro', '44558877P', b'0', '1985-06-14', 'Alex', '$2a$04$Gj5Wdui39qa4dm9VtQ/bP.k5Tq5JTQzEQ9HoWGQefSMz6ZgQwhwmS', 'Masculino', 654123987, 'ds@gmail.com'),
+(21, b'0', 'Julai', '11111111A', b'0', '2020-01-02', 'Julio', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(22, b'0', 'Arce', '11111111B', b'0', '2020-01-02', 'Jorge', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(23, b'0', 'Ron', '33333333A', b'0', '2020-01-02', 'Jose', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(24, b'0', 'Cao', '33333333B', b'0', '2020-01-02', 'Dani', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(25, b'0', 'Perez', '44444444A', b'0', '2020-01-02', 'David', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(26, b'0', 'Lopez', '44444444B', b'0', '2020-01-02', 'Santi', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(27, b'0', 'Jer', '55555555A', b'0', '2020-01-02', 'Miguel', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(28, b'0', 'Sor', '55555555B', b'0', '2020-01-02', 'Victor', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(29, b'0', 'Sil', '66666666A', b'0', '2020-01-02', 'Pedro', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(30, b'0', 'Mar', '66666666B', b'0', '2020-01-02', 'Rodrigo', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(31, b'0', 'Qer', '77777777A', b'0', '2020-01-02', 'Sergio', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(32, b'0', 'Cas', '77777777B', b'0', '2020-01-02', 'Roi', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(33, b'0', 'Ter', '88888888A', b'0', '2020-01-02', 'Manuel', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(34, b'0', 'Rel', '88888888B', b'0', '2020-01-02', 'Diego', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(35, b'0', 'Rio', '99999999A', b'0', '2020-01-02', 'German', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(36, b'0', 'Sar', '99999999B', b'0', '2020-01-02', 'Pablo', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(37, b'0', 'Col', '00000000A', b'0', '2020-01-02', 'Alejandro', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(38, b'0', 'Gil', '00000000B', b'0', '2020-01-02', 'Marcos', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com');
+
+INSERT INTO `campeonato` (`id`, `abierto`, `categoria`, `limite_inscripcion`, `max_num_participantes`, `nivel`, `precio_inscripcion`) VALUES
+(1, b'1', 'Masculino', '2020-03-01', 16, 'Medio', '5'),
+(2, b'1', 'Femenino', '2020-02-01', 8, 'Alto', '3'),
+(3, b'1', 'Mixto', '2020-02-01', 12, 'Basico', '15'),
+(4, b'1', 'Masculino', '2020-02-01', 12, 'Alto', '25');
+
+INSERT INTO `pista` (`id`, `descripcion`, `numero`) VALUES
+(1, 'Abierta', 1),
+(2, 'Cubierta', 2),
+(3, 'Cubierta con pared de cristal', 3),
+(4, 'Cubierta con pared de cristal y grada', 4);
+
+INSERT INTO `pareja` (`id`, `nombre`, `miembro1_id`, `miembro2_id`) VALUES
+(1, '1A', 21, 22),
+(2, '3A', 23, 24),
+(3, '4A', 25, 26),
+(4, '5A', 27, 28),
+(5, '6A', 29, 30),
+(6, '7A', 31, 32),
+(7, 'Ferro - Manrique', 19, 18);
+
+INSERT INTO `pareja_campeonato` (`grupo`, `puntos`, `campeonato_id`, `pareja_id`) VALUES
+(0, 0, 1, 1),
+(0, 0, 1, 2),
+(0, 0, 1, 3),
+(0, 0, 1, 4),
+(0, 0, 1, 5),
+(0, 0, 1, 6),
+(0, 0, 1, 7);
