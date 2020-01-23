@@ -123,11 +123,12 @@ public class CampeonatoController {
 		Campeonato campeonato = campeonatoService.get(id);
 		if (campeonato.isAbierto()) {
 			model.addAttribute("alistados", parejaCampeonatoService.getClasificacion(campeonato));
-		}
-		if (enfrentamientoService.getFaseActual(campeonato) == 5) {
-			model.addAttribute("final", true);
 		} else {
-			model.addAttribute("final", false);
+			if (enfrentamientoService.getFaseActual(campeonato) == 5) {
+				model.addAttribute("final", true);
+			} else {
+				model.addAttribute("final", false);
+			}
 		}
 		model.addAttribute("campeonato", campeonato);
 		model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 1));
