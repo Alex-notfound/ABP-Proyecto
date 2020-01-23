@@ -66,6 +66,23 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	}
 
 	@Override
+	public List<ReservaDTO> getReservasDao2(Reserva reserva) {
+		String[] horas = { "9.00", "10.30", "12.00", "13.30", "15.00", "16.30", "18.00", "19.30", "21.00" };
+		List<ReservaDTO> list = new ArrayList<>();
+		for (int j = 0; j < horas.length; j++) {
+			Reserva r = reserva;
+			r.setHora(horas[j]);
+			r = findPistaForReserva(r);
+			if (r != null) {
+				list.add(new ReservaDTO(r.getPista(), reserva.getFecha(), horas[j], true));
+			} else {
+				list.add(new ReservaDTO(null, reserva.getFecha(), horas[j], false));
+			}
+		}
+		return list;
+	}
+
+	@Override
 	public List<Reserva> getAllFromUser(Usuario usuario) {
 		return reservaRepository.findAllByUsuario(usuario);
 	}
@@ -102,7 +119,6 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 		for (Pista pista : pistas) {
 			if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), reserva.getHora(), pista) == null) {
 				reserva.setPista(pista);
-				reserva.setDisponible(false);
 				return reserva;
 			}
 		}
@@ -112,7 +128,6 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	@Override
 	public void deleteReservasAntiguas() {
 		Calendar fechaActual = Calendar.getInstance();
-//		fechaActual.add(Calendar.DAY_OF_MONTH);
 		List<Reserva> list = reservaRepository.findOld(new java.sql.Date(fechaActual.getTimeInMillis()));
 		for (Reserva reserva : list) {
 			if (partidoService.existePartido(reserva)) {

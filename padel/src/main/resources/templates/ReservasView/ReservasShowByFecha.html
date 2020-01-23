@@ -18,9 +18,12 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-		<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Partidos</h4></p>
-	</div>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Partidos</h4>
+			</p>
+		</div>
 	</div>
 	<div class="container">
 		<h3 th:text="'Reservas para la fecha ' + ${fecha}"></h3>
@@ -28,27 +31,23 @@
 				en otra fecha</a>
 		</span> <br>
 
-		<div th:each="e : ${map}">
+		<div>
 			<form
 				th:action=" ${partido} ? @{/partidos/save} : (${enfrentamiento} ? @{/enfrentamientos/save} :
 				@{/reservas/save})"
 				class="form-group" th:object="${reserva}" method="post">
-				<h3 th:text="'Pista ' + ${e.key.numero}"></h3>
+				<br> <br>
 				<div class="btn-group btn-group-lg">
 					<input type="hidden" th:field="*{id}"> <input type="hidden"
-						th:field="*{pista}"> <input type="hidden" name="pistaId"
-						th:value="${e.key.id}"><input type="hidden"
+						th:field="*{pista}"> <input type="hidden"
 						th:field="*{fecha}">
 
 					<div class="btn-group btn-group-toggle" data-toggle="buttons"
-						th:each="reservaDao : ${e.value}">
+						th:each="reservaDao : ${list}">
 						<label
 							th:class="${reservaDao.disponible} ? 'btn btn-success' : 'btn btn-danger'"><input
-							th:if="${reservaDao.disponible}" type="radio"
-							th:text="${reservaDao.hora}" th:field="*{hora}"
-							th:value="${reservaDao.hora}"> <span
-							th:unless="${reservaDao.disponible}" th:text="${reservaDao.hora}"></span>
-						</label>
+							type="radio" th:text="${reservaDao.hora}" th:field="*{hora}"
+							th:value="${reservaDao.hora}"> </label>
 					</div>
 				</div>
 				<br> <br>

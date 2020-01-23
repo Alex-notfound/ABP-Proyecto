@@ -2,7 +2,6 @@ package com.padelclub.controller;
 
 import java.security.Principal;
 import java.util.Calendar;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
-import com.padelclub.service.api.PartidoService;
-import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -28,8 +23,6 @@ public class ReservasController {
 	private ReservaService reservaService;
 	@Autowired
 	private UsuarioService usuarioService;
-	@Autowired
-	private PistaService pistaService;
 
 	@RequestMapping(value = { "", "/" })
 	public String list(Model model, Principal usuarioLogeado) {
@@ -56,13 +49,13 @@ public class ReservasController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado,
-			Model model) {
-		reserva.setPista(pistaService.get(idPista));
-		reserva.setDisponible(false);
-		reserva.setUsuario(usuarioService.getUsuario(usuarioLogeado));
-
-		if (!reservaService.validarReserva(reserva)) {
+	public String guardar(Reserva reserva, Principal usuarioLogeado, Model model) {
+		reserva = reservaService.findPistaForReserva(reserva);
+		if (reserva != null && reservaService.validarReserva(reserva)) {
+			reserva.setDisponible(false);
+			reserva.setUsuario(usuarioService.getUsuario(usuarioLogeado));
+			reservaService.save(reserva);
+		} else {
 			model.addAttribute("error", "Los datos no son válidos");
 			return list(model, usuarioLogeado);
 		}
@@ -71,12 +64,9 @@ public class ReservasController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva reserva, Model model, Principal usuarioLogeado) {
-		List<Pista> pistas = pistaService.getAll();
-		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
-		model.addAttribute("pistas", pistas);
+		model.addAttribute("list", reservaService.getReservasDao2(reserva));
 		model.addAttribute("fecha", reserva.getFecha());
 		model.addAttribute("reserva", reserva);
-
 		addUserToModel(usuarioLogeado, model);
 		return "ReservasView/ReservasShowByFecha";
 	}

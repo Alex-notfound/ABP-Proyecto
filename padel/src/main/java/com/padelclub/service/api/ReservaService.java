@@ -3,7 +3,6 @@ package com.padelclub.service.api;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.padelclub.commons.GenericServiceAPI;
 import com.padelclub.model.Pista;
@@ -31,5 +30,7 @@ public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 	public boolean validarReserva(Reserva reserva);
 
 	public Reserva findById(Long id);
+
+	List<ReservaDTO> getReservasDao2(Reserva reserva);
 
 }

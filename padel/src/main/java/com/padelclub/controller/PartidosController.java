@@ -1,7 +1,6 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Partido;
-import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
 import com.padelclub.model.UsuarioPartido;
@@ -38,6 +36,8 @@ public class PartidosController {
 	private ReservaService reservaService;
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private ReservasController reservasController;
 
 	@RequestMapping(value = { "", "/" })
 	public String listAll(Model model, Principal usuarioLogeado) {
@@ -74,20 +74,19 @@ public class PartidosController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado,
-			Model model) {
+	public String guardar(Reserva reserva, Principal usuarioLogeado, Model model) {
 
-		if (!reservaService.validarReserva(reserva)) {
+		reserva = reservaService.findPistaForReserva(reserva);
+
+		if (reserva != null && reservaService.validarReserva(reserva)) {
+			reserva.setDisponible(true);
+		} else {
 			model.addAttribute("error", "Los datos no son válidos");
 			return listAll(model, usuarioLogeado);
 		}
 
 		Usuario usuario = usuarioService.getUsuario(usuarioLogeado);
-		reserva.setDisponible(true);
 		reserva.setUsuario(usuario);
-		if (pistaService.get(idPista) != null) {
-			reserva.setPista(pistaService.get(idPista));
-		}
 		Reserva reservaGuardada = reservaService.save(reserva);
 
 		// Si es una adicion, hay que crear el partido asociandole la reserva
@@ -129,13 +128,8 @@ public class PartidosController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva reserva, Model model, Principal usuarioLogeado) {
-		List<Pista> pistas = pistaService.getAll();
-		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
-		model.addAttribute("pistas", pistas);
-		model.addAttribute("fecha", reserva.getFecha());
 		model.addAttribute("partido", true);
-		addUserToModel(usuarioLogeado, model);
-		return "ReservasView/ReservasShowByFecha";
+		return reservasController.buscar(reserva, model, usuarioLogeado);
 	}
 
 	@GetMapping("/inscribir/{id}")
@@ -152,6 +146,7 @@ public class PartidosController {
 				if (partido.getTipo().equals("Promocionado")) {
 					Reserva reserva = reservaService.findPistaForReserva(partido.getReserva());
 					if (reserva != null) {
+						reserva.setDisponible(false);
 						reservaService.save(reserva);
 						partidoService.save(partido);
 					} else {

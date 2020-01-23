@@ -1,7 +1,6 @@
 package com.padelclub.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +17,11 @@ import com.padelclub.model.Notificacion;
 import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
-import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
 import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.NotificacionService;
 import com.padelclub.service.api.ParejaCampeonatoService;
-import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioService;
 
@@ -39,13 +36,13 @@ public class EnfrentamientoController {
 	@Autowired
 	private UsuarioService usuarioService;
 	@Autowired
-	private PistaService pistaService;
-	@Autowired
 	private ParejaCampeonatoService parejaCampeonatoService;
 	@Autowired
 	private NotificacionService notificacionService;
 	@Autowired
 	private CampeonatoController campeonatoController;
+	@Autowired
+	private ReservasController reservasController;
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
@@ -56,10 +53,13 @@ public class EnfrentamientoController {
 	}
 
 	@PostMapping("/save")
-	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
-
-		if (!reservaService.validarReserva(reserva)) {
-			model.addAttribute("error", "Selecciona una fecha correcta");
+	public String save(Reserva reserva, Principal usuarioLogeado, Model model) {
+		reserva = reservaService.findPistaForReserva(reserva);
+		if (reserva != null && reservaService.validarReserva(reserva)) {
+			reserva.setDisponible(true);
+			reservaService.save(reserva);
+		} else {
+			model.addAttribute("error", "Los datos no son válidos");
 			return campeonatoController.index(model, usuarioLogeado);
 		}
 
@@ -77,7 +77,6 @@ public class EnfrentamientoController {
 		reserva = reservaService.findById(reserva.getId());
 
 		Enfrentamiento enfrentamiento = enfrentamientoService.getByReserva(reserva);
-		System.err.println("RESERVA DE ENFRENTAMIENTO: " + enfrentamiento.getReserva().getFecha());
 		Campeonato campeonato = enfrentamiento.getCampeonato();
 
 		Notificacion notificacion = new Notificacion();
@@ -101,13 +100,8 @@ public class EnfrentamientoController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva reserva, Model model, Principal usuarioLogeado) {
-		List<Pista> pistas = pistaService.getAll();
-		model.addAttribute("map", reservaService.getReservasDao(reserva, pistas));
-		model.addAttribute("pistas", pistas);
-		model.addAttribute("fecha", reserva.getFecha());
 		model.addAttribute("enfrentamiento", true);
-		addUserToModel(usuarioLogeado, model);
-		return "ReservasView/ReservasShowByFecha";
+		return reservasController.buscar(reserva, model, usuarioLogeado);
 	}
 
 	@GetMapping("/resultado/{id}")
@@ -180,6 +174,7 @@ public class EnfrentamientoController {
 		Reserva reserva = reservaService.findPistaForReserva(notificacion.getReserva());
 
 		if (reserva != null) {
+			reserva.setDisponible(false);
 			reserva = reservaService.save(reserva);
 			enfrentamiento.setReserva(reserva);
 			enfrentamiento = enfrentamientoService.save(enfrentamiento);
