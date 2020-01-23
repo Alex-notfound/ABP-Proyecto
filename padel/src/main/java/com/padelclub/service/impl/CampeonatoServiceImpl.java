@@ -112,6 +112,7 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 					Enfrentamiento enfrentamiento = new Enfrentamiento();
 					enfrentamiento.setCampeonato(campeonato);
 					enfrentamiento.setGrupo(i);
+					enfrentamiento.setFase(1);
 					enfrentamiento.setReserva(reservaService.save(new Reserva()));
 					enfrentamiento.setPareja1(list.get(0).getId().getPareja());
 					enfrentamiento.setPareja2(list.get(j).getId().getPareja());
@@ -176,8 +177,8 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 		enfrentamiento.setPareja2(list.get(n));
 		enfrentamientoService.save(enfrentamiento);
 
-		list.remove(0);
 		list.remove(n);
+		list.remove(0);
 
 		enfrentamiento = new Enfrentamiento();
 		enfrentamiento.setCampeonato(campeonato);

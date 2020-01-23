@@ -24,5 +24,6 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	List<Enfrentamiento> getEnfrentamientosByFase(Campeonato campeonato, int i);
 
+	int getFaseActual(Campeonato campeonato);
 
 }

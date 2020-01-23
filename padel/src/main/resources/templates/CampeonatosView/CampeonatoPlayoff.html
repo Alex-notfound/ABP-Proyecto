@@ -32,7 +32,13 @@
 				class="btn btn-info">Enfrentamientos</a></span> <span
 				th:if="${!campeonato.abierto}"><a
 				th:href="@{/campeonatos/consultar/{id}/clasificacion(id=${campeonato.id})}"
-				class="btn btn-info">Clasificación</a></span>
+				class="btn btn-info">Clasificación regular</a></span> <span><a
+				th:href="@{/campeonatos/consultar/{id}/clasificacionPlayoff(id=${campeonato.id})}"
+				class="btn btn-info">Clasificación Playoffs</a></span> <span
+				th:if="${sesion.administrador}"> <a
+				th:href="@{/campeonatos/generate-playoff/{id}(id=${campeonato.id})}"
+				class="btn btn-info">Realizar emparejamientos Playoff</a>
+			</span>
 		</div>
 		<br>
 		<h4 th:if="${!campeonato.abierto}">Partidos del playoff</h4>

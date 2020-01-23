@@ -32,7 +32,7 @@
 				class="btn btn-info">Playoff</a>
 			</span> <span th:if="${!campeonato.abierto}"><a
 				th:href="@{/campeonatos/consultar/{id}/clasificacion(id=${campeonato.id})}"
-				class="btn btn-info">Clasificación</a></span>
+				class="btn btn-info">Clasificación regular</a></span>
 		</div>
 		<br>
 		<h4 th:if="${!campeonato.abierto}">Partidos de la liga</h4>

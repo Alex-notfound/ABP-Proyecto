@@ -72,7 +72,7 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	public boolean faseRecienFinalizada(Campeonato campeonato, int fase) {
 		List<Enfrentamiento> list = getAllByCampeonato(campeonato);
 		for (Enfrentamiento enfrentamiento : list) {
-			if (enfrentamiento.getGanador() == null || enfrentamiento.getFase() == fase) {
+			if (enfrentamiento.getFase() == fase || enfrentamiento.getGanador() == null) {
 				return false;
 			}
 		}
@@ -82,6 +82,11 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	@Override
 	public List<Enfrentamiento> getEnfrentamientosByFase(Campeonato campeonato, int fase) {
 		return enfrentamientoRepository.findByCampeonatoAndFase(campeonato, fase);
+	}
+
+	@Override
+	public int getFaseActual(Campeonato campeonato) {
+		return enfrentamientoRepository.findTopByCampeonatoOrderByFaseDesc(campeonato).getFase();
 	}
 
 }

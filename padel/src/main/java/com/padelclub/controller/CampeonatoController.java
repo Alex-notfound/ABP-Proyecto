@@ -136,9 +136,18 @@ public class CampeonatoController {
 	public String consultarClasificacion(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
 		model.addAttribute("campeonato", campeonato);
-		// model.addAttribute("clasificacion",
-		// parejaCampeonatoService.getClasificacion(campeonato));
 		model.addAttribute("mapClasificacion", parejaCampeonatoService.getClasificacionAgrupada(campeonato));
+		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
+
+		addUserToModel(usuarioLogeado, model);
+		return "CampeonatosView/CampeonatoClasificacion";
+	}
+
+	@GetMapping("/consultar/{id}/clasificacionPlayoff")
+	public String consultarClasificacionPlayoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+		Campeonato campeonato = campeonatoService.get(id);
+		model.addAttribute("campeonato", campeonato);
+		model.addAttribute("mapClasificacion", parejaCampeonatoService.getClasificacionPlayoffAgrupada(campeonato));
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
 
 		addUserToModel(usuarioLogeado, model);
@@ -148,12 +157,14 @@ public class CampeonatoController {
 	@GetMapping("/generate-playoff/{id}")
 	public String generatePlayoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
-		if (enfrentamientoService.faseRecienFinalizada(campeonato, 1)) {
+		if (enfrentamientoService.faseRecienFinalizada(campeonato, 2)) {
 			campeonatoService.playoff(campeonato);
-		} else if (enfrentamientoService.faseRecienFinalizada(campeonato, 2)) {
-			campeonatoService.playoff2(campeonato);
 		} else if (enfrentamientoService.faseRecienFinalizada(campeonato, 3)) {
+			campeonatoService.playoff2(campeonato);
+		} else if (enfrentamientoService.faseRecienFinalizada(campeonato, 4)) {
 			campeonatoService.playoff3(campeonato);
+		} else {
+			model.addAttribute("error", "No se pueden generar enfrentamientos de playoff");
 		}
 		return playoff(id, model, usuarioLogeado);
 	}
@@ -162,7 +173,8 @@ public class CampeonatoController {
 	public String playoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
 		model.addAttribute("campeonato", campeonato);
-		model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 2));
+		model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato,
+				enfrentamientoService.getFaseActual(campeonato)));
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
 
 		addUserToModel(usuarioLogeado, model);

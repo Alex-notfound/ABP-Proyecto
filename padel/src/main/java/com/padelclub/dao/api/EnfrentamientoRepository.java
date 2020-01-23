@@ -18,4 +18,5 @@ public interface EnfrentamientoRepository extends JpaRepository<Enfrentamiento, 
 
 	List<Enfrentamiento> findByCampeonatoAndFase(Campeonato campeonato, int fase);
 
+	Enfrentamiento findTopByCampeonatoOrderByFaseDesc(Campeonato campeonato);
 }

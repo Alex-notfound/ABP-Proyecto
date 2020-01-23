@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -19,12 +20,15 @@ import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.ParejaCampeonatoService;
 
 @Service
 public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeonato, ParejaCampeonatoId>
 		implements ParejaCampeonatoService {
 
+	@Autowired
+	private EnfrentamientoService enfretamientoService;
 	@Autowired
 	private ParejaCampeonatoRepository parejaCampeonatoRepository;
 	@Autowired
@@ -102,6 +106,43 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 		}
 		map.put(grupoActual, listToPut);
 		return map;
+	}
+
+	@Override
+	public Map<Integer, List<ParejaCampeonato>> getClasificacionPlayoffAgrupada(Campeonato campeonato) {
+
+		Map<Integer, List<ParejaCampeonato>> toret = new LinkedHashMap<>();
+		Map<Integer, List<Enfrentamiento>> map;
+
+		for (int i = 4; i > 1; i--) {
+			map = enfretamientoService.getEnfrentamientosByFaseAgrupados(campeonato, i);
+			if (map != null) {
+				toret = clasificarPorFase(map, toret);
+			}
+		}
+		return toret;
+	}
+
+	private Map<Integer, List<ParejaCampeonato>> clasificarPorFase(Map<Integer, List<Enfrentamiento>> map,
+			Map<Integer, List<ParejaCampeonato>> toret) {
+		for (Entry<Integer, List<Enfrentamiento>> entry : map.entrySet()) {
+			List<ParejaCampeonato> list = new ArrayList<>();
+			for (Enfrentamiento enfrentamiento : entry.getValue()) {
+				if (enfrentamiento.getGanador() != null) {
+					list.add(parejaCampeonatoRepository.getOne(
+							new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getGanador())));
+					if (enfrentamiento.getGanador().equals(enfrentamiento.getPareja1())) {
+						list.add(parejaCampeonatoRepository.getOne(
+								new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2())));
+					} else {
+						list.add(parejaCampeonatoRepository.getOne(
+								new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1())));
+					}
+				}
+			}
+			toret.put(entry.getKey(), list);
+		}
+		return toret;
 	}
 
 }
