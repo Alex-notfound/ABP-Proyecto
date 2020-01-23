@@ -49,15 +49,13 @@
 						th:href="@{/usuarios/}">USUARIOS</a> <a
 						th:if="${sesion.administrador}" class="nav-item nav-link"
 						th:href="@{/pistas/}">PISTAS</a><a class="nav-item nav-link"
-						th:href="@{/usuarios/profile/0}">MI CUENTA <i
-						class="fas fa-bell"></i><span class="badge badge-light">!</span>
-					</a>
+						th:href="@{/usuarios/profile/0}">MI CUENTA </a>
 
 				</div>
 			</div>
 			<div>
 				<form th:action="@{/logout}" method="post">
-					<input type="submit" value="Cerrar sesión" />
+					<button class="btn btn-danger" type="submit">Salir</button>
 				</form>
 			</div>
 		</nav>
