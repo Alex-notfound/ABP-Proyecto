@@ -17,5 +17,7 @@ public interface CampeonatoService extends GenericServiceAPI<Campeonato, Long> {
 	void playoff2(Campeonato campeonato);
 
 	void playoff3(Campeonato campeonato);
+
+	boolean finalCampeonato(Campeonato campeonato);
 	
 }

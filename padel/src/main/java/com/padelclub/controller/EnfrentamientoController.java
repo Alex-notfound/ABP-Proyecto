@@ -68,10 +68,17 @@ public class EnfrentamientoController {
 		reservaAConfirmar.setHora(reserva.getHora());
 		reservaAConfirmar = reservaService.save(reservaAConfirmar);
 
+		reserva.setFecha(null);
+		reserva.setHora(null);
+		reserva.setPista(null);
+		reserva = reservaService.save(reserva);
+
 		Usuario usuario = usuarioService.getUsuario(usuarioLogeado);
 		reserva = reservaService.findById(reserva.getId());
+
 		Enfrentamiento enfrentamiento = enfrentamientoService.getByReserva(reserva);
-		Campeonato campeonato = enfrentamientoService.getCampeonatoByReserva(reserva);
+		System.err.println("RESERVA DE ENFRENTAMIENTO: " + enfrentamiento.getReserva().getFecha());
+		Campeonato campeonato = enfrentamiento.getCampeonato();
 
 		Notificacion notificacion = new Notificacion();
 		notificacion.setCampeonato(campeonato);
@@ -105,7 +112,29 @@ public class EnfrentamientoController {
 
 	@GetMapping("/resultado/{id}")
 	public String resultado(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
-		model.addAttribute("enfrentamiento", enfrentamientoService.get(id));
+		Enfrentamiento enfrentamiento = enfrentamientoService.get(id);
+		if (enfrentamiento.getGanador() != null) {
+			ParejaCampeonato ganador;
+			ParejaCampeonato perdedor;
+			if (enfrentamiento.getGanador().equals(enfrentamiento.getPareja1())) {
+				ganador = parejaCampeonatoService
+						.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1()));
+				perdedor = parejaCampeonatoService
+						.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2()));
+			} else {
+				perdedor = parejaCampeonatoService
+						.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1()));
+				ganador = parejaCampeonatoService
+						.get(new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2()));
+			}
+			ganador.setPuntos(ganador.getPuntos() - 4);
+			perdedor.setPuntos(perdedor.getPuntos() - 1);
+
+			parejaCampeonatoService.save(ganador);
+			parejaCampeonatoService.save(perdedor);
+		}
+
+		model.addAttribute("enfrentamiento", enfrentamiento);
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/ResultadoForm";
 	}

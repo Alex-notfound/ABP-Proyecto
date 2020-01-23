@@ -33,7 +33,10 @@
 				class="btn btn-info">Playoff</a>
 			</span> <span><a
 				th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}"
-				class="btn btn-info">Enfrentamientos</a></span>
+				class="btn btn-info">Enfrentamientos</a></span><span th:if="${final}">
+				<a th:href="@{/campeonatos/final/{id}(id=${campeonato.id})}"
+				class="btn btn-info">Fase final entre grupos</a>
+			</span>
 		</div>
 		<br>
 		<h4>Clasificación</h4>

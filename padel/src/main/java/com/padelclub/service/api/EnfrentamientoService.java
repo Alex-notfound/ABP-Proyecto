@@ -26,4 +26,6 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	int getFaseActual(Campeonato campeonato);
 
+	void deleteAllByCampeonato(Campeonato campeonato);
+
 }

@@ -124,6 +124,11 @@ public class CampeonatoController {
 		if (campeonato.isAbierto()) {
 			model.addAttribute("alistados", parejaCampeonatoService.getClasificacion(campeonato));
 		}
+		if (enfrentamientoService.getFaseActual(campeonato) == 5) {
+			model.addAttribute("final", true);
+		} else {
+			model.addAttribute("final", false);
+		}
 		model.addAttribute("campeonato", campeonato);
 		model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 1));
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
@@ -143,17 +148,6 @@ public class CampeonatoController {
 		return "CampeonatosView/CampeonatoClasificacion";
 	}
 
-	@GetMapping("/consultar/{id}/clasificacionPlayoff")
-	public String consultarClasificacionPlayoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
-		Campeonato campeonato = campeonatoService.get(id);
-		model.addAttribute("campeonato", campeonato);
-		model.addAttribute("mapClasificacion", parejaCampeonatoService.getClasificacionPlayoffAgrupada(campeonato));
-		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
-
-		addUserToModel(usuarioLogeado, model);
-		return "CampeonatosView/CampeonatoClasificacion";
-	}
-
 	@GetMapping("/generate-playoff/{id}")
 	public String generatePlayoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
@@ -163,6 +157,8 @@ public class CampeonatoController {
 			campeonatoService.playoff2(campeonato);
 		} else if (enfrentamientoService.faseRecienFinalizada(campeonato, 4)) {
 			campeonatoService.playoff3(campeonato);
+		} else if (enfrentamientoService.faseRecienFinalizada(campeonato, 5)
+				&& campeonatoService.finalCampeonato(campeonato)) {
 		} else {
 			model.addAttribute("error", "No se pueden generar enfrentamientos de playoff");
 		}
@@ -173,12 +169,29 @@ public class CampeonatoController {
 	public String playoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
 		model.addAttribute("campeonato", campeonato);
-		model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato,
-				enfrentamientoService.getFaseActual(campeonato)));
+		int faseActual = enfrentamientoService.getFaseActual(campeonato);
+		if (faseActual > 1 && faseActual < 5) {
+			model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, faseActual));
+		}
+
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
 
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoPlayoff";
+	}
+
+	@GetMapping("/final/{id}")
+	public String fianl(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+		Campeonato campeonato = campeonatoService.get(id);
+		model.addAttribute("campeonato", campeonato);
+		int faseActual = enfrentamientoService.getFaseActual(campeonato);
+		if (faseActual == 5) {
+			model.addAttribute("list", enfrentamientoService.getEnfrentamientosByFase(campeonato, faseActual));
+		}
+		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
+
+		addUserToModel(usuarioLogeado, model);
+		return "CampeonatosView/CampeonatoFinal";
 	}
 
 	public void addUserToModel(Principal usuario, Model model) {

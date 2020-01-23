@@ -32,24 +32,14 @@
 				class="btn btn-info">Enfrentamientos</a></span> <span
 				th:if="${!campeonato.abierto}"><a
 				th:href="@{/campeonatos/consultar/{id}/clasificacion(id=${campeonato.id})}"
-				class="btn btn-info">Clasificación</a></span> <span th:if="${final}">
-				<a th:href="@{/campeonatos/final/{id}(id=${campeonato.id})}"
-				class="btn btn-info">Fase final entre grupos</a>
-			</span><span th:if="${final}"> <a
-				th:href="@{/campeonatos/final/{id}(id=${campeonato.id})}"
-				class="btn btn-info">Fase final entre grupos</a>
-			</span><span th:if="${sesion.administrador}"> <a
-				th:href="@{/campeonatos/generate-playoff/{id}(id=${campeonato.id})}"
-				class="btn btn-info">Generar nueva fase</a>
-			</span>
+				class="btn btn-info">Clasificación</a></span>
 		</div>
 		<br>
-		<h4 th:if="${!campeonato.abierto}">Partidos del playoff</h4>
+		<h4 th:if="${!campeonato.abierto}">Partidos de la final</h4>
 		<br>
 
-		<div th:if="${!campeonato.abierto} AND ${map!=null}"
-			th:each="grupo : ${map}" class="container">
-			<h5 th:text="'Enfrentamientos del Grupo ' + ${grupo.key}"></h5>
+		<div th:if="${!campeonato.abierto}" class="container">
+			<h5 th:text="'Enfrentamientos finales'"></h5>
 			<table class="table">
 				<thead>
 					<tr>
@@ -64,7 +54,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="enfrentamiento : ${grupo.value}">
+					<tr th:each="enfrentamiento : ${list}">
 						<td th:text="${enfrentamiento.pareja1.nombre}"></td>
 						<td th:text="${enfrentamiento.pareja2.nombre}"></td>
 						<td th:text="${enfrentamiento.resultado}"></td>

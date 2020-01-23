@@ -145,4 +145,10 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 		return toret;
 	}
 
+	@Override
+	public ParejaCampeonato getFirstOfEachGroup(Campeonato campeonato) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -89,4 +89,9 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 		return enfrentamientoRepository.findTopByCampeonatoOrderByFaseDesc(campeonato).getFase();
 	}
 
+	@Override
+	public void deleteAllByCampeonato(Campeonato campeonato) {
+		enfrentamientoRepository.deleteAllByCampeonato(campeonato);
+	}
+
 }

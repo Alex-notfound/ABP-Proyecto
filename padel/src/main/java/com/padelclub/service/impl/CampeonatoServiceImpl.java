@@ -209,4 +209,33 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 			enfrentamientoService.save(enfrentamiento);
 		}
 	}
+
+	@Override
+	public boolean finalCampeonato(Campeonato campeonato) {
+		List<Enfrentamiento> list = enfrentamientoService.getEnfrentamientosByFase(campeonato, 4);
+		if (list != null) {
+			List<Pareja> listParejas = new ArrayList<>();
+			for (Enfrentamiento enfrentamiento : list) {
+				listParejas.add(enfrentamiento.getGanador());
+			}
+			if (listParejas.size() > 1) {
+				// enfrentamientoService.deleteAllByCampeonato(campeonato);
+				while (listParejas.size() > 1) {
+					Enfrentamiento enfrentamiento = new Enfrentamiento();
+					enfrentamiento.setCampeonato(campeonato);
+					enfrentamiento.setFase(5);
+					enfrentamiento.setGrupo(1);
+					enfrentamiento.setReserva(reservaService.save(new Reserva()));
+					enfrentamiento.setPareja1(listParejas.get(0));
+					enfrentamiento.setPareja2(listParejas.get(1));
+					enfrentamientoService.save(enfrentamiento);
+
+					listParejas.remove(1);
+					listParejas.remove(0);
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 }

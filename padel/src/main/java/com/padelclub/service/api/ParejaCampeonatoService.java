@@ -28,4 +28,6 @@ public interface ParejaCampeonatoService extends GenericServiceAPI<ParejaCampeon
 
 	public Map<Integer, List<ParejaCampeonato>> getClasificacionPlayoffAgrupada(Campeonato campeonato);
 
+	public ParejaCampeonato getFirstOfEachGroup(Campeonato campeonato);
+
 }
