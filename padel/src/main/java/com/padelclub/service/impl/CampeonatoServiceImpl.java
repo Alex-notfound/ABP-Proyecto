@@ -1,8 +1,12 @@
 package com.padelclub.service.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -19,6 +23,7 @@ import com.padelclub.model.Reserva;
 import com.padelclub.service.api.CampeonatoService;
 import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.ParejaCampeonatoService;
+import com.padelclub.service.api.ParejaService;
 import com.padelclub.service.api.ReservaService;
 
 @Service
@@ -32,6 +37,8 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 	private ReservaService reservaService;
 	@Autowired
 	private ParejaCampeonatoService parejaCampeonatoService;
+	@Autowired
+	private ParejaService parejaService;
 
 	@Override
 	public CrudRepository<Campeonato, Long> getDao() {
@@ -48,7 +55,6 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 		while (tamanoGrupo != -1 && n <= 12) {
 			if (tamano % n == 0) {
 				tamanoGrupo = n;
-				tamanoGrupoAux = 0;
 			} else if (tamano % n == 8) {
 				tamanoGrupo = n;
 				tamanoGrupoAux = 8;
@@ -64,13 +70,22 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 			}
 			n++;
 		}
+		if (tamanoGrupo == -1) {
+			tamanoGrupo = 8;
+			int numSobrantes = tamano % 8;
+			while (numSobrantes > 0) {
+				parejaCampeonatoService.delete(new ParejaCampeonatoId(campeonato, parejasCampeonato.get(tamano - 1)));
+				parejaService.delete(parejasCampeonato.get(tamano - 1).getId());
+				parejasCampeonato.remove(tamano - 1);
+			}
+		}
 		int numGrupos = dividirEnGrupos(parejasCampeonato, campeonato, tamanoGrupo, tamanoGrupoAux);
 		sorteoTodosContraTodos(campeonato, numGrupos);
 	}
 
 	private int dividirEnGrupos(List<Pareja> list, Campeonato campeonato, int tamGrupo, int tamGrupoAux) {
 		int numGrupos = list.size() / tamGrupo;
-		if (tamGrupoAux != -1) {
+		if (tamGrupoAux > 0) {
 			numGrupos++;
 		}
 		int i = 1;
@@ -90,7 +105,7 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 	}
 
 	private void sorteoTodosContraTodos(Campeonato campeonato, int numGrupos) {
-		for (int i = 1; i < numGrupos; i++) {
+		for (int i = 1; i <= numGrupos; i++) {
 			List<ParejaCampeonato> list = parejaCampeonatoService.findAllByCampeonatoAndGrupo(campeonato, i);
 			while (list.size() > 1) {
 				for (int j = 1; j < list.size(); j++) {
@@ -118,60 +133,79 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 		}
 	}
 
-//	private void sorteoLiga(List<Pareja> parejasCampeonato, Campeonato campeonato) {
-//		while (!parejasCampeonato.isEmpty()) {
-//			Enfrentamiento enfrentamiento = new Enfrentamiento();
-//			enfrentamiento.setCampeonato(campeonato);
-//			int numAleatorio = (int) (Math.random() * (parejasCampeonato.size()) + 1);
-//
-//			enfrentamiento.setPareja1(parejasCampeonato.get(0));
-//			enfrentamiento.setPareja2(parejasCampeonato.get(numAleatorio));
-//			enfrentamientoService.save(enfrentamiento);
-//
-//			parejasCampeonato.remove(numAleatorio);
-//			parejasCampeonato.remove(0);
-//		}
-//	}
-//	
-//	public void sorteoLiga2(List<Pareja> parejasCampeonato) {
-//
-//		int numParejas = parejasCampeonato.size();
-//		int rondas = numParejas - numParejas % 2;
-//		int partidos = numParejas / 2;
-//
-//		List<Enfrentamiento> enfrentamientos = new ArrayList<>();
-//		List<Integer> numSorteo = new ArrayList<>();
-//
-//		boolean esta = false;
-//		for (int i = 0; i < numParejas; i++) {
-//			do {
-//				int aux = (int) (numParejas * Math.random());
-//				if (numSorteo.contains(aux)) {
-//					esta = true;
-//				} else {
-//					numSorteo.add(aux);
-//				}
-//			} while (esta);
-//		}
-//
-//	}
-//
-//	private List<Integer> siguienteJornada(List<Integer> numSorteo) {
-//
-//		int aux = numSorteo.remove(numSorteo.size() - 1);
-//		numSorteo.add(0, aux);
-//		return numSorteo;
-//	}
-//
-//	private List<Integer> colocarEnfrentamiento(List<Integer> numSorteo, int partidos) {
-//		int numPartido[][] = new int[partidos][2];
-//		int j = 0;
-//		for (int i = 0; i < partidos; i++) {
-//			numPartido[i][0] = numSorteo.get(j);
-//			j++;
-//			numPartido[i][1] = numSorteo.get(j);
-//			j++;
-//		}
-//		return numSorteo;
-//	}
+	@Override
+	public void playoff(Campeonato campeonato) {
+		Map<Integer, List<ParejaCampeonato>> map = parejaCampeonatoService.getClasificacionAgrupada(campeonato);
+		for (Entry<Integer, List<ParejaCampeonato>> entry : map.entrySet()) {
+			List<ParejaCampeonato> list = entry.getValue();
+			for (int i = 0; i < 4; i++) {
+				Enfrentamiento enfrentamiento = new Enfrentamiento();
+				enfrentamiento.setCampeonato(campeonato);
+				enfrentamiento.setGrupo(entry.getKey());
+				enfrentamiento.setFase(2);
+				enfrentamiento.setReserva(reservaService.save(new Reserva()));
+				enfrentamiento.setPareja1(list.get(i).getId().getPareja());
+				enfrentamiento.setPareja2(list.get(7 - i).getId().getPareja());
+				enfrentamientoService.save(enfrentamiento);
+			}
+		}
+	}
+
+	@Override
+	public void playoff2(Campeonato campeonato) {
+		Map<Integer, List<Enfrentamiento>> map = enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 2);
+		List<Pareja> listParejas;
+		for (Entry<Integer, List<Enfrentamiento>> entry : map.entrySet()) {
+			listParejas = new ArrayList<>();
+			for (Enfrentamiento enfrentamiento : entry.getValue()) {
+				listParejas.add(enfrentamiento.getGanador());
+			}
+			sorteoSemifinal(listParejas, campeonato, entry.getKey());
+		}
+	}
+
+	private void sorteoSemifinal(List<Pareja> list, Campeonato campeonato, int grupo) {
+
+		int n = (int) (Math.random() * 3) + 1;
+		Enfrentamiento enfrentamiento = new Enfrentamiento();
+		enfrentamiento.setCampeonato(campeonato);
+		enfrentamiento.setGrupo(grupo);
+		enfrentamiento.setFase(3);
+		enfrentamiento.setReserva(reservaService.save(new Reserva()));
+		enfrentamiento.setPareja1(list.get(0));
+		enfrentamiento.setPareja2(list.get(n));
+		enfrentamientoService.save(enfrentamiento);
+
+		list.remove(0);
+		list.remove(n);
+
+		enfrentamiento = new Enfrentamiento();
+		enfrentamiento.setCampeonato(campeonato);
+		enfrentamiento.setGrupo(grupo);
+		enfrentamiento.setFase(3);
+		enfrentamiento.setReserva(reservaService.save(new Reserva()));
+		enfrentamiento.setPareja1(list.get(0));
+		enfrentamiento.setPareja2(list.get(1));
+		enfrentamientoService.save(enfrentamiento);
+	}
+
+	@Override
+	public void playoff3(Campeonato campeonato) {
+		Map<Integer, List<Enfrentamiento>> map = enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 3);
+		List<Pareja> listParejas;
+		for (Entry<Integer, List<Enfrentamiento>> entry : map.entrySet()) {
+			listParejas = new ArrayList<>();
+			for (Enfrentamiento enfrentamiento : entry.getValue()) {
+				listParejas.add(enfrentamiento.getGanador());
+			}
+			Enfrentamiento enfrentamiento = new Enfrentamiento();
+			enfrentamiento.setCampeonato(campeonato);
+			enfrentamiento.setGrupo(entry.getKey());
+			enfrentamiento.setFase(4);
+			enfrentamiento.setReserva(reservaService.save(new Reserva()));
+			enfrentamiento.setPareja1(listParejas.get(0));
+			enfrentamiento.setPareja2(listParejas.get(1));
+			enfrentamientoService.save(enfrentamiento);
+		}
+	}
 }

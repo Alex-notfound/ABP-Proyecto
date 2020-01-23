@@ -18,6 +18,11 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	List<Enfrentamiento> getAllByCampeonatoOrdererByGroup(Campeonato campeonato);
 
-	Map<Integer, List<Enfrentamiento>> getEnfrentamientosAgrupados(Campeonato campeonato);
+	Map<Integer, List<Enfrentamiento>> getEnfrentamientosByFaseAgrupados(Campeonato campeonato, int fase);
+
+	boolean faseRecienFinalizada(Campeonato campeonato, int fase);
+
+	List<Enfrentamiento> getEnfrentamientosByFase(Campeonato campeonato, int i);
+
 
 }

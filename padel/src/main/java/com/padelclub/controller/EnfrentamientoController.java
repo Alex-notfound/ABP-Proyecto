@@ -44,6 +44,8 @@ public class EnfrentamientoController {
 	private ParejaCampeonatoService parejaCampeonatoService;
 	@Autowired
 	private NotificacionService notificacionService;
+	@Autowired
+	private CampeonatoController campeonatoController;
 
 	@GetMapping("/save/{id}")
 	public String showSave(@PathVariable("id") Long id, Model model, Principal usuarioLogeado) {
@@ -56,6 +58,11 @@ public class EnfrentamientoController {
 	@PostMapping("/save")
 	public String save(Reserva reserva, @RequestParam("pistaId") Long idPista, Principal usuarioLogeado, Model model) {
 
+		if (!reservaService.validarReserva(reserva)) {
+			model.addAttribute("error", "Selecciona una fecha correcta");
+			return campeonatoController.index(model, usuarioLogeado);
+		}
+
 		Reserva reservaAConfirmar = new Reserva();
 		reservaAConfirmar.setFecha(reserva.getFecha());
 		reservaAConfirmar.setHora(reserva.getHora());
@@ -65,8 +72,6 @@ public class EnfrentamientoController {
 		reserva = reservaService.findById(reserva.getId());
 		Enfrentamiento enfrentamiento = enfrentamientoService.getByReserva(reserva);
 		Campeonato campeonato = enfrentamientoService.getCampeonatoByReserva(reserva);
-
-		System.err.println("ENFRENTAMIENTO - RESERVA: " + reserva.getHora());
 
 		Notificacion notificacion = new Notificacion();
 		notificacion.setCampeonato(campeonato);

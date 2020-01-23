@@ -49,7 +49,7 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	}
 
 	@Override
-	public Map<Integer, List<Enfrentamiento>> getEnfrentamientosAgrupados(Campeonato campeonato) {
+	public Map<Integer, List<Enfrentamiento>> getEnfrentamientosByFaseAgrupados(Campeonato campeonato, int fase) {
 		List<Enfrentamiento> list = getAllByCampeonatoOrdererByGroup(campeonato);
 		Map<Integer, List<Enfrentamiento>> map = new LinkedHashMap<>();
 		List<Enfrentamiento> listToPut = new ArrayList<>();
@@ -60,9 +60,28 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 				listToPut = new ArrayList<>();
 				grupoActual++;
 			}
-			listToPut.add(enfrentamiento);
+			if (enfrentamiento.getFase() == fase) {
+				listToPut.add(enfrentamiento);
+			}
 		}
 		map.put(grupoActual, listToPut);
 		return map;
 	}
+
+	@Override
+	public boolean faseRecienFinalizada(Campeonato campeonato, int fase) {
+		List<Enfrentamiento> list = getAllByCampeonato(campeonato);
+		for (Enfrentamiento enfrentamiento : list) {
+			if (enfrentamiento.getGanador() == null || enfrentamiento.getFase() == fase) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public List<Enfrentamiento> getEnfrentamientosByFase(Campeonato campeonato, int fase) {
+		return enfrentamientoRepository.findByCampeonatoAndFase(campeonato, fase);
+	}
+
 }

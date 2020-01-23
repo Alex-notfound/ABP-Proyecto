@@ -27,14 +27,17 @@
 	</div>
 
 	<div class="container">
-		<div th:if="${sesion.administrador}">
-			<a th:href="@{/campeonatos/playoff/0}" class="btn btn-info">Playoff</a>
+		<div>
+			<span th:if="${!campeonato.abierto}"> <a
+				th:href="@{/campeonatos/playoff/{id}(id=${campeonato.id})}"
+				class="btn btn-info">Playoff</a>
+			</span> <span><a
+				th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}"
+				class="btn btn-info">Enfrentamientos</a></span>
 		</div>
 		<br>
 		<h4>Clasificación</h4>
-		<br> <a
-			th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}"
-			class="btn btn-info">Clasificación</a> <br>
+
 		<div class="container">
 			<div th:each="grupoClasificacion : ${mapClasificacion}"
 				class="container">

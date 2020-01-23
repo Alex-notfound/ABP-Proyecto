@@ -20,9 +20,12 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-		<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Introducir resultados</h4></p>
-	</div>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Introducir resultados</h4>
+			</p>
+		</div>
 	</div>
 	<section class="container">
 		<form th:action="@{/enfrentamientos/resultado}" class="form-group"
@@ -33,7 +36,8 @@
 				type="hidden" th:field="*{campeonato}"> <input type="hidden"
 				th:field="*{pareja1}"> <input type="hidden"
 				th:field="*{pareja2}"> <input type="hidden"
-				th:field="*{reserva}">
+				th:field="*{reserva}"><input type="hidden"
+				th:field="*{grupo}">
 			<!-- 			<input type="hidden" th:field="*{ganador}"> -->
 
 			<div class="form-group row">

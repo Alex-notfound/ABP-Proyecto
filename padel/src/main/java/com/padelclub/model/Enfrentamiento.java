@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 public class Enfrentamiento {
 
@@ -28,6 +30,8 @@ public class Enfrentamiento {
 	private Campeonato campeonato;
 	@Column
 	private int grupo;
+	@ColumnDefault("1")
+	private int fase;
 
 	public Campeonato getCampeonato() {
 		return campeonato;
@@ -91,6 +95,14 @@ public class Enfrentamiento {
 
 	public void setGrupo(int grupo) {
 		this.grupo = grupo;
+	}
+
+	public int getFase() {
+		return fase;
+	}
+
+	public void setFase(int fase) {
+		this.fase = fase;
 	}
 
 }
