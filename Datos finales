@@ -36,7 +36,9 @@ INSERT INTO `usuario` (`id`, `administrador`, `apellidos`, `dni`, `enabled`, `fe
 (35, b'0', 'Rio', '99999999A', b'0', '2020-01-02', 'German', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
 (36, b'0', 'Sar', '99999999B', b'0', '2020-01-02', 'Pablo', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
 (37, b'0', 'Col', '00000000A', b'0', '2020-01-02', 'Alejandro', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
-(38, b'0', 'Gil', '00000000B', b'0', '2020-01-02', 'Marcos', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com');
+(38, b'0', 'Gil', '00000000B', b'0', '2020-01-02', 'Marcos', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(39, b'0', 'Tarantino', '00000000C', b'0', '2020-01-02', 'Fin', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com'),
+(40, b'0', 'Quentin', '00000000D', b'0', '2020-01-02', 'James', '$2a$04$6FgCXt6xPuPTmiuyqIn2/u/wUGJyv8JHHWOzz5bDjheRWpNoshuSe', 'Masculino', 697217053, 'alx.curras@gmail.com');
 
 INSERT INTO `campeonato` (`id`, `abierto`, `categoria`, `limite_inscripcion`, `max_num_participantes`, `nivel`, `precio_inscripcion`) VALUES
 (1, b'1', 'Masculino', '2020-03-01', 16, 'Medio', '5'),
@@ -57,7 +59,15 @@ INSERT INTO `pareja` (`id`, `nombre`, `miembro1_id`, `miembro2_id`) VALUES
 (4, '5A', 27, 28),
 (5, '6A', 29, 30),
 (6, '7A', 31, 32),
-(7, 'Ferro - Manrique', 19, 18);
+(7, 'Ferro - Manrique', 19, 18),
+(8, '8A', 33, 34),
+(9, '9A', 35, 36),
+(10, '0A', 37, 38),
+(11, 'Caro-Meira', 17, 20),
+(12, 'Rodriguez-Pereiro', 15, 16),
+(13, 'Puga-Fonseca', 13, 14),
+(14, 'Barros-Lopez', 11, 12),
+(15, 'Nuñez-Crespo', 9, 10);
 
 INSERT INTO `pareja_campeonato` (`grupo`, `puntos`, `campeonato_id`, `pareja_id`) VALUES
 (0, 0, 1, 1),
@@ -66,4 +76,12 @@ INSERT INTO `pareja_campeonato` (`grupo`, `puntos`, `campeonato_id`, `pareja_id`
 (0, 0, 1, 4),
 (0, 0, 1, 5),
 (0, 0, 1, 6),
-(0, 0, 1, 7);
+(0, 0, 1, 7),
+(0, 0, 1, 8),
+(0, 0, 1, 9),
+(0, 0, 1, 10),
+(0, 0, 1, 11),
+(0, 0, 1, 12),
+(0, 0, 1, 13),
+(0, 0, 1, 14),
+(0, 0, 1, 15);
