@@ -96,7 +96,7 @@ public class CampeonatoController {
 		Usuario miembro2 = usuarioService.getUsuarioByDni(dni);
 		Campeonato campeonato = campeonatoService.get(idCampeonato);
 
-		if (parejaCampeonatoService.validarInscripcion(miembro1, miembro2, campeonato)) {
+		if (!miembro1.equals(miembro2) && parejaCampeonatoService.validarInscripcion(miembro1, miembro2, campeonato)) {
 
 			pareja.setMiembro1(miembro1);
 			pareja.setMiembro2(miembro2);
@@ -121,6 +121,9 @@ public class CampeonatoController {
 	@GetMapping("/consultar/{id}")
 	public String consultar(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
+		if (campeonato.isAbierto()) {
+			model.addAttribute("alistados", parejaCampeonatoService.getClasificacion(campeonato));
+		}
 		model.addAttribute("campeonato", campeonato);
 		model.addAttribute("map", enfrentamientoService.getEnfrentamientosAgrupados(campeonato));
 		// model.addAttribute("mapClasificacion",
