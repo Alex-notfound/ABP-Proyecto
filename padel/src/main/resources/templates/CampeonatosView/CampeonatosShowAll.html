@@ -19,9 +19,12 @@
 <body>
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
-	<div style="padding-left:10px;">
-		<p><h6> </h6><h4>Campeonatos</h4></p>
-	</div>
+		<div style="padding-left: 10px;">
+			<p>
+			<h6></h6>
+			<h4>Campeonatos</h4>
+			</p>
+		</div>
 	</div>
 	<div class="container">
 		<div th:if="${sesion.administrador}">
@@ -40,7 +43,7 @@
 						<th>Inscripciones permitidas</th>
 						<th>Precio de inscripción</th>
 						<th>Inscripción hasta</th>
-						<th></th>
+						<th>Abierto</th>
 						<th></th>
 						<th></th>
 						<th th:if="${sesion.administrador}"></th>

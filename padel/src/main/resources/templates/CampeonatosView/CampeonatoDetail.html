@@ -30,11 +30,33 @@
 			<a th:href="@{/campeonatos/playoff/0}" class="btn btn-info">Playoff</a>
 		</div>
 		<br>
-		<h4>Partidos de la liga</h4>
-		<br> <a
+		<h4 th:if="${!campeonato.abierto}">Partidos de la liga</h4>
+		<br> <a th:if="${!campeonato.abierto}"
 			th:href="@{/campeonatos/consultar/{id}/clasificacion(id=${campeonato.id})}"
 			class="btn btn-info">Clasificación</a> <br>
-		<div th:each="grupo : ${map}" class="container">
+
+		<div th:if="${campeonato.abierto}">
+			<h5>Parejas apuntadas</h5>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Miembro 1</th>
+						<th>Miembro 2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${alistados}">
+						<td th:text="${p.id.pareja.nombre}"></td>
+						<td th:text="${p.id.pareja.miembro1.nombre}"></td>
+						<td th:text="${p.id.pareja.miembro2.nombre}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div th:if="${!campeonato.abierto}" th:each="grupo : ${map}"
+			class="container">
 			<h5 th:text="'Enfrentamientos del Grupo ' + ${grupo.key}"></h5>
 			<table class="table">
 				<thead>
