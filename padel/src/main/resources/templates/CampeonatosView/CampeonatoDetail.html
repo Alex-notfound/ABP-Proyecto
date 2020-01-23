@@ -21,10 +21,8 @@
 	<div th:replace="barranav :: header"></div>
 	<div class="myheader">
 		<div style="padding-left: 10px;">
-			<p>
-			<h6></h6>
+			<br>
 			<h4>Detalles de campeonato</h4>
-			</p>
 		</div>
 	</div>
 	<div class="container">
@@ -33,66 +31,47 @@
 		</div>
 		<br>
 		<h4>Partidos de la liga</h4>
-		<br>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Pareja 1</th>
-					<th>Pareja 2</th>
-					<th>Resultado</th>
-					<th>Fecha</th>
-					<th>Hora</th>
-					<th>Pista</th>
-					<th></th>
-					<th th:if="${sesion.administrador}"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="enfrentamiento : ${rondaActual}">
-					<td th:text="${enfrentamiento.pareja1.nombre}"></td>
-					<td th:text="${enfrentamiento.pareja2.nombre}"></td>
-					<td th:text="${enfrentamiento.resultado}"></td>
-					<td
-						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.fecha} : ''"></td>
-					<td
-						th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
-					<td
-						th:text="${enfrentamiento.reserva.pista} ? ${enfrentamiento.reserva.pista.numero} : ''"></td>
-					<td><a
-						th:if="${enfrentamiento.reserva.fecha==null} AND (${enfrentamiento.pareja1.miembro1.id} == ${idUsuarioLogueado} OR 
+		<br> <a
+			th:href="@{/campeonatos/consultar/{id}/clasificacion(id=${campeonato.id})}"
+			class="btn btn-info">Clasificación</a> <br>
+		<div th:each="grupo : ${map}" class="container">
+			<h5 th:text="'Enfrentamientos del Grupo ' + ${grupo.key}"></h5>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Pareja 1</th>
+						<th>Pareja 2</th>
+						<th>Resultado</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Pista</th>
+						<th></th>
+						<th th:if="${sesion.administrador}"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="enfrentamiento : ${grupo.value}">
+						<td th:text="${enfrentamiento.pareja1.nombre}"></td>
+						<td th:text="${enfrentamiento.pareja2.nombre}"></td>
+						<td th:text="${enfrentamiento.resultado}"></td>
+						<td
+							th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.fecha} : ''"></td>
+						<td
+							th:text="${enfrentamiento.reserva} ? ${enfrentamiento.reserva.hora} : ''"></td>
+						<td
+							th:text="${enfrentamiento.reserva.pista} ? ${enfrentamiento.reserva.pista.numero} : ''"></td>
+						<td><a
+							th:if="${enfrentamiento.reserva.fecha==null} AND (${enfrentamiento.pareja1.miembro1.id} == ${idUsuarioLogueado} OR 
 						${enfrentamiento.pareja2.miembro1.id} == ${idUsuarioLogueado})"
-						th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Proponer
-							fecha</a></td>
-					<td th:if="${sesion.administrador}"><a
-						th:href="@{/enfrentamientos/resultado/{id}(id=${enfrentamiento.id})}">Añadir
-							resultado</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="container">
-		<br>
-		<h4>Clasificación</h4>
-		<br>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Miembro 1</th>
-					<th>Miembro 2</th>
-					<th>Puntos</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="p : ${parejas}">
-					<td th:text="${p.id.pareja.nombre}"></td>
-					<td th:text="${p.id.pareja.miembro1.nombre}"></td>
-					<td th:text="${p.id.pareja.miembro2.nombre}"></td>
-					<td th:text="${p.puntos}"></td>
-				</tr>
-			</tbody>
-		</table>
+							th:href="@{/enfrentamientos/save/{id}(id=${enfrentamiento.id})}">Proponer
+								fecha</a></td>
+						<td th:if="${sesion.administrador}"><a
+							th:href="@{/enfrentamientos/resultado/{id}(id=${enfrentamiento.id})}">Añadir
+								resultado</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 	<script src="js/jquery.js"></script>

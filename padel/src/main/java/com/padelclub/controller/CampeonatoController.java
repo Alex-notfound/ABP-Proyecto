@@ -121,13 +121,27 @@ public class CampeonatoController {
 	@GetMapping("/consultar/{id}")
 	public String consultar(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
-
-		model.addAttribute("rondaActual", enfrentamientoService.getAllByCampeonato(campeonato));
-		model.addAttribute("parejas", parejaCampeonatoService.getClasificacion(campeonato));
+		model.addAttribute("campeonato", campeonato);
+		model.addAttribute("map", enfrentamientoService.getEnfrentamientosAgrupados(campeonato));
+		// model.addAttribute("mapClasificacion",
+		// parejaCampeonatoService.getClasificacionAgrupada(campeonato));
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
 
 		addUserToModel(usuarioLogeado, model);
 		return "CampeonatosView/CampeonatoDetail";
+	}
+
+	@GetMapping("/consultar/{id}/clasificacion")
+	public String consultarClasificacion(@PathVariable Long id, Model model, Principal usuarioLogeado) {
+		Campeonato campeonato = campeonatoService.get(id);
+		model.addAttribute("campeonato", campeonato);
+		// model.addAttribute("clasificacion",
+		// parejaCampeonatoService.getClasificacion(campeonato));
+		model.addAttribute("mapClasificacion", parejaCampeonatoService.getClasificacionAgrupada(campeonato));
+		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
+
+		addUserToModel(usuarioLogeado, model);
+		return "CampeonatosView/CampeonatoClasificacion";
 	}
 
 	public void addUserToModel(Principal usuario, Model model) {

@@ -13,6 +13,8 @@ import com.padelclub.dao.api.CampeonatoRepository;
 import com.padelclub.model.Campeonato;
 import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Pareja;
+import com.padelclub.model.ParejaCampeonato;
+import com.padelclub.model.ParejaCampeonatoId;
 import com.padelclub.model.Reserva;
 import com.padelclub.service.api.CampeonatoService;
 import com.padelclub.service.api.EnfrentamientoService;
@@ -38,20 +40,70 @@ public class CampeonatoServiceImpl extends GenericServiceImpl<Campeonato, Long> 
 
 	@Override
 	public void sorteo(List<Pareja> parejasCampeonato, Campeonato campeonato) {
-		sorteoTodosContraTodos(parejasCampeonato, campeonato);
+		int tamanoGrupo = -1;
+		int tamanoGrupoAux = -1;
+
+		int tamano = parejasCampeonato.size();
+		int n = 8;
+		while (tamanoGrupo != -1 && n <= 12) {
+			if (tamano % n == 0) {
+				tamanoGrupo = n;
+				tamanoGrupoAux = 0;
+			} else if (tamano % n == 8) {
+				tamanoGrupo = n;
+				tamanoGrupoAux = 8;
+			} else if (tamano % n == 9) {
+				tamanoGrupo = n;
+				tamanoGrupoAux = 9;
+			} else if (tamano % n == 10) {
+				tamanoGrupo = n;
+				tamanoGrupoAux = 10;
+			} else if (tamano % n == 11) {
+				tamanoGrupo = n;
+				tamanoGrupoAux = 11;
+			}
+			n++;
+		}
+		int numGrupos = dividirEnGrupos(parejasCampeonato, campeonato, tamanoGrupo, tamanoGrupoAux);
+		sorteoTodosContraTodos(campeonato, numGrupos);
 	}
 
-	private void sorteoTodosContraTodos(List<Pareja> parejasCampeonato, Campeonato campeonato) {
-		while (parejasCampeonato.size() > 1) {
-			for (int i = 1; i < parejasCampeonato.size(); i++) {
-				Enfrentamiento enfrentamiento = new Enfrentamiento();
-				enfrentamiento.setCampeonato(campeonato);
-				enfrentamiento.setReserva(reservaService.save(new Reserva()));
-				enfrentamiento.setPareja1(parejasCampeonato.get(0));
-				enfrentamiento.setPareja2(parejasCampeonato.get(i));
-				enfrentamientoService.save(enfrentamiento);
+	private int dividirEnGrupos(List<Pareja> list, Campeonato campeonato, int tamGrupo, int tamGrupoAux) {
+		int numGrupos = list.size() / tamGrupo;
+		if (tamGrupoAux != -1) {
+			numGrupos++;
+		}
+		int i = 1;
+		int aux = tamGrupo;
+		ParejaCampeonato pj;
+		for (Pareja pareja : list) {
+			if (aux == 0) {
+				i++;
+				aux = tamGrupo;
 			}
-			parejasCampeonato.remove(0);
+			pj = parejaCampeonatoService.get(new ParejaCampeonatoId(campeonato, pareja));
+			pj.setGrupo(i);
+			parejaCampeonatoService.save(pj);
+			aux--;
+		}
+		return numGrupos;
+	}
+
+	private void sorteoTodosContraTodos(Campeonato campeonato, int numGrupos) {
+		for (int i = 1; i < numGrupos; i++) {
+			List<ParejaCampeonato> list = parejaCampeonatoService.findAllByCampeonatoAndGrupo(campeonato, i);
+			while (list.size() > 1) {
+				for (int j = 1; j < list.size(); j++) {
+					Enfrentamiento enfrentamiento = new Enfrentamiento();
+					enfrentamiento.setCampeonato(campeonato);
+					enfrentamiento.setGrupo(i);
+					enfrentamiento.setReserva(reservaService.save(new Reserva()));
+					enfrentamiento.setPareja1(list.get(0).getId().getPareja());
+					enfrentamiento.setPareja2(list.get(j).getId().getPareja());
+					enfrentamientoService.save(enfrentamiento);
+				}
+				list.remove(0);
+			}
 		}
 	}
 

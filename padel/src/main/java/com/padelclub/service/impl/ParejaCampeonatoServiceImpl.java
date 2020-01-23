@@ -1,6 +1,9 @@
 package com.padelclub.service.impl;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -11,6 +14,7 @@ import com.padelclub.dao.api.CampeonatoRepository;
 import com.padelclub.dao.api.ParejaCampeonatoRepository;
 import com.padelclub.dao.api.ParejaRepository;
 import com.padelclub.model.Campeonato;
+import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
@@ -54,6 +58,11 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 	}
 
 	@Override
+	public List<ParejaCampeonato> findAllByCampeonatoAndGrupo(Campeonato campeonato, int grupo) {
+		return parejaCampeonatoRepository.findAllByCampeonatoAndGrupo(campeonato.getId(), grupo);
+	}
+
+	@Override
 	public boolean validarInscripcion(Usuario miembro1, Usuario miembro2, Campeonato campeonato) {
 		List<Pareja> parejasInscritas = getParejasByCampeonato(campeonato);
 		for (Pareja pareja : parejasInscritas) {
@@ -74,6 +83,25 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 			return false;
 		}
 
+	}
+
+	@Override
+	public Map<Integer, List<ParejaCampeonato>> getClasificacionAgrupada(Campeonato campeonato) {
+		List<ParejaCampeonato> list = parejaCampeonatoRepository
+				.findAllByCampeonatoOrderByGrupoAscPuntosDesc(campeonato.getId());
+		Map<Integer, List<ParejaCampeonato>> map = new LinkedHashMap<>();
+		List<ParejaCampeonato> listToPut = new ArrayList<>();
+		int grupoActual = 1;
+		for (ParejaCampeonato parejaCampeonato : list) {
+			if (grupoActual != parejaCampeonato.getGrupo()) {
+				map.put(grupoActual, listToPut);
+				listToPut = new ArrayList<>();
+				grupoActual++;
+			}
+			listToPut.add(parejaCampeonato);
+		}
+		map.put(grupoActual, listToPut);
+		return map;
 	}
 
 }

@@ -1,6 +1,9 @@
 package com.padelclub.service.impl;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -38,5 +41,28 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	@Override
 	public Enfrentamiento getByReserva(Reserva reserva) {
 		return enfrentamientoRepository.findByReserva(reserva);
+	}
+
+	@Override
+	public List<Enfrentamiento> getAllByCampeonatoOrdererByGroup(Campeonato campeonato) {
+		return enfrentamientoRepository.findAllByCampeonatoOrderByGrupo(campeonato);
+	}
+
+	@Override
+	public Map<Integer, List<Enfrentamiento>> getEnfrentamientosAgrupados(Campeonato campeonato) {
+		List<Enfrentamiento> list = getAllByCampeonatoOrdererByGroup(campeonato);
+		Map<Integer, List<Enfrentamiento>> map = new LinkedHashMap<>();
+		List<Enfrentamiento> listToPut = new ArrayList<>();
+		int grupoActual = 1;
+		for (Enfrentamiento enfrentamiento : list) {
+			if (grupoActual != enfrentamiento.getGrupo()) {
+				map.put(grupoActual, listToPut);
+				listToPut = new ArrayList<>();
+				grupoActual++;
+			}
+			listToPut.add(enfrentamiento);
+		}
+		map.put(grupoActual, listToPut);
+		return map;
 	}
 }

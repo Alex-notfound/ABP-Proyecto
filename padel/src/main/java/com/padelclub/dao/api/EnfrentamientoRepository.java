@@ -14,4 +14,6 @@ public interface EnfrentamientoRepository extends JpaRepository<Enfrentamiento, 
 
 	Enfrentamiento findByReserva(Reserva reserva);
 
+	List<Enfrentamiento> findAllByCampeonatoOrderByGrupo(Campeonato campeonato);
+
 }

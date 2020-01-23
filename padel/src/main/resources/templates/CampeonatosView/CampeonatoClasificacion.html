@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>padelGest</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="../../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/header.css}">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div th:replace="barranav :: header"></div>
+	<div class="myheader">
+		<div style="padding-left: 10px;">
+			<br>
+			<h4>Detalles de campeonato</h4>
+		</div>
+	</div>
+
+	<div class="container">
+		<div th:if="${sesion.administrador}">
+			<a th:href="@{/campeonatos/playoff/0}" class="btn btn-info">Playoff</a>
+		</div>
+		<br>
+		<h4>Clasificación</h4>
+		<br> <a
+			th:href="@{/campeonatos/consultar/{id}(id=${campeonato.id})}"
+			class="btn btn-info">Clasificación</a> <br>
+		<div class="container">
+			<div th:each="grupoClasificacion : ${mapClasificacion}"
+				class="container">
+				<h5 th:text="'Clasificación del Grupo ' + ${grupoClasificacion.key}"></h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Miembro 1</th>
+							<th>Miembro 2</th>
+							<th>Puntos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="p : ${grupoClasificacion.value}">
+							<td th:text="${p.id.pareja.nombre}"></td>
+							<td th:text="${p.id.pareja.miembro1.nombre}"></td>
+							<td th:text="${p.id.pareja.miembro2.nombre}"></td>
+							<td th:text="${p.puntos}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.padelclub.model;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
@@ -12,6 +13,8 @@ public class ParejaCampeonato {
 	private ParejaCampeonatoId id;
 	@ColumnDefault("0")
 	private int puntos;
+	@Column
+	private int grupo;
 
 	public int getPuntos() {
 		return puntos;
@@ -27,6 +30,14 @@ public class ParejaCampeonato {
 
 	public void setId(ParejaCampeonatoId id) {
 		this.id = id;
+	}
+
+	public int getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(int grupo) {
+		this.grupo = grupo;
 	}
 
 }

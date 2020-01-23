@@ -11,5 +11,5 @@ public interface CampeonatoService extends GenericServiceAPI<Campeonato, Long> {
 	void sorteo(List<Pareja> parejasByCampeonato, Campeonato campeonato);
 
 	void CerrarTorneosFueraDePlazo();
-
+	
 }

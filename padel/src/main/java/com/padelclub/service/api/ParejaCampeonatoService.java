@@ -1,6 +1,7 @@
 package com.padelclub.service.api;
 
 import java.util.List;
+import java.util.Map;
 
 import com.padelclub.commons.GenericServiceAPI;
 import com.padelclub.model.Campeonato;
@@ -20,5 +21,9 @@ public interface ParejaCampeonatoService extends GenericServiceAPI<ParejaCampeon
 	public List<ParejaCampeonato> getClasificacion(Campeonato campeonato);
 
 	public boolean validarInscripcion(Usuario miembro1, Usuario miembro2, Campeonato campeonato);
+
+	List<ParejaCampeonato> findAllByCampeonatoAndGrupo(Campeonato campeonato, int grupo);
+
+	public Map<Integer, List<ParejaCampeonato>> getClasificacionAgrupada(Campeonato campeonato);
 
 }

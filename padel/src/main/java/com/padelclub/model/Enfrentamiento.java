@@ -26,6 +26,8 @@ public class Enfrentamiento {
 	private Reserva reserva;
 	@ManyToOne
 	private Campeonato campeonato;
+	@Column
+	private int grupo;
 
 	public Campeonato getCampeonato() {
 		return campeonato;
@@ -81,6 +83,14 @@ public class Enfrentamiento {
 
 	public void setGanador(Pareja ganador) {
 		this.ganador = ganador;
+	}
+
+	public int getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(int grupo) {
+		this.grupo = grupo;
 	}
 
 }
