@@ -94,4 +94,9 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 		enfrentamientoRepository.deleteAllByCampeonato(campeonato);
 	}
 
+	@Override
+	public boolean existeEnfrentamiento(Reserva reserva) {
+		return enfrentamientoRepository.findByReserva(reserva) != null;
+	}
+
 }

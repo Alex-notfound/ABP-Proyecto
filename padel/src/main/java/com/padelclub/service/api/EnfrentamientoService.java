@@ -28,4 +28,6 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	void deleteAllByCampeonato(Campeonato campeonato);
 
+	boolean existeEnfrentamiento(Reserva reserva);
+
 }

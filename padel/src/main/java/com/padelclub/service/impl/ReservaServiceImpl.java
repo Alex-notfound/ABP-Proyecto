@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.ReservaRepository;
+import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
+import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.PartidoService;
 import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaDTO;
@@ -30,6 +32,8 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	private PistaService pistaService;
 	@Autowired
 	private PartidoService partidoService;
+	@Autowired
+	private EnfrentamientoService enfrentamientoService;
 
 	@Override
 	public CrudRepository<Reserva, Long> getDao() {
@@ -132,6 +136,12 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 		for (Reserva reserva : list) {
 			if (partidoService.existePartido(reserva)) {
 				partidoService.delete(partidoService.findByReserva(reserva).getId());
+			}
+			if (enfrentamientoService.existeEnfrentamiento(reserva)) {
+				Enfrentamiento enfrentamiento = enfrentamientoService.getByReserva(reserva);
+				Reserva r = reservaRepository.save(new Reserva());
+				enfrentamiento.setReserva(r);
+				enfrentamientoService.save(enfrentamiento);
 			}
 			reservaRepository.delete(reserva);
 		}
