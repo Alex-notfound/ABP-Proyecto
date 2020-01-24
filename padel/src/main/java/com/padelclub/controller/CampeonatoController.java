@@ -141,6 +141,11 @@ public class CampeonatoController {
 	@GetMapping("/consultar/{id}/clasificacion")
 	public String consultarClasificacion(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
+		if (enfrentamientoService.getFaseActual(campeonato) == 5) {
+			model.addAttribute("final", true);
+		} else {
+			model.addAttribute("final", false);
+		}
 		model.addAttribute("campeonato", campeonato);
 		model.addAttribute("mapClasificacion", parejaCampeonatoService.getClasificacionAgrupada(campeonato));
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
@@ -170,6 +175,11 @@ public class CampeonatoController {
 	public String playoff(@PathVariable Long id, Model model, Principal usuarioLogeado) {
 		Campeonato campeonato = campeonatoService.get(id);
 		model.addAttribute("campeonato", campeonato);
+		if (enfrentamientoService.getFaseActual(campeonato) == 5) {
+			model.addAttribute("final", true);
+		} else {
+			model.addAttribute("final", false);
+		}
 		int faseActual = enfrentamientoService.getFaseActual(campeonato);
 		if (faseActual > 1 && faseActual < 5) {
 			model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, faseActual));
