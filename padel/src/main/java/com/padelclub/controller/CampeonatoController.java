@@ -183,6 +183,8 @@ public class CampeonatoController {
 		int faseActual = enfrentamientoService.getFaseActual(campeonato);
 		if (faseActual > 1 && faseActual < 5) {
 			model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, faseActual));
+		} else if (faseActual == 5) {
+			model.addAttribute("map", enfrentamientoService.getEnfrentamientosByFaseAgrupados(campeonato, 4));
 		}
 
 		model.addAttribute("idUsuarioLogueado", usuarioService.getUsuario(usuarioLogeado).getId());
