@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -15,20 +14,16 @@ import com.padelclub.dao.api.CampeonatoRepository;
 import com.padelclub.dao.api.ParejaCampeonatoRepository;
 import com.padelclub.dao.api.ParejaRepository;
 import com.padelclub.model.Campeonato;
-import com.padelclub.model.Enfrentamiento;
 import com.padelclub.model.Pareja;
 import com.padelclub.model.ParejaCampeonato;
 import com.padelclub.model.ParejaCampeonatoId;
 import com.padelclub.model.Usuario;
-import com.padelclub.service.api.EnfrentamientoService;
 import com.padelclub.service.api.ParejaCampeonatoService;
 
 @Service
 public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeonato, ParejaCampeonatoId>
 		implements ParejaCampeonatoService {
 
-	@Autowired
-	private EnfrentamientoService enfretamientoService;
 	@Autowired
 	private ParejaCampeonatoRepository parejaCampeonatoRepository;
 	@Autowired

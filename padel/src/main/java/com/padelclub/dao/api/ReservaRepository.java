@@ -15,8 +15,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
 	Reserva findOneById(Long id);
 
-	List<Reserva> findAllByFechaOrderByPistaAscHoraAsc(Date fecha);
-
 	List<Reserva> findAllByUsuario(Usuario usuario);
 
 	Reserva findByFechaAndHoraAndPista(Date fecha, String hora, Pista pista);
