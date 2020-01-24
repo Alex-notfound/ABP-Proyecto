@@ -34,11 +34,6 @@ public class EnfrentamientoServiceImpl extends GenericServiceImpl<Enfrentamiento
 	}
 
 	@Override
-	public Campeonato getCampeonatoByReserva(Reserva reserva) {
-		return enfrentamientoRepository.findByReserva(reserva).getCampeonato();
-	}
-
-	@Override
 	public Enfrentamiento getByReserva(Reserva reserva) {
 		return enfrentamientoRepository.findByReserva(reserva);
 	}

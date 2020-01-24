@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padelclub.model.Partido;
 import com.padelclub.model.Reserva;
@@ -17,7 +16,6 @@ import com.padelclub.model.Usuario;
 import com.padelclub.model.UsuarioPartido;
 import com.padelclub.model.UsuarioPartidoId;
 import com.padelclub.service.api.PartidoService;
-import com.padelclub.service.api.PistaService;
 import com.padelclub.service.api.ReservaService;
 import com.padelclub.service.api.UsuarioPartidoService;
 import com.padelclub.service.api.UsuarioService;
@@ -30,8 +28,6 @@ public class PartidosController {
 	private PartidoService partidoService;
 	@Autowired
 	private UsuarioPartidoService usuarioPartidoService;
-	@Autowired
-	private PistaService pistaService;
 	@Autowired
 	private ReservaService reservaService;
 	@Autowired

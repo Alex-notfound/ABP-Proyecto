@@ -12,8 +12,6 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	List<Enfrentamiento> getAllByCampeonato(Campeonato campeonato);
 
-	Campeonato getCampeonatoByReserva(Reserva reservaGuardada);
-
 	Enfrentamiento getByReserva(Reserva reserva);
 
 	List<Enfrentamiento> getAllByCampeonatoOrdererByGroup(Campeonato campeonato);
@@ -26,6 +24,7 @@ public interface EnfrentamientoService extends GenericServiceAPI<Enfrentamiento,
 
 	int getFaseActual(Campeonato campeonato);
 
+	// FIXME: Metodo no utilizado
 	void deleteAllByCampeonato(Campeonato campeonato);
 
 	boolean existeEnfrentamiento(Reserva reserva);
