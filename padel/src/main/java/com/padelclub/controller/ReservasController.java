@@ -64,7 +64,7 @@ public class ReservasController {
 
 	@PostMapping("/buscar")
 	public String buscar(Reserva reserva, Model model, Principal usuarioLogeado) {
-		model.addAttribute("list", reservaService.getReservasDao2(reserva));
+		model.addAttribute("list", reservaService.getReservasDao(reserva));
 		model.addAttribute("fecha", reserva.getFecha());
 		model.addAttribute("reserva", reserva);
 		addUserToModel(usuarioLogeado, model);

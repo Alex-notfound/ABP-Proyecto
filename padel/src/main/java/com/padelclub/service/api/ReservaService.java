@@ -1,21 +1,14 @@
 package com.padelclub.service.api;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.padelclub.commons.GenericServiceAPI;
-import com.padelclub.model.Pista;
 import com.padelclub.model.Reserva;
 import com.padelclub.model.Usuario;
 
 public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 
-	public List<Reserva> findAllByFecha(Date fecha);
-
 	public List<Reserva> findAllByUsuario(Usuario usuario);
-
-	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva reserva, List<Pista> pistas);
 
 	public List<Reserva> getAllFromUser(Usuario usuario);
 
@@ -31,6 +24,6 @@ public interface ReservaService extends GenericServiceAPI<Reserva, Long> {
 
 	public Reserva findById(Long id);
 
-	List<ReservaDTO> getReservasDao2(Reserva reserva);
+	List<ReservaDTO> getReservasDao(Reserva reserva);
 
 }

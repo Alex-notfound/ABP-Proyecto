@@ -9,8 +9,6 @@ public class ReservaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	private Long id;
-//	private Usuario2 usuario;
 	private Pista pista;
 	private Date fecha;
 	private String hora;
@@ -30,22 +28,6 @@ public class ReservaDTO implements Serializable {
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-
-//	public Long getId() {
-//		return id;
-//	}
-//
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//
-//	public Usuario2 getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(Usuario2 usuario) {
-//		this.usuario = usuario;
-//	}
 
 	public Pista getPista() {
 		return pista;

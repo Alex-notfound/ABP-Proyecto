@@ -1,6 +1,5 @@
 package com.padelclub.service.impl;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import com.padelclub.commons.GenericServiceImpl;
 import com.padelclub.dao.api.PartidoRepository;
 import com.padelclub.model.Partido;
 import com.padelclub.model.Reserva;
-import com.padelclub.model.Usuario;
 import com.padelclub.service.api.PartidoService;
 
 @Service
@@ -33,11 +31,6 @@ public class PartidoServiceImpl extends GenericServiceImpl<Partido, Long> implem
 	@Override
 	public List<Partido> getOfertados() {
 		return partidoRepository.findAllByTipo("Ofertado");
-	}
-
-	@Override
-	public List<Partido> findAllByUsuario(Usuario usuario) {
-		return partidoRepository.findAllByUsuario(usuario.getId());
 	}
 
 	@Override

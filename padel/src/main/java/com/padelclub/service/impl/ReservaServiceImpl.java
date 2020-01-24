@@ -41,36 +41,12 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva, Long> implem
 	}
 
 	@Override
-	public List<Reserva> findAllByFecha(Date fecha) {
-		return reservaRepository.findAllByFechaOrderByPistaAscHoraAsc(fecha);
-	}
-
-	@Override
 	public List<Reserva> findAllByUsuario(Usuario usuario) {
 		return reservaRepository.findAllByUsuario(usuario);
 	}
 
 	@Override
-	public Map<Pista, List<ReservaDTO>> getReservasDao(Reserva reserva, List<Pista> pistas) {
-		String[] horas = { "9.00", "10.30", "12.00", "13.30", "15.00", "16.30", "18.00", "19.30", "21.00" };
-		Map<Pista, List<ReservaDTO>> map = new LinkedHashMap<>();
-		for (Pista pista : pistas) {
-			map.put(pista, new ArrayList<>());
-			for (int j = 0; j < horas.length; j++) {
-				if (reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista) != null
-						&& !reservaRepository.findByFechaAndHoraAndPista(reserva.getFecha(), horas[j], pista)
-								.isDisponible()) {
-					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], false));
-				} else {
-					map.get(pista).add(new ReservaDTO(pista, reserva.getFecha(), horas[j], true));
-				}
-			}
-		}
-		return map;
-	}
-
-	@Override
-	public List<ReservaDTO> getReservasDao2(Reserva reserva) {
+	public List<ReservaDTO> getReservasDao(Reserva reserva) {
 		String[] horas = { "9.00", "10.30", "12.00", "13.30", "15.00", "16.30", "18.00", "19.30", "21.00" };
 		List<ReservaDTO> list = new ArrayList<>();
 		for (int j = 0; j < horas.length; j++) {
