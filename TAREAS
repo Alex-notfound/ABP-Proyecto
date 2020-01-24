@@ -1,20 +1,9 @@
-#CHECKEAR:
--Vista Consultar Campeonato -> Entrentamientos,resultados, jugadores... (CampeonatosView/CampeonatoDetail.html)
--Añadir notificacion enfrentamiento
--Vista aceptar enfrentamiento (podría incluirse en el perfil del jugador - UsuarioView/UsuariosProfile.html)
---------------------------------
-#TAREAS ALEX:
 -Accesos a paginas
--Validación inscripción campeonato (comprobar si ya está inscrito y si cumple los requisitos)
 -Delete CASCADE
 -Validaciones
 -------------------------------
 
-GESTIONAR PLAYOFF
-Gestionar playoff
-
 Impedir reservar en el mismo día en horas pasadas
-No hacer reserva en una pista concreta
 
 #################################################################################
 TERMINADO
