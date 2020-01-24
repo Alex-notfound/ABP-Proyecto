@@ -108,41 +108,4 @@ public class ParejaCampeonatoServiceImpl extends GenericServiceImpl<ParejaCampeo
 		return map;
 	}
 
-	@Override
-	public Map<Integer, List<ParejaCampeonato>> getClasificacionPlayoffAgrupada(Campeonato campeonato) {
-
-		Map<Integer, List<ParejaCampeonato>> toret = new LinkedHashMap<>();
-		Map<Integer, List<Enfrentamiento>> map;
-
-		for (int i = 4; i > 1; i--) {
-			map = enfretamientoService.getEnfrentamientosByFaseAgrupados(campeonato, i);
-			if (map != null) {
-				toret = clasificarPorFase(map, toret);
-			}
-		}
-		return toret;
-	}
-
-	private Map<Integer, List<ParejaCampeonato>> clasificarPorFase(Map<Integer, List<Enfrentamiento>> map,
-			Map<Integer, List<ParejaCampeonato>> toret) {
-		for (Entry<Integer, List<Enfrentamiento>> entry : map.entrySet()) {
-			List<ParejaCampeonato> list = new ArrayList<>();
-			for (Enfrentamiento enfrentamiento : entry.getValue()) {
-				if (enfrentamiento.getGanador() != null) {
-					list.add(parejaCampeonatoRepository.getOne(
-							new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getGanador())));
-					if (enfrentamiento.getGanador().equals(enfrentamiento.getPareja1())) {
-						list.add(parejaCampeonatoRepository.getOne(
-								new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja2())));
-					} else {
-						list.add(parejaCampeonatoRepository.getOne(
-								new ParejaCampeonatoId(enfrentamiento.getCampeonato(), enfrentamiento.getPareja1())));
-					}
-				}
-			}
-			toret.put(entry.getKey(), list);
-		}
-		return toret;
-	}
-
 }
